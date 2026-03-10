@@ -2,6 +2,8 @@ import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './index.module.css';
+import { FileText, Image, Settings, Shield, Lightbulb, Building, BookOpen, MessageSquare, Cpu } from '../components/Icons';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 // 四大核心能力
 const coreCapabilities = [
@@ -18,7 +20,8 @@ const coreCapabilities = [
       '分块结果可追溯到原文位置，支持精准引用',
     ],
     value: '准确不是"多召回"，而是"召回刚好正确的内容"',
-    icon: '📄',
+    Icon: FileText,
+    color: 'blue' as const,
   },
   {
     id: 'multimodal',
@@ -34,7 +37,8 @@ const coreCapabilities = [
       '在算力受限或离线环境下仍可稳定运行',
     ],
     value: '企业知识，不再只存在于文字中',
-    icon: '🖼️',
+    Icon: Image,
+    color: 'purple' as const,
   },
   {
     id: 'engineering',
@@ -50,7 +54,8 @@ const coreCapabilities = [
       '完整 API 能力，支持自动化与系统集成',
     ],
     value: '知识库不是一次性构建，而是可以持续演进的资产',
-    icon: '⚙️',
+    Icon: Settings,
+    color: 'green' as const,
   },
   {
     id: 'enterprise',
@@ -66,7 +71,8 @@ const coreCapabilities = [
       '满足政企、内网、合规场景需求',
     ],
     value: '知识库不仅要"好用"，更要"可控、可管、可审计"',
-    icon: '🏢',
+    Icon: Shield,
+    color: 'orange' as const,
   },
 ];
 
@@ -74,22 +80,26 @@ const scenarios = [
   {
     title: '政企内网知识库',
     description: '满足政府、央企对数据安全与合规的严格要求，支持完全离线部署',
-    icon: '🏛️',
+    Icon: Building,
+    color: 'blue' as const,
   },
   {
     title: '企业知识中台',
     description: '构建组织级知识资产，统一管理文档、FAQ、产品手册等多类型知识',
-    icon: '📚',
+    Icon: BookOpen,
+    color: 'purple' as const,
   },
   {
     title: '智能客服/问答系统',
     description: '基于精准检索的智能问答，提供可追溯、可验证的答案',
-    icon: '💬',
+    Icon: MessageSquare,
+    color: 'green' as const,
   },
   {
     title: 'Agent 知识底座',
     description: '为 AI Agent 提供可靠的知识检索能力，支持多系统集成',
-    icon: '🤖',
+    Icon: Cpu,
+    color: 'orange' as const,
   },
 ];
 
@@ -98,21 +108,53 @@ const testimonials = [
     content: 'KnowFlow 的文档结构理解能力让我们的检索准确率提升了显著，特别是对复杂报告类文档的处理效果很好。',
     author: '张总',
     company: '某央企信息化部门负责人',
+    initial: '张',
   },
   {
     content: '私有化部署 + 完善的权限体系，完美满足了我们的合规要求。知识库导入导出功能也很实用。',
     author: '李经理',
     company: '某金融机构 IT负责人',
+    initial: '李',
   },
   {
     content: '多模态能力是我们选择 KnowFlow 的关键因素，图片和表格终于可以被正确理解和检索了。',
     author: '王总监',
     company: '某制造企业 信息化总监',
+    initial: '王',
   },
 ];
 
+const stats = [
+  { number: '30+', label: '企业客户' },
+  { number: '1M+', label: '文档处理量' },
+  { number: '99.9%', label: '服务可用性' },
+  { number: '24/7', label: '技术支持' },
+];
+
+function AnimatedSection({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+  const [ref, isVisible] = useScrollAnimation();
+  return (
+    <div
+      ref={ref}
+      className={className}
+      data-animate=""
+      style={{ transitionDelay: `${delay}ms` }}
+      {...(isVisible ? { className: `${className || ''} visible`.trim() } : {})}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function Home(): ReactNode {
   const productPreview = useBaseUrl('/img/product-preview.png');
+  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.05 });
+  const [capRef, capVisible] = useScrollAnimation();
+  const [productRef, productVisible] = useScrollAnimation();
+  const [scenarioRef, scenarioVisible] = useScrollAnimation();
+  const [testimonialRef, testimonialVisible] = useScrollAnimation();
+  const [ctaRef, ctaVisible] = useScrollAnimation();
+  const [statsRef, statsVisible] = useScrollAnimation();
 
   return (
     <Layout
@@ -121,11 +163,20 @@ export default function Home(): ReactNode {
 
       {/* Hero Section */}
       <section className={styles.hero}>
+        <div className={styles.heroGrid} />
+        <div className={styles.heroGlow} />
         <div className="container">
-          <div className={styles.heroContent}>
-            <div className={styles.heroBadge}>私有化场景首选</div>
+          <div
+            ref={heroRef}
+            className={`${styles.heroContent} ${heroVisible ? styles.heroVisible : ''}`}
+          >
+            <div className={styles.heroBadge}>
+              <span className={styles.badgeDot} />
+              私有化场景首选
+            </div>
             <h1 className={styles.heroTitle}>
-              准确、可靠、可落地的企业级知识库
+              准确、可靠、可落地的
+              <span className={styles.gradientText}>企业级知识库</span>
             </h1>
             <p className={styles.heroSubtitle}>
               KnowFlow 为私有化场景而生
@@ -142,36 +193,57 @@ export default function Home(): ReactNode {
         </div>
       </section>
 
+      {/* Stats Bar */}
+      <section
+        ref={statsRef}
+        className={`${styles.statsBar} ${statsVisible ? 'visible' : ''}`}
+        data-animate=""
+      >
+        <div className="container">
+          <div className={styles.statsGrid}>
+            {stats.map((stat, idx) => (
+              <div key={idx} className={styles.statItem}>
+                <div className={styles.statNumber}>{stat.number}</div>
+                <div className={styles.statLabel}>{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Core Capabilities Section */}
       <section className={styles.coreCapabilities}>
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <div
+            ref={capRef}
+            className={`${styles.sectionHeader} ${capVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2 className={styles.sectionTitle}>核心能力</h2>
             <p className={styles.sectionSubtitle}>
               KnowFlow 以「文档结构理解」为核心，提供完整的企业级知识库解决方案
             </p>
           </div>
 
-          <div className={styles.capabilitiesList}>
-            {coreCapabilities.map((capability, idx) => (
-              <div key={capability.id} className={`${styles.capabilityCard} ${idx % 2 === 1 ? styles.capabilityCardReverse : ''}`}>
-                <div className={styles.capabilityContent}>
-                  <div className={styles.capabilityNumber}>{capability.number}</div>
-                  <h3 className={styles.capabilityTitle}>{capability.title}</h3>
-                  <p className={styles.capabilitySubtitle}>{capability.subtitle}</p>
-                  <p className={styles.capabilityDescription}>{capability.description}</p>
-                  <ul className={styles.capabilityFeatures}>
-                    {capability.features.map((feature, fidx) => (
-                      <li key={fidx}>{feature}</li>
-                    ))}
-                  </ul>
-                  <div className={styles.capabilityValue}>
-                    <span className={styles.valueIcon}>💡</span>
-                    <span className={styles.valueText}>{capability.value}</span>
-                  </div>
+          <div className={styles.capabilitiesGrid}>
+            {coreCapabilities.map((capability) => (
+              <div key={capability.id} className={`${styles.capabilityCard} ${styles[`card${capability.color.charAt(0).toUpperCase() + capability.color.slice(1)}`]}`}>
+                <div className={styles.cardTopBar} />
+                <div className={styles.capabilityIconWrap}>
+                  <capability.Icon size={32} />
                 </div>
-                <div className={styles.capabilityVisual}>
-                  <div className={styles.capabilityIcon}>{capability.icon}</div>
+                <div className={styles.capabilityNumber}>{capability.number}</div>
+                <h3 className={styles.capabilityTitle}>{capability.title}</h3>
+                <p className={styles.capabilitySubtitle}>{capability.subtitle}</p>
+                <p className={styles.capabilityDescription}>{capability.description}</p>
+                <ul className={styles.capabilityFeatures}>
+                  {capability.features.map((feature, fidx) => (
+                    <li key={fidx}>{feature}</li>
+                  ))}
+                </ul>
+                <div className={styles.capabilityValue}>
+                  <Lightbulb size={18} />
+                  <span className={styles.valueText}>{capability.value}</span>
                 </div>
               </div>
             ))}
@@ -182,7 +254,11 @@ export default function Home(): ReactNode {
       {/* Product Preview Section */}
       <section className={styles.product}>
         <div className="container">
-          <div className={styles.productContent}>
+          <div
+            ref={productRef}
+            className={`${styles.productContent} ${productVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <div className={styles.productText}>
               <h2>为生产环境而生</h2>
               <p>
@@ -214,7 +290,11 @@ export default function Home(): ReactNode {
       {/* Scenarios Section */}
       <section className={styles.scenarios}>
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <div
+            ref={scenarioRef}
+            className={`${styles.sectionHeader} ${scenarioVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2 className={styles.sectionTitle}>应用场景</h2>
             <p className={styles.sectionSubtitle}>
               满足私有化部署场景下的各类知识管理需求
@@ -222,8 +302,11 @@ export default function Home(): ReactNode {
           </div>
           <div className={styles.scenarioGrid}>
             {scenarios.map((scenario, idx) => (
-              <div key={idx} className={styles.scenarioCard}>
-                <div className={styles.scenarioIcon}>{scenario.icon}</div>
+              <div key={idx} className={`${styles.scenarioCard} ${styles[`scenario${scenario.color.charAt(0).toUpperCase() + scenario.color.slice(1)}`]}`}>
+                <div className={styles.scenarioTopBar} />
+                <div className={styles.scenarioIcon}>
+                  <scenario.Icon size={28} />
+                </div>
                 <h3>{scenario.title}</h3>
                 <p>{scenario.description}</p>
               </div>
@@ -235,7 +318,11 @@ export default function Home(): ReactNode {
       {/* Testimonials Section */}
       <section className={styles.testimonials}>
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <div
+            ref={testimonialRef}
+            className={`${styles.sectionHeader} ${testimonialVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2 className={styles.sectionTitle}>客户评价</h2>
             <p className={styles.sectionSubtitle}>
               来自一线用户的真实反馈
@@ -248,8 +335,11 @@ export default function Home(): ReactNode {
                   "{testimonial.content}"
                 </p>
                 <div className={styles.testimonialAuthor}>
-                  <strong>{testimonial.author}</strong>
-                  <span>{testimonial.company}</span>
+                  <div className={styles.authorAvatar}>{testimonial.initial}</div>
+                  <div>
+                    <strong>{testimonial.author}</strong>
+                    <span>{testimonial.company}</span>
+                  </div>
                 </div>
               </div>
             ))}
@@ -260,7 +350,11 @@ export default function Home(): ReactNode {
       {/* CTA Section */}
       <section className={styles.cta}>
         <div className="container">
-          <div className={styles.ctaContent}>
+          <div
+            ref={ctaRef}
+            className={`${styles.ctaContent} ${ctaVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2>准备构建您的企业级知识库？</h2>
             <p>准确、可靠、可落地 —— 为私有化场景而生</p>
             <div className={styles.ctaButtons}>

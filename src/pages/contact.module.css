@@ -1,8 +1,36 @@
+/* ============================================
+   Hero Section
+   ============================================ */
 .hero {
-  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-  color: white;
-  padding: 60px 0;
+  background: var(--kf-bg-primary);
+  color: var(--kf-text-heading);
+  padding: 80px 0 60px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.heroVisible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .heroTitle {
@@ -13,13 +41,17 @@
 
 .heroSubtitle {
   font-size: 1.125rem;
-  opacity: 0.95;
+  color: var(--kf-text-body);
   max-width: 600px;
   margin: 0 auto;
 }
 
+/* ============================================
+   Contact Section
+   ============================================ */
 .contactSection {
   padding: 80px 0;
+  background: var(--kf-bg-secondary);
 }
 
 .contactGrid {
@@ -28,22 +60,26 @@
   gap: 3rem;
 }
 
+/* ============================================
+   Form Container
+   ============================================ */
 .formContainer {
-  background: white;
+  background: var(--kf-glass-bg);
+  border: 1px solid var(--kf-glass-border);
   padding: 2.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  backdrop-filter: var(--kf-glass-blur);
 }
 
 .formContainer h2 {
   font-size: 1.875rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .formDesc {
-  color: #6b7280;
+  color: var(--kf-text-muted);
   margin-bottom: 2rem;
 }
 
@@ -67,7 +103,7 @@
 .formGroup label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--kf-text-body);
   margin-bottom: 0.5rem;
 }
 
@@ -75,18 +111,36 @@
 .formGroup select,
 .formGroup textarea {
   padding: 0.75rem;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--kf-glass-border);
   border-radius: 6px;
   font-size: 1rem;
   transition: all 0.2s;
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--kf-text-heading);
+}
+
+.formGroup input::placeholder,
+.formGroup textarea::placeholder {
+  color: var(--kf-text-muted);
 }
 
 .formGroup input:focus,
 .formGroup select:focus,
 .formGroup textarea:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--kf-accent-blue);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.formGroup select {
+  appearance: auto;
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--kf-text-heading);
+}
+
+.formGroup select option {
+  background: var(--kf-bg-secondary);
+  color: var(--kf-text-heading);
 }
 
 .formGroup textarea {
@@ -96,7 +150,7 @@
 
 .submitButton {
   padding: 0.875rem 2rem;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, var(--kf-accent-blue) 0%, #2563eb 100%);
   color: white;
   border: none;
   border-radius: 8px;
@@ -104,11 +158,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  box-shadow: var(--kf-glow-blue);
 }
 
 .submitButton:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
 }
 
 .submitButton:disabled {
@@ -118,13 +173,13 @@
 
 .privacy {
   text-align: center;
-  color: #6b7280;
+  color: var(--kf-text-muted);
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
 
 .privacy a {
-  color: #3b82f6;
+  color: var(--kf-accent-blue);
   text-decoration: none;
 }
 
@@ -132,6 +187,9 @@
   text-decoration: underline;
 }
 
+/* ============================================
+   Success / Error Messages
+   ============================================ */
 .successMessage {
   text-align: center;
   padding: 3rem;
@@ -142,7 +200,7 @@
   width: 60px;
   height: 60px;
   line-height: 60px;
-  background: #10b981;
+  background: var(--kf-accent-green);
   color: white;
   border-radius: 50%;
   font-size: 2rem;
@@ -151,12 +209,12 @@
 
 .successMessage h3 {
   font-size: 1.5rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
   margin-bottom: 0.5rem;
 }
 
 .successMessage p {
-  color: #6b7280;
+  color: var(--kf-text-body);
 }
 
 .errorMessage {
@@ -178,14 +236,17 @@
 
 .errorMessage h3 {
   font-size: 1.5rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
   margin-bottom: 0.5rem;
 }
 
 .errorMessage p {
-  color: #6b7280;
+  color: var(--kf-text-body);
 }
 
+/* ============================================
+   Info Container
+   ============================================ */
 .infoContainer {
   display: flex;
   flex-direction: column;
@@ -193,16 +254,18 @@
 }
 
 .infoCard {
-  background: #f9fafb;
+  background: var(--kf-glass-bg);
+  border: 1px solid var(--kf-glass-border);
   padding: 1.5rem;
   border-radius: 12px;
+  backdrop-filter: var(--kf-glass-blur);
 }
 
 .infoCard h3 {
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .infoItem {
@@ -212,25 +275,26 @@
 }
 
 .infoIcon {
-  font-size: 1.5rem;
   width: 40px;
   height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: white;
+  background: rgba(59, 130, 246, 0.1);
   border-radius: 8px;
+  color: var(--kf-accent-blue);
+  flex-shrink: 0;
 }
 
 .infoLabel {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--kf-text-muted);
   margin-bottom: 0.25rem;
 }
 
 .infoValue {
   font-weight: 500;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .faqList {
@@ -246,38 +310,47 @@
 .faqList strong {
   display: block;
   margin-bottom: 0.5rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .faqList p {
-  color: #6b7280;
+  color: var(--kf-text-body);
   font-size: 0.875rem;
   margin: 0;
 }
 
 .responseTime {
-  color: #6b7280;
+  color: var(--kf-text-body);
   line-height: 1.6;
   font-size: 0.9375rem;
 }
 
+/* ============================================
+   CTA Section
+   ============================================ */
 .cta {
   padding: 80px 0;
-  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  background: var(--kf-bg-primary);
   text-align: center;
+  border-top: 1px solid var(--kf-glass-border);
+}
+
+.ctaInner {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .cta h2 {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .cta p {
   font-size: 1.125rem;
   margin-bottom: 2rem;
-  color: #6b7280;
+  color: var(--kf-text-body);
 }
 
 .ctaButtons {
@@ -297,29 +370,34 @@
 }
 
 .primaryButton {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: linear-gradient(135deg, var(--kf-accent-blue) 0%, #2563eb 100%);
   color: white;
+  box-shadow: var(--kf-glow-blue);
 }
 
 .primaryButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
   text-decoration: none;
   color: white;
 }
 
 .secondaryButton {
-  background: white;
-  color: #3b82f6;
-  border: 2px solid #3b82f6;
+  background: transparent;
+  color: var(--kf-text-heading);
+  border: 1px solid var(--kf-glass-border);
 }
 
 .secondaryButton:hover {
-  background: #3b82f6;
-  color: white;
+  background: var(--kf-glass-bg);
+  border-color: rgba(255, 255, 255, 0.2);
   text-decoration: none;
+  color: var(--kf-text-heading);
 }
 
+/* ============================================
+   Responsive Design
+   ============================================ */
 @media (max-width: 768px) {
   .contactGrid {
     grid-template-columns: 1fr;
@@ -332,5 +410,9 @@
   .ctaButtons {
     flex-direction: column;
     align-items: center;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
   }
 }

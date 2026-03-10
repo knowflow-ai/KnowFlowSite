@@ -1,8 +1,36 @@
+/* ============================================
+   Hero Section
+   ============================================ */
 .hero {
-  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-  color: white;
-  padding: 80px 0;
+  background: var(--kf-bg-primary);
+  color: var(--kf-text-heading);
+  padding: 100px 0 80px;
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.heroGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.heroInner {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.heroVisible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .heroTitle {
@@ -11,24 +39,39 @@
   margin-bottom: 1.5rem;
 }
 
+.gradientText {
+  background: linear-gradient(135deg, var(--kf-accent-blue) 0%, var(--kf-accent-cyan) 50%, var(--kf-accent-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 .heroSubtitle {
   font-size: 1.25rem;
-  opacity: 0.95;
+  color: var(--kf-text-body);
   max-width: 700px;
   margin: 0 auto;
 }
 
+/* ============================================
+   Section Title
+   ============================================ */
 .sectionTitle {
   text-align: center;
   font-size: 2.5rem;
   font-weight: 600;
   margin-bottom: 3rem;
-  color: #1a1a1a;
+  color: var(--kf-text-heading);
 }
 
+/* ============================================
+   Stats Section
+   ============================================ */
 .stats {
   padding: 60px 0;
-  background: #f8f9fa;
+  background: var(--kf-bg-secondary);
+  border-top: 1px solid var(--kf-glass-border);
+  border-bottom: 1px solid var(--kf-glass-border);
 }
 
 .statsGrid {
@@ -44,18 +87,25 @@
 .statNumber {
   font-size: 3rem;
   font-weight: 700;
-  color: #3b82f6;
+  background: linear-gradient(135deg, var(--kf-accent-blue), var(--kf-accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin-bottom: 0.5rem;
 }
 
 .statLabel {
   font-size: 1.125rem;
-  color: #6b7280;
+  color: var(--kf-text-muted);
   font-weight: 500;
 }
 
+/* ============================================
+   Mission Section
+   ============================================ */
 .mission {
   padding: 80px 0;
+  background: var(--kf-bg-primary);
 }
 
 .missionContent {
@@ -69,13 +119,13 @@
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 1.5rem;
-  color: #1a1a1a;
+  color: var(--kf-text-heading);
 }
 
 .missionText p {
   font-size: 1.125rem;
   line-height: 1.8;
-  color: #4b5563;
+  color: var(--kf-text-body);
   margin-bottom: 1.5rem;
 }
 
@@ -88,28 +138,34 @@
   width: 100%;
   max-width: 400px;
   height: 300px;
-  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  background: var(--kf-glass-bg);
+  border: 1px solid var(--kf-glass-border);
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-.imagePlaceholder span {
-  font-size: 4rem;
-  margin-bottom: 1rem;
+  backdrop-filter: var(--kf-glass-blur);
+  color: var(--kf-accent-blue);
 }
 
 .imagePlaceholder p {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #1e40af;
+  color: var(--kf-accent-cyan);
+  margin-top: 1rem;
 }
 
+/* ============================================
+   Values Section
+   ============================================ */
 .values {
   padding: 80px 0;
-  background: #f8f9fa;
+  background: var(--kf-bg-secondary);
+}
+
+.valuesInner {
+  width: 100%;
 }
 
 .valuesGrid {
@@ -119,38 +175,58 @@
 }
 
 .valueCard {
-  background: white;
+  background: var(--kf-glass-bg);
+  border: 1px solid var(--kf-glass-border);
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s;
+  backdrop-filter: var(--kf-glass-blur);
+  transition: all 0.3s;
 }
 
 .valueCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .valueIcon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
 }
+
+.valueBlue .valueIcon { color: var(--kf-accent-blue); background: rgba(59, 130, 246, 0.1); }
+.valuePurple .valueIcon { color: var(--kf-accent-purple); background: rgba(139, 92, 246, 0.1); }
+.valueGreen .valueIcon { color: var(--kf-accent-green); background: rgba(16, 185, 129, 0.1); }
+.valueOrange .valueIcon { color: var(--kf-accent-orange); background: rgba(245, 158, 11, 0.1); }
 
 .valueCard h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .valueCard p {
-  color: #6b7280;
+  color: var(--kf-text-body);
   line-height: 1.6;
 }
 
+/* ============================================
+   Team Section
+   ============================================ */
 .team {
   padding: 80px 0;
+  background: var(--kf-bg-primary);
+}
+
+.teamInner {
+  width: 100%;
 }
 
 .teamGrid {
@@ -161,37 +237,46 @@
 
 .teamCard {
   padding: 2rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--kf-glass-border);
   border-radius: 12px;
-  transition: all 0.2s;
+  background: var(--kf-glass-bg);
+  backdrop-filter: var(--kf-glass-blur);
+  transition: all 0.3s;
 }
 
 .teamCard:hover {
-  border-color: #3b82f6;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  box-shadow: var(--kf-glow-blue);
 }
 
 .teamCard h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .teamCard p {
-  color: #6b7280;
+  color: var(--kf-text-body);
   line-height: 1.6;
 }
 
+/* ============================================
+   Partners Section
+   ============================================ */
 .partners {
   padding: 80px 0;
-  background: #f8f9fa;
+  background: var(--kf-bg-secondary);
+}
+
+.partnersInner {
+  width: 100%;
 }
 
 .partnersDesc {
   text-align: center;
   font-size: 1.125rem;
-  color: #6b7280;
+  color: var(--kf-text-body);
   margin-bottom: 3rem;
 }
 
@@ -203,28 +288,38 @@
 
 .partnerLogo {
   height: 100px;
-  background: white;
+  background: var(--kf-glass-bg);
+  border: 1px solid var(--kf-glass-border);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: var(--kf-glass-blur);
   transition: all 0.2s;
 }
 
 .partnerLogo:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .partnerLogo span {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #4b5563;
+  color: var(--kf-text-body);
 }
 
+/* ============================================
+   Contact Section
+   ============================================ */
 .contact {
   padding: 80px 0;
+  background: var(--kf-bg-primary);
+}
+
+.contactInner {
+  width: 100%;
 }
 
 .contactGrid {
@@ -237,26 +332,54 @@
   text-align: center;
   padding: 2rem;
   border-radius: 12px;
-  background: #f8f9fa;
+  background: var(--kf-glass-bg);
+  border: 1px solid var(--kf-glass-border);
+  backdrop-filter: var(--kf-glass-blur);
+  transition: all 0.3s;
+}
+
+.contactCard:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.contactIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--kf-accent-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
 }
 
 .contactCard h3 {
   font-size: 1.25rem;
   margin-bottom: 1rem;
-  color: #1f2937;
+  color: var(--kf-text-heading);
 }
 
 .contactCard p {
   font-size: 1.125rem;
-  color: #3b82f6;
+  color: var(--kf-accent-blue);
   font-weight: 500;
 }
 
+/* ============================================
+   CTA Section
+   ============================================ */
 .cta {
   padding: 80px 0;
-  background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
-  color: white;
+  background: var(--kf-bg-secondary);
+  color: var(--kf-text-heading);
   text-align: center;
+  border-top: 1px solid var(--kf-glass-border);
+}
+
+.ctaInner {
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .cta h2 {
@@ -267,27 +390,31 @@
 .cta p {
   font-size: 1.25rem;
   margin-bottom: 2rem;
-  opacity: 0.95;
+  color: var(--kf-text-body);
 }
 
 .ctaButton {
   display: inline-block;
   padding: 0.875rem 2rem;
-  background: white;
-  color: #3b82f6;
+  background: linear-gradient(135deg, var(--kf-accent-blue) 0%, #2563eb 100%);
+  color: white;
   border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
   transition: all 0.2s;
+  box-shadow: var(--kf-glow-blue);
 }
 
 .ctaButton:hover {
-  background: #f8f9fa;
   transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
   text-decoration: none;
-  color: #3b82f6;
+  color: white;
 }
 
+/* ============================================
+   Responsive Design
+   ============================================ */
 @media (max-width: 768px) {
   .heroTitle {
     font-size: 2rem;
@@ -302,5 +429,13 @@
   .teamGrid,
   .contactGrid {
     grid-template-columns: 1fr;
+  }
+
+  .sectionTitle {
+    font-size: 2rem;
+  }
+
+  .cta h2 {
+    font-size: 1.75rem;
   }
 }

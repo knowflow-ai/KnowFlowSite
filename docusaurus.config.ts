@@ -218,10 +218,15 @@ const config: Config = {
         },
       ],
       copyright:
-        'Copyright © 2025 KnowFlow Project. <img src="/img/icp-icon.png" alt="公安备案图标" width="18" height="20" style="vertical-align:middle;margin:0 4px;" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=34019202002648" rel="noreferrer" target="_blank">皖公网安备34019202002648号</a> 皖ICP备2025099328号',
+        'Copyright © 2026 KnowFlow Project. <img src="/img/icp-icon.png" alt="公安备案图标" width="18" height="20" style="vertical-align:middle;margin:0 4px;" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=34019202002648" rel="noreferrer" target="_blank">皖公网安备34019202002648号</a> 皖ICP备2025099328号',
+    },
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: true,
+      respectPrefersColorScheme: false,
     },
     prism: {
-      theme: prismThemes.github,
+      theme: prismThemes.dracula,
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,

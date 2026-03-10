@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import type { ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import styles from './contact.module.css';
 import { sendToWeChatWork } from '../utils/webhook';
+import { Mail, MessageSquare, Smartphone } from '../components/Icons';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const INITIAL_FORM_DATA = {
   name: '',
@@ -13,11 +16,15 @@ const INITIAL_FORM_DATA = {
   message: '',
 };
 
-export default function Contact(): JSX.Element {
+export default function Contact(): ReactNode {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.05 });
+  const [formRef, formVisible] = useScrollAnimation();
+  const [ctaRef, ctaVisible] = useScrollAnimation();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -35,7 +42,6 @@ export default function Contact(): JSX.Element {
 
       if (success) {
         setSubmitStatus('success');
-        // 重置表单
         setTimeout(() => {
           setFormData(INITIAL_FORM_DATA);
           setSubmitStatus('idle');
@@ -44,8 +50,7 @@ export default function Contact(): JSX.Element {
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus('idle'), 5000);
       }
-    } catch (error) {
-      console.error('提交失败:', error);
+    } catch {
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } finally {
@@ -59,17 +64,27 @@ export default function Contact(): JSX.Element {
       description="联系 KnowFlow 团队获取私有化企业知识库产品演示、技术咨询和定制方案，支持 14 天免费试用，7x24 小时技术支持">
 
       <section className={styles.hero}>
+        <div className={styles.heroGrid} />
         <div className="container">
-          <h1 className={styles.heroTitle}>联系我们</h1>
-          <p className={styles.heroSubtitle}>
-            无论您需要产品演示、技术咨询还是定制方案，我们都期待与您交流
-          </p>
+          <div
+            ref={heroRef}
+            className={`${styles.heroInner} ${heroVisible ? styles.heroVisible : ''}`}
+          >
+            <h1 className={styles.heroTitle}>联系我们</h1>
+            <p className={styles.heroSubtitle}>
+              无论您需要产品演示、技术咨询还是定制方案，我们都期待与您交流
+            </p>
+          </div>
         </div>
       </section>
 
       <section className={styles.contactSection}>
         <div className="container">
-          <div className={styles.contactGrid}>
+          <div
+            ref={formRef}
+            className={`${styles.contactGrid} ${formVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
 
             <div className={styles.formContainer}>
               <h2>获取专属方案</h2>
@@ -79,13 +94,13 @@ export default function Contact(): JSX.Element {
 
               {submitStatus === 'success' ? (
                 <div className={styles.successMessage}>
-                  <span className={styles.successIcon}>✓</span>
+                  <span className={styles.successIcon}>&#10003;</span>
                   <h3>提交成功！</h3>
                   <p>感谢您的咨询，我们会尽快与您联系。</p>
                 </div>
               ) : submitStatus === 'error' ? (
                 <div className={styles.errorMessage}>
-                  <span className={styles.errorIcon}>✗</span>
+                  <span className={styles.errorIcon}>&#10007;</span>
                   <h3>提交失败！</h3>
                   <p>提交出现问题，请稍后重试或直接联系我们。</p>
                 </div>
@@ -205,21 +220,27 @@ export default function Contact(): JSX.Element {
               <div className={styles.infoCard}>
                 <h3>直接联系</h3>
                 <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>📧</span>
+                  <span className={styles.infoIcon}>
+                    <Mail size={20} />
+                  </span>
                   <div>
                     <p className={styles.infoLabel}>商务合作</p>
                     <p className={styles.infoValue}>business@knowflowchat.cn</p>
                   </div>
                 </div>
                 <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>💬</span>
+                  <span className={styles.infoIcon}>
+                    <MessageSquare size={20} />
+                  </span>
                   <div>
                     <p className={styles.infoLabel}>技术支持</p>
                     <p className={styles.infoValue}>support@knowflowchat.cn</p>
                   </div>
                 </div>
                 <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>📱</span>
+                  <span className={styles.infoIcon}>
+                    <Smartphone size={20} />
+                  </span>
                   <div>
                     <p className={styles.infoLabel}>微信咨询</p>
                     <p className={styles.infoValue}>skycode007</p>
@@ -260,15 +281,21 @@ export default function Contact(): JSX.Element {
 
       <section className={styles.cta}>
         <div className="container">
-          <h2>准备好开始了吗？</h2>
-          <p>查看文档了解更多产品细节，或直接联系我们获取定制方案</p>
-          <div className={styles.ctaButtons}>
-            <a href="/docs/intro" className={styles.secondaryButton}>
-              查看文档
-            </a>
-            <a href="#form" className={styles.primaryButton}>
-              立即咨询
-            </a>
+          <div
+            ref={ctaRef}
+            className={`${styles.ctaInner} ${ctaVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
+            <h2>准备好开始了吗？</h2>
+            <p>查看文档了解更多产品细节，或直接联系我们获取定制方案</p>
+            <div className={styles.ctaButtons}>
+              <a href="/docs/intro" className={styles.secondaryButton}>
+                查看文档
+              </a>
+              <a href="#form" className={styles.primaryButton}>
+                立即咨询
+              </a>
+            </div>
           </div>
         </div>
       </section>

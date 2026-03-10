@@ -1,6 +1,8 @@
 import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
 import styles from './product.module.css';
+import { FileText, Image, Settings, Shield, Lightbulb, Building, BookOpen, MessageSquare, Cpu, Target, CheckCircle, Rocket } from '../components/Icons';
+import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 // 四大核心能力详情
 const coreCapabilities = [
@@ -29,7 +31,8 @@ const coreCapabilities = [
       },
     ],
     value: '准确不是"多召回"，而是"召回刚好正确的内容"',
-    icon: '📄',
+    Icon: FileText,
+    color: 'blue' as const,
   },
   {
     id: 'multimodal',
@@ -60,7 +63,8 @@ const coreCapabilities = [
       },
     ],
     value: '企业知识，不再只存在于文字中',
-    icon: '🖼️',
+    Icon: Image,
+    color: 'purple' as const,
   },
   {
     id: 'engineering',
@@ -91,7 +95,8 @@ const coreCapabilities = [
       },
     ],
     value: '知识库不是一次性构建，而是可以持续演进的资产',
-    icon: '⚙️',
+    Icon: Settings,
+    color: 'green' as const,
   },
   {
     id: 'enterprise',
@@ -118,11 +123,12 @@ const coreCapabilities = [
       },
     ],
     value: '知识库不仅要"好用"，更要"可控、可管、可审计"',
-    icon: '🏢',
+    Icon: Shield,
+    color: 'orange' as const,
   },
 ];
 
-// 产品对比（更新对比维度）
+// 产品对比
 const comparisons = [
   {
     dimension: '文档理解',
@@ -183,32 +189,43 @@ const techSpecs = [
 // 应用场景
 const scenarios = [
   {
-    icon: '🏛️',
+    Icon: Building,
     title: '政企内网知识库',
     description: '满足政府、央企对数据安全与合规的严格要求，支持完全离线部署，数据不出内网',
     highlights: ['完全离线部署', '数据安全合规', '审计日志完备'],
+    color: 'blue' as const,
   },
   {
-    icon: '📚',
+    Icon: BookOpen,
     title: '企业知识中台',
     description: '构建组织级知识资产，统一管理各类文档、FAQ、产品手册，沉淀企业知识',
     highlights: ['多类型知识统一管理', '知识资产沉淀', '持续迭代优化'],
+    color: 'purple' as const,
   },
   {
-    icon: '💬',
+    Icon: MessageSquare,
     title: '智能客服系统',
     description: '基于精准检索的智能问答，提供可追溯、可验证的答案，提升服务质量',
     highlights: ['答案可追溯', '精准检索', '多轮对话'],
+    color: 'green' as const,
   },
   {
-    icon: '🤖',
+    Icon: Cpu,
     title: 'Agent 知识底座',
     description: '为 AI Agent 提供可靠的知识检索能力，支持多系统集成与自动化流程',
     highlights: ['API 接入', '多平台对接', '稳定可靠'],
+    color: 'orange' as const,
   },
 ];
 
 export default function Product(): ReactNode {
+  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.05 });
+  const [capRef, capVisible] = useScrollAnimation();
+  const [specRef, specVisible] = useScrollAnimation();
+  const [compRef, compVisible] = useScrollAnimation();
+  const [scenRef, scenVisible] = useScrollAnimation();
+  const [ctaRef, ctaVisible] = useScrollAnimation();
+
   return (
     <Layout
       title="产品功能与技术规格 - KnowFlow 企业级知识库"
@@ -216,28 +233,34 @@ export default function Product(): ReactNode {
 
       {/* Hero Section */}
       <section className={styles.hero}>
+        <div className={styles.heroGrid} />
         <div className="container">
-          <div className={styles.heroBadge}>产品介绍</div>
-          <h1 className={styles.heroTitle}>
-            以「文档结构理解」为核心<br />
-            构建准确、可靠、可落地的企业级知识库
-          </h1>
-          <p className={styles.heroSubtitle}>
-            KnowFlow 从数据进入系统的第一步开始，通过深度文档结构解析、<br />
-            量身定制的分块策略、原生多模态能力，构建高准确、可验证、可控的知识库系统
-          </p>
-          <div className={styles.heroHighlights}>
-            <div className={styles.heroHighlight}>
-              <span className={styles.highlightIcon}>🎯</span>
-              <span>准确</span>
-            </div>
-            <div className={styles.heroHighlight}>
-              <span className={styles.highlightIcon}>✅</span>
-              <span>可靠</span>
-            </div>
-            <div className={styles.heroHighlight}>
-              <span className={styles.highlightIcon}>🚀</span>
-              <span>可落地</span>
+          <div
+            ref={heroRef}
+            className={`${styles.heroInner} ${heroVisible ? styles.heroVisible : ''}`}
+          >
+            <div className={styles.heroBadge}>产品介绍</div>
+            <h1 className={styles.heroTitle}>
+              以「文档结构理解」为核心<br />
+              构建准确、可靠、可落地的<span className={styles.gradientText}>企业级知识库</span>
+            </h1>
+            <p className={styles.heroSubtitle}>
+              KnowFlow 从数据进入系统的第一步开始，通过深度文档结构解析、<br />
+              量身定制的分块策略、原生多模态能力，构建高准确、可验证、可控的知识库系统
+            </p>
+            <div className={styles.heroHighlights}>
+              <div className={styles.heroHighlight}>
+                <Target size={18} />
+                <span>准确</span>
+              </div>
+              <div className={styles.heroHighlight}>
+                <CheckCircle size={18} />
+                <span>可靠</span>
+              </div>
+              <div className={styles.heroHighlight}>
+                <Rocket size={18} />
+                <span>可落地</span>
+              </div>
             </div>
           </div>
         </div>
@@ -246,28 +269,36 @@ export default function Product(): ReactNode {
       {/* Core Capabilities Section */}
       <section className={styles.capabilities}>
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <div
+            ref={capRef}
+            className={`${styles.sectionHeader} ${capVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2 className={styles.sectionTitle}>核心能力</h2>
             <p className={styles.sectionSubtitle}>
               四大核心能力，构建完整的企业级知识库解决方案
             </p>
           </div>
 
-          {coreCapabilities.map((capability, idx) => (
-            <div key={capability.id} className={styles.capabilitySection}>
+          {coreCapabilities.map((capability) => (
+            <div key={capability.id} className={`${styles.capabilitySection} ${styles[`cap${capability.color.charAt(0).toUpperCase() + capability.color.slice(1)}`]}`}>
               <div className={styles.capabilityHeader}>
                 <span className={styles.capabilityNumber}>{capability.number}</span>
                 <div className={styles.capabilityTitleGroup}>
                   <h3 className={styles.capabilityTitle}>{capability.title}</h3>
                   <p className={styles.capabilitySubtitle}>{capability.subtitle}</p>
                 </div>
-                <span className={styles.capabilityIcon}>{capability.icon}</span>
+                <span className={styles.capabilityIcon}>
+                  <capability.Icon size={36} />
+                </span>
               </div>
               <p className={styles.capabilityDescription}>{capability.description}</p>
               <div className={styles.capabilityFeatures}>
                 {capability.features.map((feature, fidx) => (
                   <div key={fidx} className={styles.capabilityFeature}>
-                    <div className={styles.featureCheck}>✓</div>
+                    <div className={styles.featureCheck}>
+                      <CheckCircle size={16} />
+                    </div>
                     <div>
                       <strong>{feature.title}</strong>
                       <span>{feature.desc}</span>
@@ -276,7 +307,7 @@ export default function Product(): ReactNode {
                 ))}
               </div>
               <div className={styles.capabilityValue}>
-                <span className={styles.valueIcon}>💡</span>
+                <Lightbulb size={18} />
                 <span className={styles.valueText}>{capability.value}</span>
               </div>
             </div>
@@ -287,7 +318,11 @@ export default function Product(): ReactNode {
       {/* Tech Specs Section */}
       <section className={styles.techSpecs}>
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <div
+            ref={specRef}
+            className={`${styles.sectionHeader} ${specVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2 className={styles.sectionTitle}>技术规格</h2>
             <p className={styles.sectionSubtitle}>
               全面的技术能力，满足各类企业场景需求
@@ -311,7 +346,11 @@ export default function Product(): ReactNode {
       {/* Comparison Section */}
       <section className={styles.comparison}>
         <div className={styles.comparisonContainer}>
-          <div className={styles.sectionHeader}>
+          <div
+            ref={compRef}
+            className={`${styles.sectionHeader} ${compVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2 className={styles.sectionTitle}>产品对比</h2>
             <p className={styles.sectionSubtitle}>
               KnowFlow vs 传统知识库方案
@@ -343,7 +382,11 @@ export default function Product(): ReactNode {
       {/* Scenarios Section */}
       <section className={styles.scenarios}>
         <div className="container">
-          <div className={styles.sectionHeader}>
+          <div
+            ref={scenRef}
+            className={`${styles.sectionHeader} ${scenVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
             <h2 className={styles.sectionTitle}>应用场景</h2>
             <p className={styles.sectionSubtitle}>
               满足私有化部署场景下的各类知识管理需求
@@ -351,8 +394,11 @@ export default function Product(): ReactNode {
           </div>
           <div className={styles.scenarioGrid}>
             {scenarios.map((scenario, idx) => (
-              <div key={idx} className={styles.scenarioCard}>
-                <div className={styles.scenarioIcon}>{scenario.icon}</div>
+              <div key={idx} className={`${styles.scenarioCard} ${styles[`scenario${scenario.color.charAt(0).toUpperCase() + scenario.color.slice(1)}`]}`}>
+                <div className={styles.scenarioTopBar} />
+                <div className={styles.scenarioIcon}>
+                  <scenario.Icon size={28} />
+                </div>
                 <h3>{scenario.title}</h3>
                 <p>{scenario.description}</p>
                 <div className={styles.scenarioHighlights}>
@@ -369,15 +415,21 @@ export default function Product(): ReactNode {
       {/* CTA Section */}
       <section className={styles.cta}>
         <div className="container">
-          <h2>准备构建您的企业级知识库？</h2>
-          <p>准确、可靠、可落地 —— 为私有化场景而生</p>
-          <div className={styles.ctaButtons}>
-            <a href="/contact" className={styles.primaryButton}>
-              申请演示
-            </a>
-            <a href="/docs/intro" className={styles.secondaryButton}>
-              查看文档
-            </a>
+          <div
+            ref={ctaRef}
+            className={`${styles.ctaInner} ${ctaVisible ? 'visible' : ''}`}
+            data-animate=""
+          >
+            <h2>准备构建您的企业级知识库？</h2>
+            <p>准确、可靠、可落地 —— 为私有化场景而生</p>
+            <div className={styles.ctaButtons}>
+              <a href="/contact" className={styles.primaryButton}>
+                申请演示
+              </a>
+              <a href="/docs/intro" className={styles.secondaryButton}>
+                查看文档
+              </a>
+            </div>
           </div>
         </div>
       </section>
