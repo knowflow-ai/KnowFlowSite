@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: KnowFlow 文件管理功能指南，支持文件上传、文件夹管理、批量操作和知识库关联，提供全局文件存储管理。
 ---
 
 # 文件管理

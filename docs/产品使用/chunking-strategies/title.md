@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: KnowFlow 标题分块策略详解，按文档标题层级切分，完整保留文档结构，适合技术手册和规范文档。
 ---
 
 # 标题分块

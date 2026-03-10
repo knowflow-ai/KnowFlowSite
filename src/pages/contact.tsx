@@ -55,8 +55,8 @@ export default function Contact(): JSX.Element {
 
   return (
     <Layout
-      title="联系我们"
-      description="联系 KnowFlow 团队，获取企业级高精度私有化智能知识库平台演示和定制方案">
+      title="联系我们 - 获取 KnowFlow 企业知识库演示与方案"
+      description="联系 KnowFlow 团队获取私有化企业知识库产品演示、技术咨询和定制方案，支持 14 天免费试用，7x24 小时技术支持">
 
       <section className={styles.hero}>
         <div className="container">

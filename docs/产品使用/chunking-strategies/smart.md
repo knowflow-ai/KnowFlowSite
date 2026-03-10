@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: KnowFlow 智能分块策略详解，基于 Markdown AST 解析实现语义完整的文档切分，支持表格和代码块保护。
 ---
 
 # 智能分块 (Smart)

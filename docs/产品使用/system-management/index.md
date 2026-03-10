@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: KnowFlow 系统管理功能概述，包括用户管理、团队管理、文件管理、知识库管理和用户配置等模块。
 ---
 
 # 系统管理

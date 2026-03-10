@@ -1,5 +1,6 @@
 ---
 sidebar_position: 6
+description: KnowFlow 用户配置管理指南，统一管理用户的聊天模型和嵌入模型设置，支持配置监控和成本分析。
 ---
 
 # 用户配置管理

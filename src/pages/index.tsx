@@ -116,8 +116,8 @@ export default function Home(): ReactNode {
 
   return (
     <Layout
-      title="KnowFlow - 准确、可靠、可落地的私有化知识库"
-      description="以文档结构理解为核心，构建高准确、可验证、可控的企业级知识库">
+      title="KnowFlow - 准确、可靠、可落地的私有化企业级知识库"
+      description="KnowFlow 以文档结构理解为核心，提供深度文档解析、多模态知识库、私有化部署的企业级 RAG 知识库系统，支持 PDF/Word/图片等多格式文档智能问答">
 
       {/* Hero Section */}
       <section className={styles.hero}>

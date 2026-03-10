@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: KnowFlow RESTful API 完整参考文档，涵盖 RAGFlow 引擎与 KnowFlow Server 共 77 个接口，包含知识库管理、文档解析、智能检索、对话助手等企业级功能
 ---
 
 # API 概览

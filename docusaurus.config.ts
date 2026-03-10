@@ -71,6 +71,60 @@ const config: Config = {
     ],
   ],
 
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {type: 'text/javascript'},
+      innerHTML:
+        "(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if (curProtocol === 'https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js'}else{bp.src='http://push.zhanzhang.baidu.com/push.js'}var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bp,s);})();",
+    },
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'KnowFlow',
+        url: 'https://www.knowflowchat.cn',
+        logo: 'https://www.knowflowchat.cn/img/k-icon-3.svg',
+        description: '基于 RAGFlow 深度定制的企业级私有化知识库系统',
+        contactPoint: {
+          '@type': 'ContactPoint',
+          email: 'business@knowflowchat.cn',
+          contactType: 'sales',
+        },
+        sameAs: ['https://github.com/weizxfree/KnowFlow'],
+      }),
+    },
+    {
+      tagName: 'script',
+      attributes: {type: 'application/ld+json'},
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: 'KnowFlow',
+        applicationCategory: 'BusinessApplication',
+        operatingSystem: 'Linux',
+        description: '以文档结构理解为核心，构建准确、可靠、可落地的私有化企业级知识库。支持深度文档解析、多模态知识库、RBAC 权限管理与私有化部署。',
+        offers: {
+          '@type': 'Offer',
+          price: '0',
+          priceCurrency: 'CNY',
+          description: '提供 14 天免费试用',
+        },
+        featureList: [
+          '深度文档结构解析',
+          '多模态知识库（图片、表格、视频）',
+          '多种分块策略（Smart/Regex/Title/Parent-Child）',
+          'RBAC 权限管理体系',
+          '私有化离线部署',
+          '知识库导入导出与备份恢复',
+          'RESTful API 集成',
+        ],
+      }),
+    },
+  ],
+
   themeConfig: {
     metadata: [
       {name: 'description', content: 'KnowFlow - 以文档结构理解为核心，构建准确、可靠、可落地的私有化企业级知识库。支持深度文档解析、多模态知识库、完整工程化能力与企业级权限管理。'},
@@ -166,14 +220,6 @@ const config: Config = {
       copyright:
         'Copyright © 2025 KnowFlow Project. <img src="/img/icp-icon.png" alt="公安备案图标" width="18" height="20" style="vertical-align:middle;margin:0 4px;" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=34019202002648" rel="noreferrer" target="_blank">皖公网安备34019202002648号</a> 皖ICP备2025099328号',
     },
-    headTags: [
-      {
-        tagName: 'script',
-        attributes: {type: 'text/javascript'},
-        innerHTML:
-          "(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if (curProtocol === 'https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js'}else{bp.src='http://push.zhanzhang.baidu.com/push.js'}var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bp,s);})();",
-      },
-    ],
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,

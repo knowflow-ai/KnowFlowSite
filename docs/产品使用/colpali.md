@@ -1,3 +1,7 @@
+---
+description: KnowFlow ColPali 视觉检索使用指南，基于多模态技术实现图片、表格和 PPT 文档的视觉语义检索。
+---
+
 # ColPali 视觉检索
 
 ColPali 是一种基于视觉理解的文档检索方法，特别适合处理包含图片、表格和 PPT 的文档。本文档将介绍如何在 KnowFlow 中使用 ColPali 功能。

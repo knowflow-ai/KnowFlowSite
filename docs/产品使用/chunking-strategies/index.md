@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: KnowFlow 分块策略概述，对比智能分块、标题分块、父子分块和正则分块四种策略的适用场景与配置方法。
 ---
 
 # 分块策略概述

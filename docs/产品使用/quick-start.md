@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: KnowFlow 快速入门教程，从登录系统、配置模型、创建知识库到上传文档和智能问答的完整操作流程。
 ---
 
 # 快速入门

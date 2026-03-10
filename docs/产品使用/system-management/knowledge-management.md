@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+description: KnowFlow 知识库管理功能指南，支持知识库创建、文档解析监控、批量操作和全局统计分析。
 ---
 
 # 知识库管理

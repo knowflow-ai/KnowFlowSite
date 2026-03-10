@@ -50,8 +50,8 @@ const team = [
 export default function About(): JSX.Element {
   return (
     <Layout
-      title="关于我们"
-      description="了解 KnowFlow - 企业级高精度私有化智能知识库平台">
+      title="关于 KnowFlow - 基于 RAGFlow 的企业级知识库团队"
+      description="KnowFlow 团队致力于打造安全、高效的私有化企业知识库，基于 RAGFlow 深度定制，服务 30+ 企业客户，提供 AI 驱动的智能知识管理解决方案">
 
       <section className={styles.hero}>
         <div className="container">

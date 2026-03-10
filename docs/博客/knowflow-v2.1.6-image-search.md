@@ -1,3 +1,7 @@
+---
+description: KnowFlow v2.1.6 发布，新增多模态 RAG 以文搜图功能、API 自动化测试与全新 UI 设计规范，提升知识库图片检索能力
+---
+
 # 多模态 RAG 以文搜图在 RAGFlow 中的实践，自动化测试为 API 质量保驾护航，KnowFlow 全新 UI 重磅来袭
 
 ## 前言

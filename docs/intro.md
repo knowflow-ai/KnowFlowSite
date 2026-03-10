@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: KnowFlow 企业级知识库产品介绍，基于 RAGFlow 的私有化部署方案，支持文档结构解析、多模态检索和 RBAC 权限管理。
 ---
 
 # KnowFlow 介绍

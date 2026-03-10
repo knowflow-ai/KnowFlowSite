@@ -211,8 +211,8 @@ const scenarios = [
 export default function Product(): ReactNode {
   return (
     <Layout
-      title="产品介绍"
-      description="KnowFlow - 以文档结构理解为核心，构建准确、可靠、可落地的私有化企业级知识库">
+      title="产品功能与技术规格 - KnowFlow 企业级知识库"
+      description="KnowFlow 产品核心能力：深度文档结构解析、多模态知识库、父子分块策略、RBAC 权限管理、私有化离线部署，支持 Docker/K8s 部署与企业微信/Dify 集成">
 
       {/* Hero Section */}
       <section className={styles.hero}>

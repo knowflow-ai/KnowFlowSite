@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run build:*)",
+      "Bash(npm start)",
+      "Bash(git restore:*)",
+      "Bash(find:*)",
+      "Read(//Users/zxwei/zhishi/KnowFlow/**)",
+      "Bash(lsof:*)",
+      "WebFetch(domain:developer.work.weixin.qq.com)",
+      "Read(//Users/zxwei/Downloads/**)",
+      "Bash(cat:*)",
+      "Bash(rm:*)",
+      "WebFetch(domain:mp.weixin.qq.com)",
+      "Bash(chmod:*)",
+      "Bash(ls:*)",
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

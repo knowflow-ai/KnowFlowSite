@@ -1,3 +1,7 @@
+---
+description: KnowFlow v2.1.8 集成百度 PaddleOCR-VL 视觉语言模型，支持 109 种语言高精度文档解析，新增父子分块可视化编辑功能
+---
+
 # KnowFlow 牵手百度 PaddleOCR-VL，开启高精度文档解析新时代
 
 ## 前言

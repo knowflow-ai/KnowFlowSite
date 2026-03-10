@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: KnowFlow 用户管理功能指南，支持用户创建、编辑、删除、密码重置和批量操作，仅超级管理员可访问。
 ---
 
 # 用户管理

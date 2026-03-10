@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: KnowFlow 团队管理功能指南，支持团队创建、成员管理、角色分配和权限继承，实现企业级协作管理。
 ---
 
 # 团队管理

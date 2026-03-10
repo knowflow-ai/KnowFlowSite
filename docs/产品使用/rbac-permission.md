@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: KnowFlow RBAC 权限管理详解，包括全局角色、资源权限、团队权限及典型应用场景的最佳实践。
 ---
 
 # RBAC 权限管理
