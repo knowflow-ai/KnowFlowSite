@@ -120,4 +120,10 @@ echo "📍 服务器: $SERVER_HOST"
 echo "📁 部署路径: $REMOTE_PATH"
 echo "🌐 访问地址: http://www.knowflowchat.cn"
 echo ""
+
+# 7. 推送 URL 到百度收录
+echo "📮 推送 URL 到百度收录..."
+bash scripts/baidu-push.sh || echo "⚠️ 百度推送失败，不影响部署"
+
+echo ""
 echo "💡 提示: 如果网站未更新，请检查 Nginx 配置或清除浏览器缓存"
