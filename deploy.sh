@@ -38,7 +38,6 @@ else
     USE_SSHPASS=false
 fi
 
-# 1. 构建项目
 echo "📦 正在构建项目..."
 npm run build
 
@@ -48,6 +47,20 @@ if [ ! -d "$BUILD_DIR" ]; then
 fi
 
 echo "✅ 构建完成"
+
+# 1.5 将根目录 .html 文件转为目录结构（兼容 Nginx 默认配置）
+# 例如 product.html -> product/index.html，使 /product 路径可访问
+echo "📄 处理 HTML 文件路由..."
+for f in "$BUILD_DIR"/*.html; do
+    basename=$(basename "$f" .html)
+    # 跳过 index.html 和 404.html
+    if [ "$basename" = "index" ] || [ "$basename" = "404" ]; then
+        continue
+    fi
+    mkdir -p "$BUILD_DIR/$basename"
+    cp "$f" "$BUILD_DIR/$basename/index.html"
+done
+echo "✅ HTML 路由处理完成"
 
 # 定义 SSH 和 SCP 命令的封装函数
 run_ssh() {

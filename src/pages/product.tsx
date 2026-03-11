@@ -219,7 +219,6 @@ const scenarios = [
 ];
 
 export default function Product(): ReactNode {
-  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.05 });
   const [capRef, capVisible] = useScrollAnimation();
   const [specRef, specVisible] = useScrollAnimation();
   const [compRef, compVisible] = useScrollAnimation();
@@ -235,10 +234,7 @@ export default function Product(): ReactNode {
       <section className={styles.hero}>
         <div className={styles.heroGrid} />
         <div className="container">
-          <div
-            ref={heroRef}
-            className={`${styles.heroInner} ${heroVisible ? styles.heroVisible : ''}`}
-          >
+          <div className={styles.heroInner}>
             <div className={styles.heroBadge}>产品介绍</div>
             <h1 className={styles.heroTitle}>
               以「文档结构理解」为核心<br />

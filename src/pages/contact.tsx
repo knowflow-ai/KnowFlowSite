@@ -22,7 +22,6 @@ export default function Contact(): ReactNode {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.05 });
   const [formRef, formVisible] = useScrollAnimation();
   const [ctaRef, ctaVisible] = useScrollAnimation();
 
@@ -66,10 +65,7 @@ export default function Contact(): ReactNode {
       <section className={styles.hero}>
         <div className={styles.heroGrid} />
         <div className="container">
-          <div
-            ref={heroRef}
-            className={`${styles.heroInner} ${heroVisible ? styles.heroVisible : ''}`}
-          >
+          <div className={styles.heroInner}>
             <h1 className={styles.heroTitle}>联系我们</h1>
             <p className={styles.heroSubtitle}>
               无论您需要产品演示、技术咨询还是定制方案，我们都期待与您交流

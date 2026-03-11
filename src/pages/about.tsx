@@ -54,7 +54,6 @@ const team = [
 ];
 
 export default function About(): ReactNode {
-  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.05 });
   const [statsRef, statsVisible] = useScrollAnimation();
   const [missionRef, missionVisible] = useScrollAnimation();
   const [valuesRef, valuesVisible] = useScrollAnimation();
@@ -71,10 +70,7 @@ export default function About(): ReactNode {
       <section className={styles.hero}>
         <div className={styles.heroGrid} />
         <div className="container">
-          <div
-            ref={heroRef}
-            className={`${styles.heroInner} ${heroVisible ? styles.heroVisible : ''}`}
-          >
+          <div className={styles.heroInner}>
             <h1 className={styles.heroTitle}>关于 <span className={styles.gradientText}>KnowFlow</span></h1>
             <p className={styles.heroSubtitle}>
               企业级高精度私有化智能知识库平台，让企业的知识真正可问、可信、可控
