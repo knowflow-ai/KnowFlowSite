@@ -3,7 +3,7 @@ sidebar_position: 2
 description: KnowFlow 安装部署指南，包括 Docker Compose 部署、MinerU 和 DOTS 解析引擎配置、GPU 加速设置及故障排除。
 ---
 
-# 安装指南
+# Docker 安装指南
 
 本指南将帮助您完成 KnowFlow docker 部署的完整部署过程，包括环境准备、服务配置和系统启动。 请按照步骤操作，确保每一步都成功完成。
 
@@ -114,7 +114,7 @@ docker compose --profile api up -d
 docker compose --profile openai-server up -d
 
 # 4. 验证服务（等待约 2 分钟启动完成）
-curl http://localhost:8000/health
+curl http://主机ip:8000/health
 ```
 
 **GPU 配置**（编辑 `docker-compose.yml`）：
@@ -153,7 +153,7 @@ docker compose up -d
 docker compose logs -f
 
 # 4. 验证服务
-curl http://localhost:8080/health
+curl http://主机ip:8080/health
 ```
 
 **注意事项**：
@@ -179,13 +179,13 @@ docker compose up -d
 docker compose ps
 
 # 检查 RAGFlow 健康状态
-curl http://localhost:9380/health
+curl http://主机ip:9380/health
 
 # 检查 KnowFlow 后端
-curl http://localhost:5000/health
+curl http://主机ip:5000/health
 
 # 访问 Web 界面
-# 打开浏览器访问 http://localhost:80
+打开浏览器访问 http://主机ip:80
 ```
 
 ### 默认端口
@@ -200,6 +200,8 @@ curl http://localhost:5000/health
 | **Milvus** | **19530** | **向量数据库（ColPali）** |
 | **ColPali API** | **9100** | **视觉 Embedding（ColPali）** |
 
+注意：其中 80 端口为 RAGFlow Web 界面，需要映射到主机端口并开放网络访问。
+
 恭喜你，服务部署全部完成。
 
 ---
@@ -210,13 +212,21 @@ curl http://localhost:5000/health
 
 ### 1. 登录系统
 
-访问 `http://localhost:80`，使用超级管理员账号登录。
+访问前端 web 界面 `http://主机ip:80`，使用超级管理员账号登录。
+
 账号：`admin@gmail.com`
 密码：`admin`
 
+访问后台管理界面 `http://主机ip:80/admin`，使用超级管理员账号登录。
+
+账号：`admin@gmail.com`
+密码：`admin`
+
+后台管理界面主要是操作 RBAC 团队用户权限和知识库管理。
+
 ### 2. 进入模型设置
 
-点击右上角头像 → 系统模型设置
+在前端 web 界面，点击右上角头像 → 系统模型设置
 
 ### 3. 添加 MinerU（如已部署）
 
