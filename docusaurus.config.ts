@@ -186,7 +186,7 @@ const config: Config = {
             },
             {
               label: '安装指南',
-              to: '/docs/installation',
+              to: '/docs/installationDocker',
             },
           ],
         },

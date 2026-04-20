@@ -1,9 +1,9 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: KnowFlow 安装部署指南，包括 Docker Compose 部署、MinerU 和 DOTS 解析引擎配置、GPU 加速设置及故障排除。
 ---
 
-# 安装指南
+# 源码安装指南
 
 本指南将帮助您完成 KnowFlow 的完整部署过程，包括环境准备、服务配置和系统启动。
 
