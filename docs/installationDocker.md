@@ -11,13 +11,13 @@ description: KnowFlow 安装部署指南，包括 Docker Compose 部署、MinerU
 
 ## 部署步骤概览
 
-- [环境要求](#环境要求)
-- [部署架构](#部署架构)
-- [开始部署](#开始部署)
-- [第一步：部署 PDF 解析服务](#第一步部署-pdf-解析服务)
-- [第二步：部署 KnowFlow 主服务](#第二步部署-knowflow-主服务)
-- [第三步：配置解析服务连接](#第三步配置解析服务连接)
-- [第四步：验证部署](#第四步验证部署)
+- 环境要求
+- 部署架构
+- 开始部署
+- 第一步：部署 PDF 解析服务
+- 第二步：部署 KnowFlow 主服务
+- 第三步：配置解析服务连接
+- 第四步：验证部署
 
 ---
 
@@ -57,7 +57,7 @@ description: KnowFlow 安装部署指南，包括 Docker Compose 部署、MinerU
 │  │              │  │ (端口 5000)  │  │              │       │
 │  └──────────────┘  └──────────────┘  └──────────────┘       │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐       │
-│  │ MySQL        │  │    mivlus    │  │ MinIO        │       │
+│  │ MySQL        │  │ Milvus       │  │ MinIO        │       │
 │  └──────────────┘  └──────────────┘  └──────────────┘       │
 └─────────────────────────────────────────────────────────────┘
                               │
@@ -282,6 +282,34 @@ curl http://主机ip:5000/health
 4. 开始对话
 
 恭喜你，所有部署配置基本使用都已完成，可以开始体验 KnowFlow 的强大功能了。
+
+---
+
+## 常见问题
+
+### Docker 部署可以使用 PostgreSQL 吗？
+
+可以。默认部署使用 MySQL；如果是新环境，也可以通过 `docker/.env` 中的 `DB_TYPE` 切换为 PostgreSQL。
+
+```env
+# 默认值
+DB_TYPE=mysql
+
+# 使用 PostgreSQL
+DB_TYPE=postgres
+POSTGRES_HOST=postgres
+POSTGRES_DBNAME=rag_flow
+POSTGRES_USER=rag_flow
+POSTGRES_PASSWORD=infini_rag_flow
+POSTGRES_PORT=5456
+POSTGRES_INTERNAL_PORT=5432
+```
+
+`DB_TYPE` 可选值为 `mysql` 或 `postgres`。它是元数据数据库类型的主开关，`COMPOSE_PROFILES` 会随 `DB_TYPE` 自动带上对应数据库 profile，通常不需要额外使用 `--profile postgres`。
+
+:::warning 切换提醒
+MySQL 和 PostgreSQL 使用不同的数据卷。已有 MySQL 环境切换到 PostgreSQL 不会自动迁移历史数据；生产环境切换前请先备份并规划数据迁移。
+:::
 
 ---
 

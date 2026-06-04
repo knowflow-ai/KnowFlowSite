@@ -15,6 +15,47 @@ description: KnowFlow 安装部署指南，包括 Docker Compose 部署、MinerU
 支持 **Docker Compose** 和**源码部署**两种方式，推荐使用 Docker Compose 进行生产环境部署。
 :::
 
+## 快速开始
+
+详细部署步骤请参考下方指南。
+
+### 本地源码启动（RAGFlow / KnowFlow / Admin）
+
+如果你在本地调试源码，而不是直接使用 Docker 镜像，可以按以下顺序启动三个服务。
+
+#### 1. 主 RAGFlow
+
+在仓库根目录准备好 `local.env`，通过它统一切换本地调试使用的 `DB_TYPE` / `DOC_ENGINE`。
+
+```bash
+source .venv/bin/activate
+export PYTHONPATH=$(pwd)
+./local_entrypoint.sh
+```
+
+#### 2. KnowFlow
+
+先进入 `knowflow` 目录，激活虚拟环境，再根据根目录 `local.env` 生成本地 KnowFlow 配置，然后启动服务。
+
+```bash
+cd knowflow
+source server/venv/bin/activate
+./scripts/install.sh --local
+python3.12 server/app.py
+```
+
+#### 3. Admin
+
+Admin 本地启动脚本会先加载仓库根目录 `local.env`，确保和主 RAGFlow / KnowFlow 使用同一套 `DB_TYPE`。
+
+```bash
+source .venv/bin/activate
+export PYTHONPATH=$(pwd)
+./admin/start_local.sh
+```
+
+> 建议：切换 MySQL / PostgreSQL 时，只修改仓库根目录 `local.env` 中的 `DB_TYPE`，然后重新生成 KnowFlow 本地配置并重启三个服务。
+
 ## 💻 环境要求
 
 ### 硬件配置
