@@ -30,7 +30,7 @@ description: KnowFlow 安装部署指南，包括 Docker Compose 部署、MinerU
 | **CPU** | ≥ 4 cores (x86) | ≥ 8 cores | 影响并发处理能力 |
 | **内存** | ≥ 16 GB RAM | ≥ 32 GB | 大文档处理需要更多内存 |
 | **存储** | ≥ 50 GB | ≥ 100 GB | 包含系统、数据和日志 |
-| **GPU** | 可选 | NVIDIA GPU | 显著提升 OCR 性能 |
+| **GPU** | 可选 | NVIDIA RTX 4090 24GB+ | 主要用于 MinerU / PaddleOCR 文档解析，显著提升 OCR 与版面分析性能 |
 
 ### 软件依赖
 
@@ -107,10 +107,10 @@ MinerU 是高精度 PDF OCR 解析服务，支持公式识别和精确的版面�
 # 1. 进入 MinerU 目录
 cd docker/mineru
 
-# 2. 启动服务（Pipeline 模式，基础 8000 端口）
+# 2. 启动基础服务（必需，Pipeline 模式，8000 端口）
 docker compose --profile api up -d
 
-# 3. 启动 vlm 模式服务（vlm 模式, 可选，30000 端口）需要更高显存 GPU 24GB+
+# 3. 如需 VLM 能力，再额外启动 vlm 服务（可选，30000 端口，需 24GB+ 显存 GPU）
 docker compose --profile openai-server up -d
 
 # 4. 验证服务（等待约 2 分钟启动完成）
