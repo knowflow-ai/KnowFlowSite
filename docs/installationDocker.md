@@ -311,6 +311,38 @@ POSTGRES_INTERNAL_PORT=5432
 MySQL 和 PostgreSQL 使用不同的数据卷。已有 MySQL 环境切换到 PostgreSQL 不会自动迁移历史数据；生产环境切换前请先备份并规划数据迁移。
 :::
 
+### Docker 部署涉及哪些开源协议？
+
+KnowFlow Docker 部署会集成数据库、向量库、缓存、对象存储、文档解析服务和 RAG 引擎等多个组件。推荐生产环境优先使用下表中的组件组合：多数第三方组件采用 Apache 2.0、PostgreSQL License、BSD-3-Clause 等宽松开源协议；MinerU 采用基于 Apache 2.0 并带有附加条件的 MinerU Open Source License；`knowflow-server` 为 KnowFlow 自研组件，按 KnowFlow 项目授权使用。整体上更适合企业内网、私有化和商业场景的安全合规要求。
+
+简单理解这些协议的差异：
+
+- **Apache License 2.0**：宽松开源协议，通常允许免费使用、修改、分发和商用，但需要保留原始 License、版权声明和 NOTICE；同时包含明确的专利授权条款。全文见：https://www.apache.org/licenses/LICENSE-2.0 。
+- **MinerU Open Source License**：MinerU 依据 Apache License 2.0 进行许可，并受附加条款约束。一般商业用途无需另行取得商业许可；但如果您及关联方合并口径的 MAU 超过 1 亿，或月总收入超过 2000 万美元，需要先从 MinerU Team 获取单独商业许可。若基于 MinerU 向第三方提供在线服务，还需要在产品界面或公开文档显著位置标明使用了 MinerU。未满足商业许可要求或未履行标识义务时，许可可能自动终止。
+- **BSD-3-Clause / PostgreSQL License**：同样属于宽松协议，通常允许商用和二次分发，主要义务是保留版权声明和免责条款。
+- **GPL / AGPL**：属于 Copyleft 协议，约束更强。GPL 通常会影响二次分发场景；AGPL 还会进一步覆盖通过网络提供服务的场景，修改后对外提供服务时可能需要公开相应源码。
+- **KnowFlow 自有许可 / 授权**：以 KnowFlow 项目或商业授权条款为准，企业采购、私有化交付或二次开发前建议单独确认授权范围。
+
+以上为便于理解的简化说明，不构成法律意见；正式合规审计应以各项目仓库中的 LICENSE、NOTICE 和法律顾问意见为准。
+
+| 组件 | 用途 | License 协议 | GitHub 链接 |
+|------|------|--------------|-------------|
+| Milvus | 向量数据库 | Apache License 2.0 | [milvus-io/milvus](https://github.com/milvus-io/milvus) |
+| PostgreSQL | 元数据数据库 | PostgreSQL License | [postgres/postgres](https://github.com/postgres/postgres) |
+| Valkey | 缓存 / Redis 兼容服务 | BSD-3-Clause | [valkey-io/valkey](https://github.com/valkey-io/valkey) |
+| RustFS | S3 兼容对象存储 | Apache License 2.0 | [rustfs/rustfs](https://github.com/rustfs/rustfs) |
+| MinerU | PDF / Office 文档解析服务 | MinerU Open Source License | [opendatalab/MinerU](https://github.com/opendatalab/MinerU) |
+| knowflow-server | KnowFlow 后端服务 | KnowFlow 自有许可 / 授权 | [weizxfree/KnowFlow](https://github.com/weizxfree/KnowFlow) |
+| KnowFlowPro / RAGFlow | RAG 引擎与知识库服务 | Apache License 2.0 | [infiniflow/ragflow](https://github.com/infiniflow/ragflow) |
+
+:::tip 合规建议
+如需面向客户交付或商用部署，建议优先使用 PostgreSQL、Valkey、RustFS、Milvus 这类宽松协议组件，并保留各组件的 License、NOTICE 和版本信息，便于后续审计。
+:::
+
+:::warning 可选组件风险
+本项目历史部署配置中也集成了 MySQL、MinIO 等组件。MySQL Community Edition 采用 GPL 协议，MinIO 社区版采用 GNU AGPL v3.0；这些协议在二次分发、修改发布、SaaS/网络服务、专有软件集成等场景下可能带来额外义务或商业合规风险。非必要场景不建议继续使用，推荐分别替换为 PostgreSQL 和 RustFS。
+:::
+
 ---
 
 ## 更多信息
