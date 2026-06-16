@@ -88,11 +88,6 @@ const config: Config = {
         url: 'https://www.knowflowchat.cn',
         logo: 'https://www.knowflowchat.cn/img/k-icon-3.svg',
         description: '基于 RAGFlow 深度定制的企业级私有化知识库系统',
-        contactPoint: {
-          '@type': 'ContactPoint',
-          email: 'business@knowflowchat.cn',
-          contactType: 'sales',
-        },
         sameAs: ['https://github.com/weizxfree/KnowFlow'],
       }),
     },
@@ -115,7 +110,7 @@ const config: Config = {
         featureList: [
           '深度文档结构解析',
           '多模态知识库（图片、表格、视频）',
-          '多种分块策略（Smart/Regex/Title/Parent-Child）',
+          '更智能的分块方法（Smart/Title/Regex/Parent-Child/Page/ColPali）',
           'RBAC 权限管理体系',
           '私有化离线部署',
           '知识库导入导出与备份恢复',
@@ -175,7 +170,7 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: '文档',
@@ -221,7 +216,7 @@ const config: Config = {
         'Copyright © 2026 KnowFlow Project. <img src="/img/icp-icon.png" alt="公安备案图标" width="18" height="20" style="vertical-align:middle;margin:0 4px;" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=34019202002648" rel="noreferrer" target="_blank">皖公网安备34019202002648号</a> 皖ICP备2025099328号',
     },
     colorMode: {
-      defaultMode: 'dark',
+      defaultMode: 'light',
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },

@@ -48,8 +48,8 @@ const formatFormDataToMessage = (data: FormData): string => {
 • 姓名：${data.name}
 • 公司：${data.company}
 • 职位：${data.position || '未填写'}
-• 邮箱：${data.email}
-• 电话：${data.phone || '未填写'}
+• 邮箱：${data.email || '未填写'}
+• 微信：${data.phone}
 
 📋 咨询信息：
 • 需求类型：${data.need}
@@ -57,4 +57,3 @@ const formatFormDataToMessage = (data: FormData): string => {
 
 请及时跟进处理！`;
 };
-

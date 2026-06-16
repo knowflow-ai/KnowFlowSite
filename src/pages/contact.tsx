@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import styles from './contact.module.css';
 import { sendToWeChatWork } from '../utils/webhook';
-import { Mail, MessageSquare, Smartphone } from '../components/Icons';
+import { Smartphone } from '../components/Icons';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const INITIAL_FORM_DATA = {
@@ -21,6 +21,7 @@ export default function Contact(): ReactNode {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState('');
 
   const [formRef, formVisible] = useScrollAnimation();
   const [ctaRef, ctaVisible] = useScrollAnimation();
@@ -34,6 +35,13 @@ export default function Contact(): ReactNode {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.phone.trim()) {
+      setFormError('请填写微信，方便我们与您联系。');
+      return;
+    }
+
+    setFormError('');
     setIsSubmitting(true);
 
     try {
@@ -82,7 +90,7 @@ export default function Contact(): ReactNode {
             data-animate=""
           >
 
-            <div className={styles.formContainer}>
+            <div id="form" className={styles.formContainer}>
               <h2>获取专属方案</h2>
               <p className={styles.formDesc}>
                 请填写以下信息，我们的专家团队将在 24 小时内与您联系
@@ -131,26 +139,26 @@ export default function Contact(): ReactNode {
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label htmlFor="email">邮箱 *</label>
+                      <label htmlFor="phone">微信 *</label>
+                      <input
+                        type="text"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                        placeholder="请输入微信号"
+                      />
+                    </div>
+                    <div className={styles.formGroup}>
+                      <label htmlFor="email">邮箱</label>
                       <input
                         type="email"
                         id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        required
-                        placeholder="example@company.com"
-                      />
-                    </div>
-                    <div className={styles.formGroup}>
-                      <label htmlFor="phone">联系电话或微信</label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="请输入联系电话或微信号"
+                        placeholder="选填，example@company.com"
                       />
                     </div>
                   </div>
@@ -205,6 +213,10 @@ export default function Contact(): ReactNode {
                     {isSubmitting ? '提交中...' : '提交咨询'}
                   </button>
 
+                  {formError && (
+                    <p className={styles.formError}>{formError}</p>
+                  )}
+
                   <p className={styles.privacy}>
                     提交即表示您同意我们的 <a href="/privacy">隐私政策</a>
                   </p>
@@ -215,24 +227,6 @@ export default function Contact(): ReactNode {
             <div className={styles.infoContainer}>
               <div className={styles.infoCard}>
                 <h3>直接联系</h3>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>
-                    <Mail size={20} />
-                  </span>
-                  <div>
-                    <p className={styles.infoLabel}>商务合作</p>
-                    <p className={styles.infoValue}>business@knowflowchat.cn</p>
-                  </div>
-                </div>
-                <div className={styles.infoItem}>
-                  <span className={styles.infoIcon}>
-                    <MessageSquare size={20} />
-                  </span>
-                  <div>
-                    <p className={styles.infoLabel}>技术支持</p>
-                    <p className={styles.infoValue}>support@knowflowchat.cn</p>
-                  </div>
-                </div>
                 <div className={styles.infoItem}>
                   <span className={styles.infoIcon}>
                     <Smartphone size={20} />
@@ -266,7 +260,7 @@ export default function Contact(): ReactNode {
                 <h3>响应时间</h3>
                 <p className={styles.responseTime}>
                   我们承诺在工作日 24 小时内回复您的咨询，
-                  紧急问题可通过电话或微信直接联系我们。
+                  紧急问题可通过微信直接联系我们。
                 </p>
               </div>
             </div>

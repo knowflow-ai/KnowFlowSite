@@ -1,7 +1,7 @@
 import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
 import styles from './about.module.css';
-import { Rocket, Users, Lock, Star, Mail, MessageSquare, Smartphone, Target } from '../components/Icons';
+import { Rocket, Users, Lock, Star, Smartphone, Target } from '../components/Icons';
 import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
 const stats = [
@@ -207,20 +207,6 @@ export default function About(): ReactNode {
           >
             <h2 className={styles.sectionTitle}>联系我们</h2>
             <div className={styles.contactGrid}>
-              <div className={styles.contactCard}>
-                <div className={styles.contactIcon}>
-                  <Mail size={24} />
-                </div>
-                <h3>商务合作</h3>
-                <p>business@knowflowchat.cn</p>
-              </div>
-              <div className={styles.contactCard}>
-                <div className={styles.contactIcon}>
-                  <MessageSquare size={24} />
-                </div>
-                <h3>技术支持</h3>
-                <p>support@knowflowchat.cn</p>
-              </div>
               <div className={styles.contactCard}>
                 <div className={styles.contactIcon}>
                   <Smartphone size={24} />

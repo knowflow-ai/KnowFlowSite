@@ -14,8 +14,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(rgba(17, 24, 39, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(17, 24, 39, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
   pointer-events: none;
 }
@@ -119,32 +119,32 @@
   border-radius: 6px;
   font-size: 1rem;
   transition: all 0.2s;
-  background: rgba(15, 23, 42, 0.6);
-  color: var(--kf-text-heading);
+  background: #ffffff;
+  color: #111827;
 }
 
 .formGroup input::placeholder,
 .formGroup textarea::placeholder {
-  color: var(--kf-text-muted);
+  color: #9ca3af;
 }
 
 .formGroup input:focus,
 .formGroup select:focus,
 .formGroup textarea:focus {
   outline: none;
-  border-color: var(--kf-accent-blue);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: #111827;
+  box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.12);
 }
 
 .formGroup select {
   appearance: auto;
-  background: rgba(15, 23, 42, 0.6);
-  color: var(--kf-text-heading);
+  background: #ffffff;
+  color: #111827;
 }
 
 .formGroup select option {
-  background: var(--kf-bg-secondary);
-  color: var(--kf-text-heading);
+  background: #ffffff;
+  color: #111827;
 }
 
 .formGroup textarea {
@@ -154,20 +154,21 @@
 
 .submitButton {
   padding: 0.875rem 2rem;
-  background: linear-gradient(135deg, var(--kf-accent-blue) 0%, #2563eb 100%);
+  background: #111827;
   color: white;
-  border: none;
+  border: 1px solid #111827;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: var(--kf-glow-blue);
+  box-shadow: none;
 }
 
 .submitButton:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  background: #000000;
+  border-color: #000000;
+  transform: translateY(-1px);
 }
 
 .submitButton:disabled {
@@ -183,7 +184,7 @@
 }
 
 .privacy a {
-  color: var(--kf-accent-blue);
+  color: #111827;
   text-decoration: none;
 }
 
@@ -284,9 +285,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(59, 130, 246, 0.1);
+  background: #f3f4f6;
   border-radius: 8px;
-  color: var(--kf-accent-blue);
+  color: #111827;
   flex-shrink: 0;
 }
 
@@ -374,14 +375,14 @@
 }
 
 .primaryButton {
-  background: linear-gradient(135deg, var(--kf-accent-blue) 0%, #2563eb 100%);
+  background: #111827;
   color: white;
-  box-shadow: var(--kf-glow-blue);
+  border: 1px solid #111827;
 }
 
 .primaryButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+  background: #000000;
+  transform: translateY(-1px);
   text-decoration: none;
   color: white;
 }
@@ -419,4 +420,11 @@
   .heroTitle {
     font-size: 2rem;
   }
+}
+.formError {
+  margin: -0.5rem 0 0;
+  color: #111827;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
 }

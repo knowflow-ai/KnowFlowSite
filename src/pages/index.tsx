@@ -2,369 +2,292 @@ import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './index.module.css';
-import { FileText, Image, Settings, Shield, Lightbulb, Building, BookOpen, MessageSquare, Cpu } from '../components/Icons';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
 
-// 四大核心能力
-const coreCapabilities = [
+const capabilityGroups = [
   {
-    id: 'document-structure',
     number: '01',
-    title: '文档结构理解 + 量身定制的分块能力',
-    subtitle: '从"切文本"升级为"理解文档结构"',
-    description: 'KnowFlow 不将文档视为纯文本，而是完整还原文档的结构、层级与语义关系，为高准确检索和问答打下基础。',
-    features: [
-      '深度文档结构解析（标题层级、段落、表格、图片、caption）',
-      '多种分块策略可选：Smart / Regex / Title / Parent-Child',
-      '父子分块能力：保留上下文语义连续性，避免碎片化召回',
-      '分块结果可追溯到原文位置，支持精准引用',
-    ],
-    value: '准确不是"多召回"，而是"召回刚好正确的内容"',
-    Icon: FileText,
-    color: 'blue' as const,
+    title: '文档解析增强',
+    description: '集成 MinerU 3.x、PaddleOCR 等现代解析引擎，提升复杂 PDF、扫描件、表格、公式等内容的解析准确率。',
+    points: ['复杂 PDF 与扫描件解析', '表格、公式、版面结构还原', '适配合同、工程资料、技术文档'],
   },
   {
-    id: 'multimodal',
     number: '02',
-    title: '原生多模态知识库能力',
-    subtitle: '不只是支持多模态，而是让多模态"可用、可控、可落地"',
-    description: 'KnowFlow 将图片、表格、视频等非文本信息，纳入统一的知识理解与检索体系，而不是作为孤立附件存在。',
-    features: [
-      '图文混排文档结构还原',
-      '图片语义理解，支持以文搜图',
-      '图片上下文与标题联合理解，避免语义孤立',
-      '支持多模态视频解析',
-      '在算力受限或离线环境下仍可稳定运行',
-    ],
-    value: '企业知识，不再只存在于文字中',
-    Icon: Image,
-    color: 'purple' as const,
+    title: '更智能的分块方法',
+    description: '提供 Smart、Title、Regex、Parent-Child、Page、ColPali 等分块方法，让不同类型文档都能选择合适的知识组织方式。',
+    points: ['Smart、Title、Regex、Parent-Child', 'Page 按页分块适合版面强相关文档', 'ColPali 基于视觉模型处理图文页面'],
   },
   {
-    id: 'engineering',
     number: '03',
-    title: '工程化能力：可迁移、可评估、可长期维护',
-    subtitle: '面向真实生产环境，而非 Demo 系统',
-    description: 'KnowFlow 从工程实践出发，补齐大多数知识库系统缺失的运维与评估能力。',
-    features: [
-      '知识库离线导入 / 导出，支持跨环境迁移',
-      '支持备份与恢复',
-      '知识库评估体系，支持检索与问答效果评估',
-      '帮助持续优化分块与检索策略',
-      '完整 API 能力，支持自动化与系统集成',
-    ],
-    value: '知识库不是一次性构建，而是可以持续演进的资产',
-    Icon: Settings,
-    color: 'green' as const,
+    title: '原生多模态能力',
+    description: '支持视频解析、图片语义描述、多模态向量检索和图文混合知识问答，让非文本知识也能进入检索体系。',
+    points: ['关键帧提取、ASR、VLM', '图片自动语义描述，以文搜图', '图文混合知识问答'],
   },
   {
-    id: 'enterprise',
     number: '04',
-    title: '企业级能力：权限、安全与生态接入',
-    subtitle: '为私有化与组织级使用而生',
-    description: 'KnowFlow 天然面向企业与组织级部署，提供完善的权限体系与外部系统接入能力。',
-    features: [
-      'RBAC 权限管理体系',
-      '用户 / 团队 / 知识库 / 配置多级权限控制',
-      '支持三方系统接入（如企业内部系统、外部 Agent 平台）',
-      '私有化与离线部署友好',
-      '满足政企、内网、合规场景需求',
-    ],
-    value: '知识库不仅要"好用"，更要"可控、可管、可审计"',
-    Icon: Shield,
-    color: 'orange' as const,
+    title: '检索质量优化',
+    description: '面向中文企业知识库调优专业术语检索、粗召回和精排链路，提升答案命中率和可用性。',
+    points: ['中文专业术语优化', '粗召回 + 精排两层排序', '企业场景检索权重调优'],
+  },
+  {
+    number: '05',
+    title: '企业级与开源合规',
+    description: '底层优先采用 PostgreSQL、Milvus、RustFS 等开源协议友好的组件，降低私有化和二次开发授权风险。',
+    points: ['协议友好的基础组件', '完全私有化部署', '数据保留在客户本地环境'],
+  },
+  {
+    number: '06',
+    title: '企业级工程化能力',
+    description: '围绕权限、备份、嵌入和业务系统集成补齐生产环境所需能力，让知识库真正进入企业流程。',
+    points: ['RBAC 多级权限管理', '知识库导入导出、备份恢复', 'Dify、企业微信、飞书、钉钉集成'],
   },
 ];
 
-const scenarios = [
+const k4Layers = [
   {
-    title: '政企内网知识库',
-    description: '满足政府、央企对数据安全与合规的严格要求，支持完全离线部署',
-    Icon: Building,
-    color: 'blue' as const,
+    label: 'K1',
+    title: 'Knowledge Planning',
+    subtitle: '知识库规划',
+    answer: '知识在哪里',
   },
   {
-    title: '企业知识中台',
-    description: '构建组织级知识资产，统一管理文档、FAQ、产品手册等多类型知识',
-    Icon: BookOpen,
-    color: 'purple' as const,
+    label: 'K2',
+    title: 'Structure Planning',
+    subtitle: '文件目录规划',
+    answer: '知识怎么组织',
   },
   {
-    title: '智能客服/问答系统',
-    description: '基于精准检索的智能问答，提供可追溯、可验证的答案',
-    Icon: MessageSquare,
-    color: 'green' as const,
+    label: 'K3',
+    title: 'Governance',
+    subtitle: '知识治理',
+    answer: '企业怎么说',
   },
   {
-    title: 'Agent 知识底座',
-    description: '为 AI Agent 提供可靠的知识检索能力，支持多系统集成',
-    Icon: Cpu,
-    color: 'orange' as const,
-  },
-];
-
-const testimonials = [
-  {
-    content: 'KnowFlow 的文档结构理解能力让我们的检索准确率提升了显著，特别是对复杂报告类文档的处理效果很好。',
-    author: '张总',
-    company: '某央企信息化部门负责人',
-    initial: '张',
-  },
-  {
-    content: '私有化部署 + 完善的权限体系，完美满足了我们的合规要求。知识库导入导出功能也很实用。',
-    author: '李经理',
-    company: '某金融机构 IT负责人',
-    initial: '李',
-  },
-  {
-    content: '多模态能力是我们选择 KnowFlow 的关键因素，图片和表格终于可以被正确理解和检索了。',
-    author: '王总监',
-    company: '某制造企业 信息化总监',
-    initial: '王',
+    label: 'K4',
+    title: 'Metadata',
+    subtitle: '元数据治理',
+    answer: 'AI 怎么理解',
   },
 ];
 
-const stats = [
-  { number: '30+', label: '企业客户' },
-  { number: '1M+', label: '文档处理量' },
-  { number: '99.9%', label: '服务可用性' },
-  { number: '24/7', label: '技术支持' },
+const scenarioCards = [
+  {
+    title: '合同与制度知识库',
+    description: '面向合同、制度、规范和审计材料，保留版面、条款、表格和上下文关系，提升检索可解释性。',
+  },
+  {
+    title: '工程与技术文档问答',
+    description: '处理工程资料、产品手册、技术方案和故障记录，支持标题层级、父子分块和专业术语检索。',
+  },
+  {
+    title: '多模态资料检索',
+    description: '将图片、PPT、视频关键帧和语音转写统一纳入知识库，支持图文混合问答和以文搜图。',
+  },
+  {
+    title: 'Agent 与业务系统知识底座',
+    description: '通过 API、网页嵌入和平台集成，为客服、办公协同、内部 Agent 提供可信知识上下文。',
+  },
 ];
 
-function AnimatedSection({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
-  const [ref, isVisible] = useScrollAnimation();
-  return (
-    <div
-      ref={ref}
-      className={className}
-      data-animate=""
-      style={{ transitionDelay: `${delay}ms` }}
-      {...(isVisible ? { className: `${className || ''} visible`.trim() } : {})}
-    >
-      {children}
-    </div>
-  );
-}
+const integrationRows = [
+  {
+    title: '权限与组织',
+    description: 'RBAC 覆盖用户、团队、知识库等资源，适配企业多组织、多角色协作。',
+  },
+  {
+    title: '数据与运维',
+    description: '支持知识库导入导出、备份恢复和完全私有化部署，方便长期运营。',
+  },
+  {
+    title: '业务入口',
+    description: '支持网站嵌入，并可接入 Dify、企业微信、飞书、钉钉等业务平台。',
+  },
+  {
+    title: '合规底座',
+    description: '优先采用 PostgreSQL、Milvus、RustFS 等组件，降低企业授权和供应链风险。',
+  },
+];
+
+const processSteps = [
+  {step: '01', title: '解析', description: '从 PDF、扫描件、表格、图片、视频中提取可治理的知识结构。'},
+  {step: '02', title: '分块', description: '按语义、标题、正则、父子结构、页面或视觉模型生成适合检索的知识片段。'},
+  {step: '03', title: '治理', description: '通过目录规划、权限控制、元数据和人工维护提升知识质量。'},
+  {step: '04', title: '应用', description: '面向问答、搜索、Agent 和业务系统输出可追溯知识服务。'},
+];
 
 export default function Home(): ReactNode {
-  const productPreview = useBaseUrl('/img/product-preview.png');
-  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.05 });
-  const [capRef, capVisible] = useScrollAnimation();
-  const [productRef, productVisible] = useScrollAnimation();
-  const [scenarioRef, scenarioVisible] = useScrollAnimation();
-  const [testimonialRef, testimonialVisible] = useScrollAnimation();
-  const [ctaRef, ctaVisible] = useScrollAnimation();
-  const [statsRef, statsVisible] = useScrollAnimation();
+  const productPreview = useBaseUrl('/img/home-chat.png');
 
   return (
     <Layout
-      title="KnowFlow - 准确、可靠、可落地的私有化企业级知识库"
-      description="KnowFlow 以文档结构理解为核心，提供深度文档解析、多模态知识库、私有化部署的企业级 RAG 知识库系统，支持 PDF/Word/图片等多格式文档智能问答">
-
-      {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroGrid} />
-        <div className={styles.heroGlow} />
-        <div className="container">
-          <div
-            ref={heroRef}
-            className={`${styles.heroContent} ${heroVisible ? styles.heroVisible : ''}`}
-          >
-            <div className={styles.heroBadge}>
-              <span className={styles.badgeDot} />
-              私有化场景首选
-            </div>
-            <h1 className={styles.heroTitle}>
-              准确、可靠、可落地的
-              <span className={styles.gradientText}>企业级知识库</span>
-            </h1>
-            <p className={styles.heroSubtitle}>
-              KnowFlow 为私有化场景而生
+      title="KnowFlow - 企业级知识库与 K4 知识治理平台"
+      description="KnowFlow 面向私有化、内网和复杂文档场景，提供文档解析增强、智能分块、多模态检索、企业权限治理与 K4 Framework 知识治理方法论。"
+    >
+      <header className={styles.hero}>
+        <div className={`container ${styles.heroGrid}`}>
+          <div>
+            <span className={styles.eyebrow}>企业级知识库与 K4 知识治理平台</span>
+            <h1 className={styles.heroTitle}>让复杂企业知识真正可被 AI 理解</h1>
+            <p className={styles.heroLead}>
+              KnowFlow 面向私有化、内网和复杂文档场景，围绕文档解析、智能分块、多模态检索、权限治理和业务集成，构建可维护、可追溯、可落地的企业知识库。
             </p>
-            <div className={styles.heroCta}>
-              <a href="/contact" className={styles.primaryButton}>
-                申请演示
-              </a>
-              <a href="/docs/intro" className={styles.secondaryButton}>
-                查看文档
-              </a>
+            <div className={styles.actions}>
+              <a className={styles.primaryButton} href="/contact">预约产品演示</a>
+              <a className={styles.secondaryButton} href="/docs/intro">查看产品文档</a>
+            </div>
+            <div className={styles.heroBadges}>
+              <span>MinerU 3.x</span>
+              <span>PaddleOCR</span>
+              <span>Milvus</span>
+              <span>RBAC</span>
+            </div>
+          </div>
+          <div className={styles.productFrame}>
+            <div className={styles.frameBar}>
+              <span className={styles.dot} />
+              <span className={styles.dot} />
+              <span className={styles.dot} />
+              <span>KnowFlow 知识库控制台</span>
+            </div>
+            <img src={productPreview} alt="Corpus2Skill 系统架构示意图" />
+          </div>
+        </div>
+      </header>
+
+      <section className={styles.trust}>
+        <div className="container">
+          <div className={styles.trustGrid}>
+            <div className={`${styles.trustItem} ${styles.trustLabel}`}>从复杂文档到可信 AI 上下文</div>
+            <div className={styles.trustItem}>
+              <strong>6 类</strong>
+              <span>Smart / Title / Regex / Parent-Child / Page / ColPali</span>
+            </div>
+            <div className={styles.trustItem}>
+              <strong>多模态</strong>
+              <span>图片、视频、语音、表格与文本统一检索</span>
+            </div>
+            <div className={styles.trustItem}>
+              <strong>私有化</strong>
+              <span>数据可完整保留在客户本地环境</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section
-        ref={statsRef}
-        className={`${styles.statsBar} ${statsVisible ? 'visible' : ''}`}
-        data-animate=""
-      >
+      <section className={styles.whiteSection}>
         <div className="container">
-          <div className={styles.statsGrid}>
-            {stats.map((stat, idx) => (
-              <div key={idx} className={styles.statItem}>
-                <div className={styles.statNumber}>{stat.number}</div>
-                <div className={styles.statLabel}>{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Core Capabilities Section */}
-      <section className={styles.coreCapabilities}>
-        <div className="container">
-          <div
-            ref={capRef}
-            className={`${styles.sectionHeader} ${capVisible ? 'visible' : ''}`}
-            data-animate=""
-          >
-            <h2 className={styles.sectionTitle}>核心能力</h2>
-            <p className={styles.sectionSubtitle}>
-              KnowFlow 以「文档结构理解」为核心，提供完整的企业级知识库解决方案
+          <div className={styles.sectionHead}>
+            <div className={styles.kicker}>CAPABILITIES</div>
+            <h2>围绕企业知识进入 AI 的关键链路建设能力</h2>
+            <p>
+              KnowFlow 不只提供问答入口，而是从解析、分块、检索、治理、部署和集成六个层面补齐企业级知识库的生产能力。
             </p>
           </div>
-
-          <div className={styles.capabilitiesGrid}>
-            {coreCapabilities.map((capability) => (
-              <div key={capability.id} className={`${styles.capabilityCard} ${styles[`card${capability.color.charAt(0).toUpperCase() + capability.color.slice(1)}`]}`}>
-                <div className={styles.cardTopBar} />
-                <div className={styles.capabilityIconWrap}>
-                  <capability.Icon size={32} />
-                </div>
-                <div className={styles.capabilityNumber}>{capability.number}</div>
-                <h3 className={styles.capabilityTitle}>{capability.title}</h3>
-                <p className={styles.capabilitySubtitle}>{capability.subtitle}</p>
-                <p className={styles.capabilityDescription}>{capability.description}</p>
-                <ul className={styles.capabilityFeatures}>
-                  {capability.features.map((feature, fidx) => (
-                    <li key={fidx}>{feature}</li>
+          <div className={styles.capabilityGrid}>
+            {capabilityGroups.map((item) => (
+              <article className={styles.capabilityCard} key={item.title}>
+                <small>{item.number}</small>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <ul>
+                  {item.points.map((point) => (
+                    <li key={point}>{point}</li>
                   ))}
                 </ul>
-                <div className={styles.capabilityValue}>
-                  <Lightbulb size={18} />
-                  <span className={styles.valueText}>{capability.value}</span>
-                </div>
-              </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Product Preview Section */}
-      <section className={styles.product}>
-        <div className="container">
-          <div
-            ref={productRef}
-            className={`${styles.productContent} ${productVisible ? 'visible' : ''}`}
-            data-animate=""
-          >
-            <div className={styles.productText}>
-              <h2>为生产环境而生</h2>
-              <p>
-                KnowFlow 不是一个 Demo 系统，而是面向真实生产环境设计的企业级产品。
-                从文档解析到问答输出，每一个环节都经过精心打磨。
-              </p>
-              <ul className={styles.productFeatures}>
-                <li>支持 PDF、Word、Excel、PPT、图片等多种格式</li>
-                <li>深度文档结构解析，保留语义完整性</li>
-                <li>检索结果可追溯到原文，支持精准引用</li>
-                <li>完整的知识库生命周期管理</li>
-                <li>丰富的 API 接口，易于系统集成</li>
-              </ul>
-              <a href="/product" className={styles.learnMore}>
-                了解更多产品功能 →
-              </a>
-            </div>
-            <div className={styles.productImage}>
-              <img
-                src={productPreview}
-                alt="KnowFlow 产品界面预览"
-                className={styles.productPreview}
-              />
-            </div>
+      <section className={styles.section}>
+        <div className={`container ${styles.k4Section}`}>
+          <div className={styles.k4Intro}>
+            <div className={styles.kicker}>K4 FRAMEWORK</div>
+            <h2>K4 Framework™ 企业知识治理方法论</h2>
+            <p>
+              K4 Framework™ 是 KnowFlow 提出的企业知识治理方法论，通过知识库规划、结构规划、知识治理与元数据治理四大层级，帮助企业构建真正适用于 AI 检索与 Agent 推理的知识体系。
+            </p>
+            <div className={styles.k4Formula}>Knowledge → Structure → Governance → Metadata</div>
+            <span className={styles.k4Note}>K4 = 四层知识治理体系</span>
+          </div>
+          <div className={styles.k4Flow}>
+            {k4Layers.map((layer) => (
+              <article className={styles.k4Card} key={layer.label}>
+                <small>{layer.label}</small>
+                <h3>{layer.title}</h3>
+                <p>{layer.subtitle}</p>
+                <b>{layer.answer}</b>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Scenarios Section */}
-      <section className={styles.scenarios}>
+      <section className={styles.whiteSection}>
         <div className="container">
-          <div
-            ref={scenarioRef}
-            className={`${styles.sectionHeader} ${scenarioVisible ? 'visible' : ''}`}
-            data-animate=""
-          >
-            <h2 className={styles.sectionTitle}>应用场景</h2>
-            <p className={styles.sectionSubtitle}>
-              满足私有化部署场景下的各类知识管理需求
+          <div className={`${styles.sectionHead} ${styles.center}`}>
+            <div className={styles.kicker}>SCENARIOS</div>
+            <h2>适合高复杂度、高合规要求的企业知识场景</h2>
+            <p>从合同制度到工程资料，从多模态资料到 Agent 应用，KnowFlow 重点解决企业知识“难解析、难组织、难治理、难检索”的问题。</p>
+          </div>
+          <div className={styles.useCases}>
+            {scenarioCards.map((item) => (
+              <article className={styles.useCase} key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={`container ${styles.enterprise}`}>
+          <div className={styles.enterpriseCard}>
+            <h2>按企业生产环境要求设计</h2>
+            <p>
+              企业知识库不是单点工具，需要同时满足权限、合规、运维、集成和长期维护。KnowFlow 将这些能力作为产品底座，而不是后置插件。
             </p>
           </div>
-          <div className={styles.scenarioGrid}>
-            {scenarios.map((scenario, idx) => (
-              <div key={idx} className={`${styles.scenarioCard} ${styles[`scenario${scenario.color.charAt(0).toUpperCase() + scenario.color.slice(1)}`]}`}>
-                <div className={styles.scenarioTopBar} />
-                <div className={styles.scenarioIcon}>
-                  <scenario.Icon size={28} />
-                </div>
-                <h3>{scenario.title}</h3>
-                <p>{scenario.description}</p>
+          <div className={styles.securityList}>
+            {integrationRows.map((item) => (
+              <div className={styles.securityRow} key={item.title}>
+                <b>{item.title}</b>
+                <span>{item.description}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className={styles.testimonials}>
+      <section className={styles.whiteSection}>
         <div className="container">
-          <div
-            ref={testimonialRef}
-            className={`${styles.sectionHeader} ${testimonialVisible ? 'visible' : ''}`}
-            data-animate=""
-          >
-            <h2 className={styles.sectionTitle}>客户评价</h2>
-            <p className={styles.sectionSubtitle}>
-              来自一线用户的真实反馈
-            </p>
+          <div className={styles.sectionHead}>
+            <div className={styles.kicker}>WORKFLOW</div>
+            <h2>从文档进入系统，到知识进入业务流程</h2>
+            <p>KnowFlow 的落地路径围绕“解析、分块、治理、应用”展开，让企业能够持续维护知识质量，而不是一次性导入文档后失控。</p>
           </div>
-          <div className={styles.testimonialGrid}>
-            {testimonials.map((testimonial, idx) => (
-              <div key={idx} className={styles.testimonialCard}>
-                <p className={styles.testimonialContent}>
-                  "{testimonial.content}"
-                </p>
-                <div className={styles.testimonialAuthor}>
-                  <div className={styles.authorAvatar}>{testimonial.initial}</div>
-                  <div>
-                    <strong>{testimonial.author}</strong>
-                    <span>{testimonial.company}</span>
-                  </div>
-                </div>
-              </div>
+          <div className={styles.process}>
+            {processSteps.map((item) => (
+              <article className={styles.processStep} key={item.step}>
+                <small>{item.step}</small>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className={styles.cta}>
-        <div className="container">
-          <div
-            ref={ctaRef}
-            className={`${styles.ctaContent} ${ctaVisible ? 'visible' : ''}`}
-            data-animate=""
-          >
-            <h2>准备构建您的企业级知识库？</h2>
-            <p>准确、可靠、可落地 —— 为私有化场景而生</p>
-            <div className={styles.ctaButtons}>
-              <a href="/contact" className={styles.ctaPrimary}>
-                联系我们获取方案
-              </a>
-              <a href="/docs/intro" className={styles.ctaSecondary}>
-                快速开始
-              </a>
-            </div>
+        <div className={`container ${styles.ctaBox}`}>
+          <div>
+            <h2>用真实企业文档评估 KnowFlow</h2>
+            <p>带上你的 PDF、扫描件、表格、图片或视频资料，从解析质量、分块策略、检索效果和私有化部署条件开始评估。</p>
+          </div>
+          <div className={styles.actions}>
+            <a className={styles.primaryButton} href="/contact">申请演示</a>
+            <a className={styles.secondaryButton} href="/docs/intro">查看文档</a>
           </div>
         </div>
       </section>
