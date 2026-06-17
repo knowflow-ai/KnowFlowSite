@@ -123,7 +123,7 @@ export default function Home(): ReactNode {
       description="KnowFlow 面向私有化、内网和复杂文档场景，提供文档解析增强、智能分块、多模态检索、企业权限治理与 K4 Framework 知识治理方法论。"
     >
       <header className={styles.hero}>
-        <div className={`container ${styles.heroGrid}`}>
+        <div className={`container ${styles.homeContainer} ${styles.heroGrid}`}>
           <div>
             <span className={styles.eyebrow}>企业级知识库与 K4 知识治理平台</span>
             <h1 className={styles.heroTitle}>让复杂企业知识真正可被 AI 理解</h1>
@@ -154,7 +154,7 @@ export default function Home(): ReactNode {
       </header>
 
       <section className={styles.trust}>
-        <div className="container">
+        <div className={`container ${styles.homeContainer}`}>
           <div className={styles.trustGrid}>
             <div className={`${styles.trustItem} ${styles.trustLabel}`}>从复杂文档到可信 AI 上下文</div>
             <div className={styles.trustItem}>
@@ -174,7 +174,7 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={styles.whiteSection}>
-        <div className="container">
+        <div className={`container ${styles.homeContainer}`}>
           <div className={styles.sectionHead}>
             <div className={styles.kicker}>CAPABILITIES</div>
             <h2>围绕企业知识进入 AI 的关键链路建设能力</h2>
@@ -200,7 +200,7 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={styles.section}>
-        <div className={`container ${styles.k4Section}`}>
+        <div className={`container ${styles.homeContainer} ${styles.k4Section}`}>
           <div className={styles.k4Intro}>
             <div className={styles.kicker}>K4 FRAMEWORK</div>
             <h2>K4 Framework™ 企业知识治理方法论</h2>
@@ -224,7 +224,7 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={styles.whiteSection}>
-        <div className="container">
+        <div className={`container ${styles.homeContainer}`}>
           <div className={`${styles.sectionHead} ${styles.center}`}>
             <div className={styles.kicker}>SCENARIOS</div>
             <h2>适合高复杂度、高合规要求的企业知识场景</h2>
@@ -242,7 +242,7 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={styles.section}>
-        <div className={`container ${styles.enterprise}`}>
+        <div className={`container ${styles.homeContainer} ${styles.enterprise}`}>
           <div className={styles.enterpriseCard}>
             <h2>按企业生产环境要求设计</h2>
             <p>
@@ -261,7 +261,7 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={styles.whiteSection}>
-        <div className="container">
+        <div className={`container ${styles.homeContainer}`}>
           <div className={styles.sectionHead}>
             <div className={styles.kicker}>WORKFLOW</div>
             <h2>从文档进入系统，到知识进入业务流程</h2>
@@ -280,7 +280,7 @@ export default function Home(): ReactNode {
       </section>
 
       <section className={styles.cta}>
-        <div className={`container ${styles.ctaBox}`}>
+        <div className={`container ${styles.homeContainer} ${styles.ctaBox}`}>
           <div>
             <h2>用真实企业文档评估 KnowFlow</h2>
             <p>带上你的 PDF、扫描件、表格、图片或视频资料，从解析质量、分块策略、检索效果和私有化部署条件开始评估。</p>

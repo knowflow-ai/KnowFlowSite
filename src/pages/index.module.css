@@ -11,6 +11,12 @@
   --home-shadow: 0 22px 60px rgba(16, 24, 40, 0.12);
 }
 
+.homeContainer {
+  max-width: 1120px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .hero {
   padding: 82px 0 46px;
   background: linear-gradient(180deg, var(--home-white) 0%, var(--home-page) 100%);
@@ -19,7 +25,7 @@
 
 .heroGrid {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(520px, 1.1fr);
+  grid-template-columns: minmax(0, 0.94fr) minmax(440px, 1.02fr);
   gap: 48px;
   align-items: center;
 }
@@ -124,6 +130,8 @@
 }
 
 .productFrame {
+  justify-self: end;
+  width: min(100%, 680px);
   padding: 12px;
   border: 1px solid #c7d4e8;
   border-radius: 10px;
@@ -543,8 +551,14 @@
 }
 
 @media (max-width: 1200px) {
+  .homeContainer {
+    max-width: 1080px;
+    padding-left: 26px;
+    padding-right: 26px;
+  }
+
   .heroGrid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(460px, 1.05fr);
+    grid-template-columns: minmax(0, 0.94fr) minmax(400px, 0.98fr);
     gap: 36px;
   }
 
@@ -554,6 +568,11 @@
 }
 
 @media (max-width: 996px) {
+  .homeContainer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
   .heroGrid,
   .k4Section,
   .enterprise,
@@ -593,6 +612,11 @@
 }
 
 @media (max-width: 640px) {
+  .homeContainer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .heroTitle {
     font-size: 36px;
   }
