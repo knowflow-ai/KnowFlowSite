@@ -4,6 +4,25 @@ description: KnowFlow 全版本更新日志与发布记录，包含各版本新�
 
 # 更新日志
 
+## [v2.4.3] - 2026-07-10
+
+### 新增
+- 新增 LLM Wiki 能力，支持将知识库文档自动编织为实体页、概念页与摘要页三类互链 Wiki，并支持增量生成、删文档自维护与 Wiki 健康体检（详见 [LLM Wiki 使用指南](../product-usage/retrieval-enhancement/llm-wiki.md)）
+- 新增 SAG 多跳检索能力，支持在知识库级开启 event-centric 的跨文档多跳检索，聊天检索自动走 SAG，并提供 SAG 图谱可视化（详见 [SAG 多跳检索使用指南](../product-usage/retrieval-enhancement/sag.md)）
+- 新增 知识库树状结构（知识库内容树），支持以文件夹树管理知识库、文件夹级授权与权限继承（详见 [知识库管理使用指南](../product-usage/kb-tree.md)）
+- 新增 Wiki 检索调试可视化与引用识别，检索测试与聊天引用可查看 Wiki 加权详情与页面预览抽屉
+
+### 优化
+- 优化 知识库首页卡片与文件夹树布局，知识库/聊天卡片新增彩色主题条与授权可视化徽标
+- 优化 检索测试页复用「使用知识图谱」开关走 SAG，移除独立下拉，交互更一致
+- 优化 开启 SAG 时自动同步 RAGFlow 默认嵌入与 LLM 模型到 SAG 服务，用户无需重复配置
+- 优化 Helm 部署支持分布式任务执行（web/executor 拆分）与多副本高可用
+
+### 修复
+- 修复 Wiki 路由 RBAC 权限校验补全问题
+- 修复 SAG 检索引用溯源与 chunk 高亮对齐传统 RAG 的问题
+- 修复 RBAC 去 tenant_id 隔离后文件夹可见性与缓存问题
+
 ## [v2.4.2] - 2026-07-02
 
 ### 新增

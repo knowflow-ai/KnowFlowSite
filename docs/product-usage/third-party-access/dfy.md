@@ -1,4 +1,5 @@
 ---
+sidebar_position: 4
 description: KnowFlow 与 Dify 平台集成指南，支持外部知识库接入和插件两种方式，实现知识检索与 AI 对话无缝对接。
 ---
 
@@ -71,7 +72,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
 
 4. 点击 **保存** 完成 API 配置
 
-![外部知识库 API 配置](./images/dify-external-api.png)
+![外部知识库 API 配置](../images/dify-external-api.png)
 
 :::info 说明
 - 如果 Dify 和 KnowFlow 部署在同一台服务器上,可使用 `host.docker.internal` 作为主机名
@@ -96,7 +97,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
    - 输入测试查询文本
    - 检查是否能正确召回相关段落
 
-![召回测试](./images/dify-recall-test.png)
+![召回测试](../images/dify-recall-test.png)
 
 ### 步骤 3: 工作流编排引用外部知识库
 
@@ -121,7 +122,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
 用户输入 → 知识检索 → LLM → 直接回复
 ```
 
-![工作流编排](./images/dify-workflow-external.png)
+![工作流编排](../images/dify-workflow-external.png)
 
 ### 步骤 4: 问答测试
 
@@ -131,7 +132,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
 
 3. 检查回答是否准确引用了知识库内容
 
-![问答效果](./images/dify-qa-result.png)
+![问答效果](../images/dify-qa-result.png)
 
 ---
 
@@ -165,7 +166,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
 
 8. 点击 **保存** 完成插件配置
 
-![插件安装](./images/dify-install-plugin.png)
+![插件安装](../images/dify-install-plugin.png)
 
 ### 步骤 2: 导入 DSL 工作流模板
 
@@ -183,7 +184,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
    - **LLM**: 基于检索结果生成回答
    - **直接回复**: 返回最终答案
 
-    ![工作流展示](./images/dify-workflow.png)
+    ![工作流展示](../images/dify-workflow.png)
 
 5. 配置关键参数:
 
@@ -199,7 +200,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
    - 选择合适的 LLM 模型 (如 Qwen/Qwen3-32B)
    - 系统提示词已预设,确保严格按照知识库内容回答
 
-    ![插件配置](./images/dify-plugin-config.png)
+    ![插件配置](../images/dify-plugin-config.png)
 
 ### 步骤 3: 调试预览
 
@@ -222,7 +223,7 @@ Dify 原生支持外部知识库接入,通过配置 API 即可将 KnowFlow 作�
 
 5. 调试通过后,点击 **发布** 上线应用
 
-![效果演示](./images/dify-demo.png)
+![效果演示](../images/dify-demo.png)
 
 ## 工作流说明
 

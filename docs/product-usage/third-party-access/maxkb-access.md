@@ -1,3 +1,8 @@
+---
+sidebar_position: 5
+description: KnowFlow 与 MaxKB 集成指南，通过 MaxKB 的高级编排 + 工具功能，实现在 MaxKB 中使用 KnowFlow 知识库的问答能力。
+---
+
 # MaxKB 接入
 
 ## 概述
@@ -10,7 +15,7 @@
 
 1. 在 MaxKB 中进入 **工具** → **创建工具**
 
-![创建工具](./images/maxkb-create-tool.png)
+![创建工具](../images/maxkb-create-tool.png)
 
 2. 配置工具参数：
     - 工具名称：KnowFlowAPI
@@ -19,9 +24,9 @@
     - 输入参数：question 用户问题
     - 工具内容：见文档底部 Python 调用示例
 
-![工具配置](./images/maxkb-tool-config.png)
+![工具配置](../images/maxkb-tool-config.png)
 
-![工具内容配置](./images/maxkb-tool-content.png)
+![工具内容配置](../images/maxkb-tool-content.png)
 
 3. 调试工具，确认返回正常后保存
 
@@ -29,17 +34,17 @@
 
 1. 在 MaxKB 应用中，选择 **创建高级编排**
 
-![创建高级编排](./images/maxkb-add-tool.png)
+![创建高级编排](../images/maxkb-add-tool.png)
 
 2. 在编排流程中接入刚创建的 **KnowFlow API 工具**
 3. 配置工具节点，将用户问题传递给 `question` 参数
 4. 进行调试测试
 
-![调试测试](./images/maxkb-debug.png)
+![调试测试](../images/maxkb-debug.png)
 
 5. 确认正常返回后，对接功能完成
 
-![返回结果](./images/maxkb-result.png)
+![返回结果](../images/maxkb-result.png)
 
 ## Python 调用示例
 

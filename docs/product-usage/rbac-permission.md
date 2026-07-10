@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 6
 description: KnowFlow RBAC 权限管理指南，介绍超级管理员、组织管理员、组织架构、协作组和知识库授权的使用方式。
 ---
 

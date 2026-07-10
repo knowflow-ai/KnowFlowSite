@@ -848,9 +848,9 @@ docker/docker-compose.yml                     # 服务编排配置
 
 部署完成后，建议按以下顺序进行配置：
 
-1. **[用户管理](./产品使用/rbac-permission)** - 了解RBAC权限管理和用户创建
+1. **[用户管理](./product-usage/rbac-permission)** - 了解RBAC权限管理和用户创建
 2. **[知识库管理](./intro)** - 创建和配置知识库
-3. **[分块策略](./产品使用/chunking-strategies/)** - 选择合适的文档分块策略
+3. **[分块策略](./product-usage/chunking-strategies/)** - 选择合适的文档分块策略
 4. **[API集成](./intro)** - 通过API接口集成第三方系统
 
 ### 相关文档

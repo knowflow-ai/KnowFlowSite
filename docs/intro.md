@@ -174,7 +174,7 @@ KnowFlow 天然面向企业与组织级部署，提供完善的权限体系与�
       <a className="button button--primary button--lg margin-right--md" href="./installationDocker.md">
         安装部署指南
       </a>
-      <a className="button button--secondary button--lg" href="./产品使用/quick-start">
+      <a className="button button--secondary button--lg" href="./product-usage/quick-start">
         快速入门教程
       </a>
     </div>

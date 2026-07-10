@@ -1,4 +1,5 @@
 ---
+sidebar_position: 1
 description: KnowFlow ColPali 视觉检索使用指南，基于多模态技术实现图片、表格和 PPT 文档的视觉语义检索。
 ---
 
@@ -54,7 +55,7 @@ ColPali 使用视觉语言模型（VLM）进行检索，**不擅长处理答案�
 2. 点击"**创建知识库**"
 3. 在解析方法中选择 **ColPali**
 
-![创建 ColPali 知识库](./images/colpali-create-kb.png)
+![创建 ColPali 知识库](../images/colpali-create-kb.png)
 
 :::tip 关键配置
 一旦选择 ColPali 作为解析方法，该知识库的**所有文档**都将使用 ColPali 进行解析，其他解析方法将无法使用。
@@ -77,7 +78,7 @@ ColPali 使用视觉语言模型（VLM）进行检索，**不擅长处理答案�
 - 使用视觉模型提取页面的多向量表示
 - 存储到 Milvus 向量数据库中
 
-![上传文档](./images/colpali-upload.png)
+![上传文档](../images/colpali-upload.png)
 
 ### 第三步：配置聊天助理
 
@@ -88,7 +89,7 @@ ColPali 使用视觉语言模型（VLM）进行检索，**不擅长处理答案�
 3. 在"**模型配置**"中选择 **VLM 视觉聊天模型**
 4. 关联 ColPali 知识库
 
-![配置 VLM 模型](./images/colpali-chat-config.png)
+![配置 VLM 模型](../images/colpali-chat-config.png)
 
 :::danger 必须配置 VLM
 ColPali 检索返回的是图像内容，**必须使用 VLM 视觉聊天模型**才能正确理解和回答。如果使用普通文本模型，将无法处理检索结果。

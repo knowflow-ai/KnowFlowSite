@@ -1,0 +1,8 @@
+{
+  "label": "检索增强",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "在基础检索之上提升问答准确性与召回率的增强能力。包括 ColPali 视觉检索、SAG 多跳检索，以及 LLM Wiki 知识网络，适用于视觉密集型文档、跨文档多步推理与实体概念类问答等场景。"
+  }
+}
