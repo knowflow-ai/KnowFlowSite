@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 6
 description: KnowFlow 与 MaxKB 集成指南，通过 MaxKB 的高级编排 + 工具功能，实现在 MaxKB 中使用 KnowFlow 知识库的问答能力。
 ---
 

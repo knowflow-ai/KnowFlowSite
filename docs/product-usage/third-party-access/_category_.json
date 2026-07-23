@@ -3,6 +3,6 @@
   "position": 5,
   "link": {
     "type": "generated-index",
-    "description": "将 KnowFlow 配置好的知识库问答能力接入外部平台。支持企业微信、飞书、钉钉智能机器人接入，以及 Dify、MaxKB 等 AI 应用平台的知识库集成。"
+    "description": "将 KnowFlow 接入企业身份与外部业务平台。支持企业微信网页登录和工作台登录、企业微信/飞书/钉钉智能机器人，以及 Dify、MaxKB 等 AI 应用平台。"
   }
 }

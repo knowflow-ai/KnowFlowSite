@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 description: KnowFlow 与 Dify 平台集成指南，支持外部知识库接入和插件两种方式，实现知识检索与 AI 对话无缝对接。
 ---
 

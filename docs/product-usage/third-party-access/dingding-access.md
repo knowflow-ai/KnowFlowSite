@@ -1,5 +1,5 @@
 ---
-sidebar_position: 3
+sidebar_position: 4
 description: KnowFlow 钉钉接入教程，将配置好的聊天接入钉钉智能机器人，实现在钉钉中使用 KnowFlow 知识库问答。
 ---
 

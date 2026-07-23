@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: KnowFlow 飞书接入教程，将配置好的聊天接入飞书智能机器人，实现在飞书中使用 KnowFlow 知识库问答。
 ---
 

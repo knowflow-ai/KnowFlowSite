@@ -123,18 +123,16 @@ sidebar_position: 2
 
 ## 💬 企业微信集成
 
-### ⚙️ Q: 如何配置企业微信应用？
+### ⚙️ Q: KnowFlow 支持哪些企业微信接入方式？
 
-**A:** KnowFlow 支持企业微信应用集成，可将企业微信应用作为聊天机器人使用。
+**A:** KnowFlow 支持两类企业微信接入：
 
-#### 配置步骤：
-1. 参照项目中的 `server/services/knowflow/README.md` 文件
-2. 按照文档说明进行配置
-3. 完成企业微信应用设置
+| 接入方式 | 使用场景 | 使用的企业微信参数 | 配置文档 |
+|---|---|---|---|
+| 企业微信登录 | 浏览器扫码登录、工作台免扫码进入 KnowFlow | `CorpID`、`AgentID`、应用 `Secret` | [企业微信网页登录与工作台登录](../product-usage/third-party-access/wecom-sso-login.md) |
+| 企业微信智能机器人 | 员工在企业微信单聊或群聊中向知识库提问 | `Bot ID`、机器人 `Secret` | [企业微信智能机器人接入](../product-usage/third-party-access/wecom-access.md) |
 
-:::tip 配置文档
-详细配置方式请参照项目中的 `server/services/knowflow/README.md` 文件说明。
-:::
+两种接入可以同时使用，但用途和凭据不同，请不要混用。
 
 ### 🌟 Q: 企业微信应用有什么优势？
 

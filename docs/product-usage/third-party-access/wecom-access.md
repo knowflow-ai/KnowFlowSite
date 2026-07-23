@@ -1,13 +1,20 @@
 ---
 sidebar_position: 1
-description: KnowFlow 企业微信接入教程，通过长连接模式创建智能机器人，实现在企业微信中使用知识库问答。
+description: KnowFlow 企业微信智能机器人接入教程，通过长连接模式实现在企业微信会话中使用知识库问答。
 ---
 
-# 企业微信接入
+# 企业微信智能机器人接入
 
 ## 一、功能简介
 
 将 KnowFlow 配置好的聊天直接接入企业微信智能机器人，轻松实现在企业微信中接入并使用 KnowFlow。
+
+:::info 需要企业微信网页登录或工作台登录？
+本页介绍的是知识库问答机器人，使用 `Bot ID` 和机器人 `Secret`。
+
+如需让员工使用企业微信身份登录 KnowFlow，或从企业微信工作台直接进入系统，请参阅
+[企业微信网页登录与工作台登录](./wecom-sso-login.md)。该功能使用自建应用的 `CorpID`、`AgentID` 和应用 `Secret`。
+:::
 
 ## 二、配置步骤
 
@@ -57,4 +64,3 @@ description: KnowFlow 企业微信接入教程，通过长连接模式创建智�
 ![通讯录](../images/wecom-chat-10.png)
 
 ![单聊](../images/wecom-chat-15.jpeg)
-
