@@ -1,5 +1,6 @@
 ---
-sidebar_position: 7
+sidebar_position: 1
+slug: /product-usage/kb-tree
 description: KnowFlow 知识库管理使用指南，介绍如何用文件夹树状结构管理知识库、进行文件夹级授权与权限继承，以及知识库的移动、导入导出等操作。
 ---
 
@@ -60,7 +61,7 @@ description: KnowFlow 知识库管理使用指南，介绍如何用文件夹树�
 
 **示例**：将「AI」文件夹的查看权限授予「产品团队」协作组后，`AI / RAG / 使用手册` 这个知识库会被产品团队自动可见，无需再单独授权。
 
-授权继承与 RBAC 的整体权限模型保持一致，详见 [RBAC 权限管理](./rbac-permission.md)。
+授权继承与 RBAC 的整体权限模型保持一致，详见 [RBAC 权限管理](/docs/product-usage/rbac-permission)。
 
 ## 知识库导入导出
 

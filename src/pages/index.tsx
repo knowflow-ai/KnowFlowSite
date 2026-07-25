@@ -6,112 +6,112 @@ import styles from './index.module.css';
 const capabilityGroups = [
   {
     number: '01',
-    title: '文档解析增强',
-    description: '集成 MinerU 3.x、PaddleOCR 等现代解析引擎，提升复杂 PDF、扫描件、表格、公式等内容的解析准确率。',
-    points: ['复杂 PDF 与扫描件解析', '表格、公式、版面结构还原', '适配合同、工程资料、技术文档'],
+    title: '文档结构化 RAG',
+    description: '不是把文档压成一串纯文本，而是保留标题层级、父子关系、表格、公式、图片和版面结构，让检索建立在文档原有语义上。',
+    points: ['MinerU、PaddleOCR 复杂文档解析', 'Smart、Title、Regex、Parent-Child 分块', '引用可追溯到原文位置与上下文'],
   },
   {
     number: '02',
-    title: '更智能的分块方法',
-    description: '提供 Smart、Title、Regex、Parent-Child、Page、ColPali 等分块方法，让不同类型文档都能选择合适的知识组织方式。',
-    points: ['Smart、Title、Regex、Parent-Child', 'Page 按页分块适合版面强相关文档', 'ColPali 基于视觉模型处理图文页面'],
+    title: '多路径检索与推理',
+    description: '用传统混合检索覆盖稳定、高频的企业问答，用 SAG 处理跨文档、多步骤问题，再以视觉检索补充图表和版式信息。',
+    points: ['关键词与向量混合检索', 'SAG 多跳检索与失败回退', 'ColPali 文本、视觉双路 RRF 融合'],
   },
   {
     number: '03',
-    title: '原生多模态能力',
-    description: '支持视频解析、图片语义描述、多模态向量检索和图文混合知识问答，让非文本知识也能进入检索体系。',
-    points: ['关键帧提取、ASR、VLM', '图片自动语义描述，以文搜图', '图文混合知识问答'],
+    title: 'LLM Wiki 知识图谱',
+    description: '将知识库自动组织为可搜索、可浏览、可关联的 Wiki，把散落在文档里的实体、概念和关系变成企业知识网络。',
+    points: ['LLM 自动生成结构化 Wiki', '全文搜索与跨页面关联', '关系图谱可视化与来源追溯'],
   },
   {
     number: '04',
-    title: '检索质量优化',
-    description: '面向中文企业知识库调优专业术语检索、粗召回和精排链路，提升答案命中率和可用性。',
-    points: ['中文专业术语优化', '粗召回 + 精排两层排序', '企业场景检索权重调优'],
+    title: '企业知识运营闭环',
+    description: '从问答使用情况中发现知识缺口，通过明细下钻和 AI 诊断形成优化任务，再持续观察回答质量是否真正改善。',
+    points: ['问答指标、趋势与热门内容', '知识缺口聚合与 AI 辅助诊断', '优化任务、批量处理与运营报表'],
   },
   {
     number: '05',
-    title: '企业级与开源合规',
-    description: '底层优先采用 PostgreSQL、Milvus、RustFS 等开源协议友好的组件，降低私有化和二次开发授权风险。',
-    points: ['协议友好的基础组件', '完全私有化部署', '数据保留在客户本地环境'],
+    title: '组织与知识目录治理',
+    description: '建立与企业一致的组织和成员体系，再用树状目录管理大量知识库，让知识归属、维护责任和业务边界清晰可见。',
+    points: ['多层级企业组织与成员管理', '知识库文件夹树与移动归档', '目录级导入、导出和统一维护'],
   },
   {
     number: '06',
-    title: '企业级工程化能力',
-    description: '围绕权限、备份、嵌入和业务系统集成补齐生产环境所需能力，让知识库真正进入企业流程。',
-    points: ['RBAC 多级权限管理', '知识库导入导出、备份恢复', 'Dify、企业微信、飞书、钉钉集成'],
+    title: '目录级纯 RBAC',
+    description: '将任意知识目录或知识库授权给指定用户、组织或协作组，权限沿目录树和组织关系生效，适配复杂企业协作。',
+    points: ['用户、组织、协作组三类授权主体', '查看、编辑、管理三级权限', '目录向下继承，多来源权限取最高值'],
   },
 ];
 
-const k4Layers = [
+const closedLoopLayers = [
   {
-    label: 'K1',
-    title: 'Knowledge Planning',
-    subtitle: '知识库规划',
-    answer: '知识在哪里',
+    label: '01',
+    title: 'Structure',
+    subtitle: '结构化知识',
+    answer: '保留文档语义',
   },
   {
-    label: 'K2',
-    title: 'Structure Planning',
-    subtitle: '文件目录规划',
-    answer: '知识怎么组织',
+    label: '02',
+    title: 'Retrieve',
+    subtitle: '多路径检索',
+    answer: '找到正确证据',
   },
   {
-    label: 'K3',
-    title: 'Governance',
-    subtitle: '知识治理',
-    answer: '企业怎么说',
+    label: '03',
+    title: 'Connect',
+    subtitle: '知识图谱',
+    answer: '建立知识关系',
   },
   {
-    label: 'K4',
-    title: 'Metadata',
-    subtitle: '元数据治理',
-    answer: 'AI 怎么理解',
+    label: '04',
+    title: 'Operate',
+    subtitle: '持续运营',
+    answer: '发现并修复缺口',
   },
 ];
 
 const scenarioCards = [
   {
-    title: '合同与制度知识库',
-    description: '面向合同、制度、规范和审计材料，保留版面、条款、表格和上下文关系，提升检索可解释性。',
+    title: '制度、合同与技术文档',
+    description: '保留章节、条款、表格和上下文关系，通过结构化分块与传统混合检索提供稳定、可追溯的问答。',
   },
   {
-    title: '工程与技术文档问答',
-    description: '处理工程资料、产品手册、技术方案和故障记录，支持标题层级、父子分块和专业术语检索。',
+    title: '复杂问题研究与分析',
+    description: '通过 SAG 跨文档检索和多步推理处理需要组合多个事实、追踪关系或验证证据的复杂问题。',
   },
   {
-    title: '多模态资料检索',
-    description: '将图片、PPT、视频关键帧和语音转写统一纳入知识库，支持图文混合问答和以文搜图。',
+    title: '企业百科与知识网络',
+    description: '使用 LLM Wiki 将实体、概念、文档和引用组织为可搜索、可浏览的企业知识图谱。',
   },
   {
-    title: 'Agent 与业务系统知识底座',
-    description: '通过 API、网页嵌入和平台集成，为客服、办公协同、内部 Agent 提供可信知识上下文。',
+    title: '集团与多部门知识治理',
+    description: '按组织和目录规划知识边界，通过目录级 RBAC 把正确的知识交给正确的成员和业务团队。',
   },
 ];
 
 const integrationRows = [
   {
-    title: '权限与组织',
-    description: 'RBAC 覆盖用户、团队、知识库等资源，适配企业多组织、多角色协作。',
+    title: '组织建模',
+    description: '建立多层级组织、成员和跨部门协作组，让系统权限结构与企业实际管理关系一致。',
   },
   {
-    title: '数据与运维',
-    description: '支持知识库导入导出、备份恢复和完全私有化部署，方便长期运营。',
+    title: '知识库树',
+    description: '用可嵌套的文件夹树组织知识库，支持移动、归档、导入导出和目录级统一管理。',
   },
   {
-    title: '业务入口',
-    description: '支持网站嵌入，并可接入 Dify、企业微信、飞书、钉钉等业务平台。',
+    title: '精细授权',
+    description: '对任意目录或知识库授予用户、组织、协作组查看、编辑或管理权限，并沿目录向下继承。',
   },
   {
-    title: '合规底座',
-    description: '优先采用 PostgreSQL、Milvus、RustFS 等组件，降低企业授权和供应链风险。',
+    title: '权限即运营边界',
+    description: '知识检索、运营概览、明细下钻和报表导出使用同一 RBAC 范围，避免统计和业务访问越权。',
   },
 ];
 
 const processSteps = [
-  {step: '01', title: '解析', description: '从 PDF、扫描件、表格、图片、视频中提取可治理的知识结构。'},
-  {step: '02', title: '分块', description: '按语义、标题、正则、父子结构、页面或视觉模型生成适合检索的知识片段。'},
-  {step: '03', title: '治理', description: '通过目录规划、权限控制、元数据和人工维护提升知识质量。'},
-  {step: '04', title: '应用', description: '面向问答、搜索、Agent 和业务系统输出可追溯知识服务。'},
+  {step: '01', title: '结构化', description: '解析文档版面和层级，按语义、标题、父子关系或页面组织可追溯知识。'},
+  {step: '02', title: '检索推理', description: '由传统混合检索覆盖常规问题，SAG 处理复杂多跳问题，视觉路补充图表证据。'},
+  {step: '03', title: '连接知识', description: '用 LLM Wiki 提炼实体、概念和关系，把文档集合转成可探索的知识网络。'},
+  {step: '04', title: '运营优化', description: '从真实问答发现缺口，完成诊断、修复、任务闭环，并持续衡量优化效果。'},
 ];
 
 export default function Home(): ReactNode {
@@ -119,26 +119,26 @@ export default function Home(): ReactNode {
 
   return (
     <Layout
-      title="KnowFlow - 企业级知识库与 K4 知识治理平台"
-      description="KnowFlow 面向私有化、内网和复杂文档场景，提供文档解析增强、智能分块、多模态检索、企业权限治理与 K4 Framework 知识治理方法论。"
+      title="KnowFlow - 企业知识库与知识运营平台"
+      description="KnowFlow 以文档结构化 RAG 为基础，融合 SAG 多跳检索、LLM Wiki 知识图谱、企业知识运营闭环、知识库树和目录级 RBAC 权限治理。"
     >
       <header className={styles.hero}>
         <div className={`container ${styles.homeContainer} ${styles.heroGrid}`}>
           <div>
-            <span className={styles.eyebrow}>企业级知识库与 K4 知识治理平台</span>
-            <h1 className={styles.heroTitle}>让复杂企业知识真正可被 AI 理解</h1>
+            <span className={styles.eyebrow}>企业知识库与知识运营平台</span>
+            <h1 className={styles.heroTitle}>从文档结构，到企业知识闭环</h1>
             <p className={styles.heroLead}>
-              KnowFlow 面向私有化、内网和复杂文档场景，围绕文档解析、智能分块、多模态检索、权限治理和业务集成，构建可维护、可追溯、可落地的企业知识库。
+              KnowFlow 以文档结构化 RAG 为底座，融合 SAG 多跳检索与 LLM Wiki 知识图谱，并通过知识运营、组织管理、知识库树和目录级 RBAC，让企业知识真正可用、可管、可持续优化。
             </p>
             <div className={styles.actions}>
               <a className={styles.primaryButton} href="/contact">预约产品演示</a>
               <a className={styles.secondaryButton} href="/docs/intro">查看产品文档</a>
             </div>
             <div className={styles.heroBadges}>
-              <span>MinerU 3.x</span>
-              <span>PaddleOCR</span>
-              <span>Milvus</span>
-              <span>RBAC</span>
+              <span>Structure-aware RAG</span>
+              <span>SAG</span>
+              <span>LLM Wiki</span>
+              <span>Directory RBAC</span>
             </div>
           </div>
           <div className={styles.productFrame}>
@@ -146,9 +146,9 @@ export default function Home(): ReactNode {
               <span className={styles.dot} />
               <span className={styles.dot} />
               <span className={styles.dot} />
-              <span>KnowFlow 知识库控制台</span>
+              <span>KnowFlow 企业知识工作台</span>
             </div>
-            <img src={productPreview} alt="Corpus2Skill 系统架构示意图" />
+            <img src={productPreview} alt="KnowFlow 企业知识库产品界面" />
           </div>
         </div>
       </header>
@@ -156,18 +156,18 @@ export default function Home(): ReactNode {
       <section className={styles.trust}>
         <div className={`container ${styles.homeContainer}`}>
           <div className={styles.trustGrid}>
-            <div className={`${styles.trustItem} ${styles.trustLabel}`}>从复杂文档到可信 AI 上下文</div>
+            <div className={`${styles.trustItem} ${styles.trustLabel}`}>一套系统，完成知识建设、应用与运营</div>
             <div className={styles.trustItem}>
-              <strong>6 类</strong>
-              <span>Smart / Title / Regex / Parent-Child / Page / ColPali</span>
+              <strong>3 类引擎</strong>
+              <span>传统 RAG、SAG、ColPali 协同检索</span>
             </div>
             <div className={styles.trustItem}>
-              <strong>多模态</strong>
-              <span>图片、视频、语音、表格与文本统一检索</span>
+              <strong>知识图谱</strong>
+              <span>LLM Wiki 自动连接实体、概念与来源</span>
             </div>
             <div className={styles.trustItem}>
-              <strong>私有化</strong>
-              <span>数据可完整保留在客户本地环境</span>
+              <strong>纯 RBAC</strong>
+              <span>目录、知识库、组织与成员精细授权</span>
             </div>
           </div>
         </div>
@@ -176,10 +176,10 @@ export default function Home(): ReactNode {
       <section className={styles.whiteSection}>
         <div className={`container ${styles.homeContainer}`}>
           <div className={styles.sectionHead}>
-            <div className={styles.kicker}>CAPABILITIES</div>
-            <h2>围绕企业知识进入 AI 的关键链路建设能力</h2>
+            <div className={styles.kicker}>CORE ADVANTAGES</div>
+            <h2>不止回答问题，而是建立企业知识系统</h2>
             <p>
-              KnowFlow 不只提供问答入口，而是从解析、分块、检索、治理、部署和集成六个层面补齐企业级知识库的生产能力。
+              从保留文档结构，到多路径检索、知识图谱、运营闭环和组织权限治理，KnowFlow 把企业知识从“导入一批文件”推进到可持续运营。
             </p>
           </div>
           <div className={styles.capabilityGrid}>
@@ -202,16 +202,16 @@ export default function Home(): ReactNode {
       <section className={styles.section}>
         <div className={`container ${styles.homeContainer} ${styles.k4Section}`}>
           <div className={styles.k4Intro}>
-            <div className={styles.kicker}>K4 FRAMEWORK</div>
-            <h2>K4 Framework™ 企业知识治理方法论</h2>
+            <div className={styles.kicker}>KNOWLEDGE LOOP</div>
+            <h2>从知识建设到持续优化的完整闭环</h2>
             <p>
-              K4 Framework™ 是 KnowFlow 提出的企业知识治理方法论，通过知识库规划、结构规划、知识治理与元数据治理四大层级，帮助企业构建真正适用于 AI 检索与 Agent 推理的知识体系。
+              企业知识库不能停在“文档已经入库”。KnowFlow 让知识先被准确解析和检索，再形成可浏览的知识网络，最后从真实问答中发现缺口并持续优化。
             </p>
-            <div className={styles.k4Formula}>Knowledge → Structure → Governance → Metadata</div>
-            <span className={styles.k4Note}>K4 = 四层知识治理体系</span>
+            <div className={styles.k4Formula}>Structure → Retrieve → Connect → Operate</div>
+            <span className={styles.k4Note}>每一步都保留来源、权限和可追溯证据</span>
           </div>
           <div className={styles.k4Flow}>
-            {k4Layers.map((layer) => (
+            {closedLoopLayers.map((layer) => (
               <article className={styles.k4Card} key={layer.label}>
                 <small>{layer.label}</small>
                 <h3>{layer.title}</h3>
@@ -227,8 +227,8 @@ export default function Home(): ReactNode {
         <div className={`container ${styles.homeContainer}`}>
           <div className={`${styles.sectionHead} ${styles.center}`}>
             <div className={styles.kicker}>SCENARIOS</div>
-            <h2>适合高复杂度、高合规要求的企业知识场景</h2>
-            <p>从合同制度到工程资料，从多模态资料到 Agent 应用，KnowFlow 重点解决企业知识“难解析、难组织、难治理、难检索”的问题。</p>
+            <h2>覆盖从知识问答到集团级知识治理</h2>
+            <p>同一套知识底座既服务日常问答，也支撑复杂研究、企业百科和多组织权限治理。</p>
           </div>
           <div className={styles.useCases}>
             {scenarioCards.map((item) => (
@@ -244,9 +244,9 @@ export default function Home(): ReactNode {
       <section className={styles.section}>
         <div className={`container ${styles.homeContainer} ${styles.enterprise}`}>
           <div className={styles.enterpriseCard}>
-            <h2>按企业生产环境要求设计</h2>
+            <h2>按真实企业关系管理知识</h2>
             <p>
-              企业知识库不是单点工具，需要同时满足权限、合规、运维、集成和长期维护。KnowFlow 将这些能力作为产品底座，而不是后置插件。
+              先建立组织、成员和协作组，再用知识库树规划目录。任何目录或知识库都可以精确授权，权限随目录继承，并贯穿检索、管理和知识运营。
             </p>
           </div>
           <div className={styles.securityList}>
@@ -264,8 +264,8 @@ export default function Home(): ReactNode {
         <div className={`container ${styles.homeContainer}`}>
           <div className={styles.sectionHead}>
             <div className={styles.kicker}>WORKFLOW</div>
-            <h2>从文档进入系统，到知识进入业务流程</h2>
-            <p>KnowFlow 的落地路径围绕“解析、分块、治理、应用”展开，让企业能够持续维护知识质量，而不是一次性导入文档后失控。</p>
+            <h2>让知识越用越完整，而不是越积越乱</h2>
+            <p>从结构化解析开始，经由检索和知识连接进入业务，再用真实使用数据驱动下一轮知识优化。</p>
           </div>
           <div className={styles.process}>
             {processSteps.map((item) => (
@@ -282,8 +282,8 @@ export default function Home(): ReactNode {
       <section className={styles.cta}>
         <div className={`container ${styles.homeContainer} ${styles.ctaBox}`}>
           <div>
-            <h2>用真实企业文档评估 KnowFlow</h2>
-            <p>带上你的 PDF、扫描件、表格、图片或视频资料，从解析质量、分块策略、检索效果和私有化部署条件开始评估。</p>
+            <h2>用真实知识体系评估 KnowFlow</h2>
+            <p>带上企业文档、组织权限和典型问题，一起验证结构化解析、检索效果、知识图谱和运营闭环。</p>
           </div>
           <div className={styles.actions}>
             <a className={styles.primaryButton} href="/contact">申请演示</a>
