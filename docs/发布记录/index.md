@@ -31,7 +31,7 @@ description: KnowFlow 全版本更新日志与发布记录，包含各版本新�
 ### 新增
 - 新增 LLM Wiki 能力，支持将知识库文档自动编织为实体页、概念页与摘要页三类互链 Wiki，并支持增量生成、删文档自维护与 Wiki 健康体检（详见 [LLM Wiki 使用指南](../product-usage/retrieval-enhancement/llm-wiki.md)）
 - 新增 SAG 多跳检索能力，支持在知识库级开启 event-centric 的跨文档多跳检索，聊天检索自动走 SAG，并提供 SAG 图谱可视化（详见 [SAG 多跳检索使用指南](../product-usage/retrieval-enhancement/sag.md)）
-- 新增 知识库树状结构（知识库内容树），支持以文件夹树管理知识库、文件夹级授权与权限继承（详见 [知识库管理使用指南](../product-usage/kb-tree.md)）
+- 新增 知识库树状结构（知识库内容树），支持以文件夹树管理知识库、文件夹级授权与权限继承（详见 [知识库管理使用指南](/docs/product-usage/kb-tree)）
 - 新增 Wiki 检索调试可视化与引用识别，检索测试与聊天引用可查看 Wiki 加权详情与页面预览抽屉
 
 ### 优化
