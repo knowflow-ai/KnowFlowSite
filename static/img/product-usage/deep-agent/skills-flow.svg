@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="500" viewBox="0 0 1200 500" role="img" aria-labelledby="title desc">
+  <title id="title">Deep Agent Skills 使用流程</title>
+  <desc id="desc">用户选择回答方式和授权文档后，可执行深度阅读、结构化抽取或报告生成，并获得引用回答、Excel 或 Markdown 稿件。</desc>
+  <rect width="1200" height="500" rx="24" fill="#f7f9fc"/>
+  <g font-family="Arial, PingFang SC, sans-serif">
+    <text x="600" y="62" text-anchor="middle" fill="#172033" font-size="30" font-weight="700">先限定材料，再选择这一轮要完成的工作</text>
+    <g transform="translate(70 125)">
+      <rect width="220" height="220" rx="20" fill="#ffffff" stroke="#c5d2ec" stroke-width="2"/>
+      <text x="110" y="52" text-anchor="middle" fill="#2f6fed" font-size="23" font-weight="700">任务输入</text>
+      <text x="110" y="98" text-anchor="middle" fill="#526079" font-size="18">回答方式</text>
+      <text x="110" y="133" text-anchor="middle" fill="#526079" font-size="18">@ 指定文档</text>
+      <text x="110" y="168" text-anchor="middle" fill="#526079" font-size="18">任务要求与字段</text>
+    </g>
+    <path d="M305 235H365" stroke="#7790c5" stroke-width="4" stroke-linecap="round"/>
+    <path d="M355 225L365 235L355 245" fill="none" stroke="#7790c5" stroke-width="4"/>
+    <g transform="translate(380 95)">
+      <rect width="410" height="300" rx="22" fill="#eaf1ff" stroke="#88a8f4" stroke-width="2"/>
+      <text x="205" y="53" text-anchor="middle" fill="#245ad6" font-size="24" font-weight="700">选择专业能力</text>
+      <rect x="35" y="84" width="340" height="52" rx="12" fill="#ffffff"/>
+      <text x="205" y="117" text-anchor="middle" fill="#344158" font-size="19">深度阅读：跨章节核对与解释</text>
+      <rect x="35" y="151" width="340" height="52" rx="12" fill="#ffffff"/>
+      <text x="205" y="184" text-anchor="middle" fill="#344158" font-size="19">结构化抽取：按字段形成记录</text>
+      <rect x="35" y="218" width="340" height="52" rx="12" fill="#ffffff"/>
+      <text x="205" y="251" text-anchor="middle" fill="#344158" font-size="19">报告生成：依据材料完成写作</text>
+    </g>
+    <path d="M805 235H865" stroke="#7790c5" stroke-width="4" stroke-linecap="round"/>
+    <path d="M855 225L865 235L855 245" fill="none" stroke="#7790c5" stroke-width="4"/>
+    <g transform="translate(880 125)">
+      <rect width="250" height="220" rx="20" fill="#2f6fed"/>
+      <text x="125" y="52" text-anchor="middle" fill="#ffffff" font-size="23" font-weight="700">交付成果</text>
+      <text x="125" y="100" text-anchor="middle" fill="#ffffff" font-size="18">带原文引用的回答</text>
+      <text x="125" y="137" text-anchor="middle" fill="#ffffff" font-size="18">可下载 Excel 台账</text>
+      <text x="125" y="174" text-anchor="middle" fill="#ffffff" font-size="18">可编辑 Markdown 稿件</text>
+    </g>
+    <text x="600" y="452" text-anchor="middle" fill="#65718a" font-size="17">回答方式和文档选择仅作用于当前消息，发送后恢复会话默认设置</text>
+  </g>
+</svg>

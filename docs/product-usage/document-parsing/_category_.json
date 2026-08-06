@@ -1,0 +1,8 @@
+{
+  "label": "文档解析",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "KnowFlow 文档解析与结构增强能力的部署、配置和使用指南。"
+  }
+}

@@ -6,9 +6,12 @@ description: KnowFlow 企业级知识库产品介绍，基于 RAGFlow 的私有�
 # KnowFlow 介绍
 
 :::info 版本说明
+- **当前 KnowFlow 版本**: v2.4.9
 - **当前适配版本**: RAGFlow v0.22.1
 - **适用范围**: 本文档适用于 KnowFlow 企业版，部分内容适用于社区版
 :::
+
+v2.4.8 与 v2.4.9 新增 Deep Agent、结构化抽取、材料写作和 MinerU-Popo 文档结构增强。完整介绍见 [Deep Agent：让企业知识库开始交付成果](./product-usage/deep-agent/index.md)。
 
 **KnowFlow** 是一款准确、可靠、可落地的私有化企业级知识库产品。
 

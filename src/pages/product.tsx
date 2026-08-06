@@ -3,7 +3,6 @@ import Layout from '@theme/Layout';
 import styles from './product.module.css';
 import {
   FileText,
-  Image,
   Settings,
   Shield,
   Lightbulb,
@@ -51,8 +50,24 @@ const coreCapabilities = [
     color: 'purple' as const,
   },
   {
-    id: 'wiki',
+    id: 'deep-agent',
     number: '03',
+    title: 'Deep Agent 企业知识执行',
+    subtitle: '不止回答问题，还能交付台账和正式稿件',
+    description: 'Deep Agent 在用户已授权的知识范围内完成多步阅读、字段抽取和材料写作，把企业文档转成可核验、可下载、可继续编辑的工作成果。',
+    features: [
+      {title: '深度阅读', desc: '浏览目录、检索正文并跨章节核对，回答保留原文引用'},
+      {title: '结构化抽取', desc: '按字段批量处理多份文档，可交付 Excel 台账'},
+      {title: '报告生成', desc: '依据指定材料流式撰写报告、文章、方案和讲稿'},
+      {title: '精确任务范围', desc: '通过回答方式与 @文档 控制当前轮次，不扩大授权边界'},
+    ],
+    value: '企业知识的价值不只在于被找到，更在于变成可以继续使用的工作成果',
+    Icon: MessageSquare,
+    color: 'green' as const,
+  },
+  {
+    id: 'wiki',
+    number: '04',
     title: 'LLM Wiki 企业知识图谱',
     subtitle: '从文档集合升级为可探索的知识网络',
     description: 'LLM Wiki 自动从知识库生成结构化百科，将实体、概念、页面、关系和来源组织起来，让用户既能问，也能搜、能看、能沿关系探索。',
@@ -68,7 +83,7 @@ const coreCapabilities = [
   },
   {
     id: 'operations',
-    number: '04',
+    number: '05',
     title: '企业知识运营闭环',
     subtitle: '从“知识已经入库”走向“知识持续变好”',
     description: '把真实问答、检索命中和用户反馈转成可观察的运营指标与知识缺口，再通过 AI 诊断、优化任务和报表复盘持续改善知识质量。',
@@ -84,7 +99,7 @@ const coreCapabilities = [
   },
   {
     id: 'organization',
-    number: '05',
+    number: '06',
     title: '企业组织与知识库树',
     subtitle: '让知识结构与企业管理结构保持一致',
     description: '建立多层级组织、成员和协作组，再通过树状目录组织大量知识库，明确知识归属、业务边界和维护责任。',
@@ -100,7 +115,7 @@ const coreCapabilities = [
   },
   {
     id: 'rbac',
-    number: '06',
+    number: '07',
     title: '目录级纯 RBAC 权限治理',
     subtitle: '把正确的知识交给正确的人',
     description: '任意知识目录或知识库都可以授权给指定用户、组织或协作组。权限沿目录向下继承，多来源授权取最高权限，并贯穿检索、管理与运营数据。',
@@ -137,6 +152,110 @@ const techSpecs = [
   {category: '基础设施', items: ['PostgreSQL', 'Milvus', 'RustFS / MinIO', 'Docker Compose', 'Kubernetes']},
 ];
 
+const featureCatalog = [
+  {
+    category: '文档解析与分块',
+    items: [
+      {name: '多格式文档处理', description: '支持 PDF、Word、Excel、PPT、Markdown、图片和视频等企业常见资料，解析任务异步执行。', href: '/docs/intro'},
+      {name: 'MinerU / PaddleOCR', description: '解析扫描件、复杂版式、表格、公式和图片，保留标题、页码与原文坐标。', href: '/docs/intro'},
+      {name: 'MinerU-Popo 结构增强', description: '可选增强标题层级、章节关系、跨页表格和图片上下文，失败时自动回退到原始 MinerU 结果。', href: '/docs/product-usage/document-parsing/mineru-popo'},
+      {name: '五种分块策略', description: '提供 Smart、Title、Regex、Parent-Child 和 Page 分块，按文档结构与检索目标选择。', href: '/docs/product-usage/chunking-strategies'},
+      {name: '父子分块', description: '以小块完成精准命中，再返回更完整的父级上下文，并支持父子关系维护。', href: '/docs/product-usage/chunking-strategies/parent-child'},
+      {name: '复杂表格处理', description: '保留超长表格、合并单元格、重复表头、上下文行和跨页连续关系。', href: '/docs/发布记录'},
+      {name: '图片与视频理解', description: '提取文档图片、图注和上下文；视频支持 ASR、关键帧、VLM 描述、时间戳引用与检索。', href: '/docs/发布记录'},
+      {name: '解析预览与重跑', description: '在线查看分块和原文位置，调整解析或分块配置后可重新执行处理任务。', href: '/docs/product-usage/chunking-strategies'},
+    ],
+  },
+  {
+    category: '检索与知识问答',
+    items: [
+      {name: '关键词与向量混合检索', description: '组合词法召回、向量召回、权重信号和可选 Rerank，覆盖常规企业问答。', href: '/product#retrieval'},
+      {name: '同义词与元数据过滤', description: '通过知识库词典扩展业务术语，并按文档元数据、知识库或指定文档收敛检索范围。', href: '/docs/发布记录'},
+      {name: '检索测试与调试', description: '查看粗排、精排、关键词、相似度及不同检索路径的命中信息，便于定位效果问题。', href: '/docs/发布记录'},
+      {name: 'DeepRead 深度阅读', description: '围绕文档目录、相关正文与完整章节多步阅读，生成带原文引用的回答。', href: '/docs/product-usage/deep-agent/skills'},
+      {name: 'ColPali 视觉融合检索', description: '视觉文档与普通文档分路召回，以 RRF 合并排名，适合图表、PPT、扫描件和版式内容。', href: '/docs/product-usage/retrieval-enhancement/colpali'},
+      {name: 'SAG 多跳检索', description: '面向跨文档事实组合和关系推理逐步查证；无结果或服务异常时回退标准检索。', href: '/docs/product-usage/retrieval-enhancement/sag'},
+      {name: 'RAPTOR / GraphRAG', description: '通过摘要树和知识图谱补充全局主题、实体关系与长文档层级信息。', href: '/docs/发布记录'},
+      {name: '可追溯引用', description: '回答引用可回到原文页码、坐标和图片位置，支持 PDF 预览与高亮核验。', href: '/docs/intro'},
+      {name: '联网搜索补充', description: '可配置博查联网搜索，在企业知识不足时补充公开网络材料。', href: '/docs/发布记录'},
+    ],
+  },
+  {
+    category: 'Deep Agent 与成果交付',
+    items: [
+      {name: '统一回答方式', description: '每轮可选择普通问答、智能处理、深度阅读、结构化抽取或报告生成，不改写会话全局配置。', href: '/docs/product-usage/deep-agent/skills'},
+      {name: '@文档精确选材', description: '从已授权知识库中点名本轮材料，普通问答与专业能力使用同一范围边界。', href: '/docs/product-usage/deep-agent/skills'},
+      {name: '跨章节深度阅读', description: '浏览文档结构、检索正文并按节点读取上下文，适合制度解释、技术核对和跨文档比较。', href: '/docs/product-usage/deep-agent/skills#深度阅读'},
+      {name: '编号条款分析', description: '对中文“第 X 条”执行完整计数、最大编号、连续性、缺号和重复编号检查。', href: '/docs/product-usage/deep-agent/skills#编号条款分析'},
+      {name: '结构化数据抽取', description: '按用户字段从一份或多份完整文档提取记录，区分可靠值、缺失值和歧义值。', href: '/docs/product-usage/deep-agent/skills#结构化抽取'},
+      {name: '表格与 Excel 交付', description: '把已经核验的二维记录生成可下载台账，保留每条记录的文档身份和来源。', href: '/docs/product-usage/deep-agent/skills#结构化抽取'},
+      {name: '人工补充与任务恢复', description: '关键口径无法确定时暂停任务，收到用户补充后从当前阶段继续，不重复已完成工作。', href: '/docs/product-usage/deep-agent/skills#人工补充与任务恢复'},
+      {name: '报告与文章生成', description: '依据指定材料生成报告、方案、讲稿或文章，支持章节化流式写作、图片引用和 Markdown 下载。', href: '/docs/product-usage/deep-agent/skills#报告生成'},
+    ],
+  },
+  {
+    category: 'LLM Wiki 知识网络',
+    items: [
+      {name: '知识库自动成 Wiki', description: '从知识库材料生成实体页、概念页和摘要页，把文档集合组织为可浏览的知识网络。', href: '/docs/product-usage/retrieval-enhancement/llm-wiki'},
+      {name: '全文搜索', description: '按关键词检索 Wiki 页面、企业实体和专业概念，不必从聊天入口逐个提问。', href: '/docs/product-usage/retrieval-enhancement/llm-wiki'},
+      {name: '跨页面链接', description: '自动建立相关页面之间的可读链接，支持沿概念与上下游关系继续探索。', href: '/docs/product-usage/retrieval-enhancement/llm-wiki'},
+      {name: '关系图谱', description: '以图形展示实体与页面关系，并保留关联材料与来源引用。', href: '/docs/product-usage/retrieval-enhancement/llm-wiki'},
+      {name: '增量维护与健康检查', description: '文档新增、删除或更新后维护相关页面，支持生成状态、异常检查与恢复。', href: '/docs/product-usage/retrieval-enhancement/llm-wiki'},
+    ],
+  },
+  {
+    category: '知识管理与运营',
+    items: [
+      {name: '知识库目录树', description: '使用多级文件夹管理大量知识库，支持创建、移动、重命名和按目录浏览。', href: '/docs/product-usage/kb-tree'},
+      {name: '知识库导入导出', description: '支持知识库跨环境迁移、离线交付和批量治理，减少重复解析与重建成本。', href: '/docs/product-usage/kb-tree/knowledge-operations'},
+      {name: '统一文件管理', description: '集中查看、上传、下载、移动和管理文件，并按权限控制可见与可操作范围。', href: '/docs/product-usage/system-management/file-management'},
+      {name: '运营数据概览', description: '按知识库、问答、检索命中、用户和时间查看使用情况，并按当前权限过滤数据。', href: '/docs/发布记录'},
+      {name: '知识缺口与反馈', description: '聚合未命中、低质量回答和用户反馈，把真实使用问题转成待优化事项。', href: '/docs/发布记录'},
+      {name: 'AI 辅助诊断', description: '结合问答反馈与检索证据分析原因，支持单条和批量诊断并形成优化建议。', href: '/docs/发布记录'},
+      {name: '任务与运营报表', description: '跟踪后台任务状态，按当前筛选范围导出运营明细与阶段报表。', href: '/docs/发布记录'},
+      {name: '用户模型配置', description: '管理员按用户配置默认模型与可用范围，统一校验授权并同步模型凭据。', href: '/docs/product-usage/system-management/user-config'},
+    ],
+  },
+  {
+    category: '组织、权限与身份',
+    items: [
+      {name: '用户与多级组织', description: '维护用户、集团、部门和下级组织，支持主组织、组织成员与组织管理员。', href: '/docs/product-usage/system-management/org-management'},
+      {name: '协作组', description: '为跨部门项目建立横向协作主体，独立维护成员并参与知识库授权。', href: '/docs/product-usage/system-management/group-management'},
+      {name: '纯 RBAC 授权', description: '面向用户、组织和协作组授予查看、编辑或管理权限，不以租户字段替代资源授权。', href: '/docs/product-usage/rbac-permission'},
+      {name: '目录权限继承', description: '上级文件夹授权向下作用于子目录和知识库，多来源授权按最高有效权限合并。', href: '/docs/product-usage/rbac-permission'},
+      {name: '组织管理员边界', description: '组织管理员只管理授权组织与资源子树，列表、检索、运营和导出使用同一权限范围。', href: '/docs/product-usage/rbac-permission'},
+      {name: '企业微信登录与组织同步', description: '支持浏览器扫码和企业微信工作台登录，首次登录可完成账号映射与组织同步。', href: '/docs/product-usage/third-party-access/wecom-sso-login'},
+      {name: '外部 OAuth2 / OIDC', description: '支持对接企业身份源与 Keycloak OIDC，完成授权码交换、会话与账号信息映射。', href: '/docs/发布记录'},
+      {name: '分享访问控制', description: '分享对话可要求登录，并按访问者本人的 RBAC 权限限制可用知识范围。', href: '/docs/发布记录'},
+    ],
+  },
+  {
+    category: '业务接入与开放能力',
+    items: [
+      {name: '企业微信智能机器人', description: '把知识问答接入企业微信会话，支持企业内部工作入口和图文回复。', href: '/docs/product-usage/third-party-access/wecom-access'},
+      {name: '钉钉机器人', description: '配置钉钉应用、机器人权限和回调，在钉钉内使用 KnowFlow 问答。', href: '/docs/product-usage/third-party-access/dingding-access'},
+      {name: '飞书机器人', description: '通过飞书应用与机器人权限配置，把知识库能力接入飞书会话。', href: '/docs/product-usage/third-party-access/feishu-access'},
+      {name: 'Dify 接入', description: '支持外部知识库 API、插件与工作流方式接入，并返回可追溯引用。', href: '/docs/product-usage/third-party-access/dfy'},
+      {name: 'MaxKB 接入', description: '通过 API 工具和高级编排把 KnowFlow 检索能力接入 MaxKB 工作流。', href: '/docs/product-usage/third-party-access/maxkb-access'},
+      {name: 'REST API 与 SDK', description: '通过标准接口和 SDK 对接内部系统、自动化流程及自建 Agent 应用。', href: '/docs/API接口/complete-api-reference'},
+      {name: '分享与嵌入对话', description: '提供独立分享页面、全屏嵌入和网页挂件预览，便于接入现有门户。', href: '/docs/发布记录'},
+    ],
+  },
+  {
+    category: '私有化部署与基础设施',
+    items: [
+      {name: 'Docker Compose 部署', description: '提供完整容器编排与环境变量配置，支持基础服务和可选能力按需启用。', href: '/docs/installationDocker'},
+      {name: 'Kubernetes / Helm', description: '支持分布式任务执行、多副本与服务拆分，适配企业集群和高可用部署。', href: '/docs/installationDocker'},
+      {name: '多种元数据数据库', description: '支持 PostgreSQL 与 MySQL，并提供 MySQL 到 PostgreSQL 的迁移工具。', href: '/docs/发布记录'},
+      {name: '多种文档引擎', description: '支持 Milvus、Elasticsearch 和 Infinity，按数据规模、检索方式与运维条件选择。', href: '/docs/intro'},
+      {name: '对象存储选择', description: '支持 MinIO 与 RustFS，满足私有化文件、解析产物和图片资源存储。', href: '/docs/发布记录'},
+      {name: '离线环境', description: '支持离线镜像、模型和知识库交付，数据与模型可以完全留在企业网络内。', href: '/docs/installationDocker'},
+      {name: '可选增强服务', description: 'SAG、ColPali、MinerU-Popo 等能力独立部署，基础环境无需承担全部 GPU 与服务开销。', href: '/docs/installationDocker'},
+      {name: '运行诊断', description: '提供服务健康检查、任务队列和实际运行引擎信息，便于管理员定位部署问题。', href: '/docs/发布记录'},
+    ],
+  },
+];
+
 const scenarios = [
   {
     Icon: FileText,
@@ -170,6 +289,7 @@ const scenarios = [
 
 export default function Product(): ReactNode {
   const [capRef, capVisible] = useScrollAnimation();
+  const [catalogRef, catalogVisible] = useScrollAnimation();
   const [specRef, specVisible] = useScrollAnimation();
   const [compRef, compVisible] = useScrollAnimation();
   const [scenRef, scenVisible] = useScrollAnimation();
@@ -178,7 +298,7 @@ export default function Product(): ReactNode {
   return (
     <Layout
       title="产品能力 - KnowFlow 企业知识库与知识运营平台"
-      description="了解 KnowFlow 的文档结构化 RAG、SAG 多跳检索、ColPali 视觉融合、LLM Wiki 知识图谱、企业知识运营闭环、知识库树与目录级 RBAC。"
+      description="了解 KnowFlow 的文档结构化 RAG、Deep Agent、SAG 多跳检索、ColPali 视觉融合、LLM Wiki、知识运营、企业权限治理与私有化部署能力。"
     >
       <section className={styles.hero}>
         <div className={styles.heroGrid} />
@@ -190,11 +310,12 @@ export default function Product(): ReactNode {
               到<span className={styles.gradientText}>企业知识运营闭环</span>
             </h1>
             <p className={styles.heroSubtitle}>
-              一套平台连接传统 RAG、SAG、视觉检索与 LLM Wiki，<br />
-              再用组织、知识库树和目录级 RBAC 管理知识，用真实问答持续驱动优化
+              一套平台连接文档解析、RAG 检索、Deep Agent 与 LLM Wiki，<br />
+              让知识既能准确回答，也能交付台账和报告，并在权限边界内持续运营
             </p>
             <div className={styles.heroHighlights}>
               <div className={styles.heroHighlight}><Target size={18} /><span>结构化 RAG</span></div>
+              <div className={styles.heroHighlight}><MessageSquare size={18} /><span>知识执行</span></div>
               <div className={styles.heroHighlight}><CheckCircle size={18} /><span>知识图谱</span></div>
               <div className={styles.heroHighlight}><Rocket size={18} /><span>运营闭环</span></div>
             </div>
@@ -202,15 +323,56 @@ export default function Product(): ReactNode {
         </div>
       </section>
 
+      <section className={styles.featureCatalog} id="all-features">
+        <div className={styles.catalogContainer}>
+          <div ref={catalogRef} className={`${styles.sectionHeader} ${catalogVisible ? 'visible' : ''}`} data-animate="">
+            <h2 className={styles.sectionTitle}>所有功能明细</h2>
+            <p className={styles.sectionSubtitle}>按业务环节汇总当前产品能力，具体配置和使用方式可继续查看对应文档</p>
+          </div>
+          <div className={styles.featureTableWrap}>
+            <table className={styles.featureTable} aria-label="KnowFlow 所有功能明细">
+              <thead>
+                <tr>
+                  <th>功能分类</th>
+                  <th>功能模块</th>
+                  <th>功能说明</th>
+                  <th>使用文档</th>
+                </tr>
+              </thead>
+              {featureCatalog.map((group) => (
+                <tbody key={group.category}>
+                  {group.items.map((item, index) => (
+                    <tr key={item.name}>
+                      {index === 0 && (
+                        <td className={styles.catalogCategory} rowSpan={group.items.length}>
+                          <span>{group.category}</span>
+                          <small>{group.items.length} 项</small>
+                        </td>
+                      )}
+                      <td className={styles.catalogModule}>{item.name}</td>
+                      <td className={styles.catalogDescription}>{item.description}</td>
+                      <td className={styles.catalogDoc}>
+                        <a href={item.href} aria-label={`查看${item.name}文档`}>查看文档</a>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              ))}
+            </table>
+          </div>
+          <p className={styles.catalogNote}>部分能力需要独立服务、特定模型或可选部署组件，实际可用范围以对应文档和部署配置为准。</p>
+        </div>
+      </section>
+
       <section className={styles.capabilities}>
         <div className="container">
           <div ref={capRef} className={`${styles.sectionHeader} ${capVisible ? 'visible' : ''}`} data-animate="">
-            <h2 className={styles.sectionTitle}>六大产品能力</h2>
+            <h2 className={styles.sectionTitle}>七大产品能力</h2>
             <p className={styles.sectionSubtitle}>从知识进入系统、被检索和连接，到被治理和持续优化</p>
           </div>
 
           {coreCapabilities.map((capability) => (
-            <div key={capability.id} className={`${styles.capabilitySection} ${styles[`cap${capability.color.charAt(0).toUpperCase() + capability.color.slice(1)}`]}`}>
+            <div id={capability.id} key={capability.id} className={`${styles.capabilitySection} ${styles[`cap${capability.color.charAt(0).toUpperCase() + capability.color.slice(1)}`]}`}>
               <div className={styles.capabilityHeader}>
                 <span className={styles.capabilityNumber}>{capability.number}</span>
                 <div className={styles.capabilityTitleGroup}>

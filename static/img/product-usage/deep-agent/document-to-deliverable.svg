@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="430" viewBox="0 0 1200 430" role="img" aria-labelledby="title desc">
+  <title id="title">从文档解析到知识成果的处理链路</title>
+  <desc id="desc">PDF 经 MinerU 解析，可选由 MinerU-Popo 增强为 Document Structure V2，再进入分块检索，供 Deep Agent 阅读、抽取和写作。</desc>
+  <rect width="1200" height="430" rx="24" fill="#f5f8ff"/>
+  <text x="70" y="72" fill="#172033" font-size="30" font-family="Arial, PingFang SC, sans-serif" font-weight="700">一份复杂文档，怎样变成可交付成果</text>
+  <g font-family="Arial, PingFang SC, sans-serif">
+    <g transform="translate(65 140)">
+      <rect width="180" height="150" rx="18" fill="#ffffff" stroke="#bfd0ff" stroke-width="2"/>
+      <text x="90" y="55" text-anchor="middle" fill="#2f6fed" font-size="24" font-weight="700">MinerU</text>
+      <text x="90" y="92" text-anchor="middle" fill="#536078" font-size="17">解析 PDF</text>
+      <text x="90" y="120" text-anchor="middle" fill="#536078" font-size="17">生成 middle.json</text>
+    </g>
+    <path d="M255 215H315" stroke="#7b93c8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M305 205L315 215L305 225" fill="none" stroke="#7b93c8" stroke-width="4"/>
+    <g transform="translate(325 140)">
+      <rect width="200" height="150" rx="18" fill="#eaf1ff" stroke="#7da2ff" stroke-width="2"/>
+      <text x="100" y="52" text-anchor="middle" fill="#245ad6" font-size="23" font-weight="700">MinerU-Popo</text>
+      <text x="100" y="89" text-anchor="middle" fill="#536078" font-size="17">可选结构增强</text>
+      <text x="100" y="117" text-anchor="middle" fill="#536078" font-size="17">失败时自动回退</text>
+    </g>
+    <path d="M535 215H595" stroke="#7b93c8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M585 205L595 215L585 225" fill="none" stroke="#7b93c8" stroke-width="4"/>
+    <g transform="translate(605 140)">
+      <rect width="210" height="150" rx="18" fill="#ffffff" stroke="#bfd0ff" stroke-width="2"/>
+      <text x="105" y="47" text-anchor="middle" fill="#2f6fed" font-size="22" font-weight="700">Document Structure V2</text>
+      <text x="105" y="84" text-anchor="middle" fill="#536078" font-size="17">标题 · 章节 · 表格</text>
+      <text x="105" y="112" text-anchor="middle" fill="#536078" font-size="17">图片与正文关系</text>
+    </g>
+    <path d="M825 215H885" stroke="#7b93c8" stroke-width="4" stroke-linecap="round"/>
+    <path d="M875 205L885 215L875 225" fill="none" stroke="#7b93c8" stroke-width="4"/>
+    <g transform="translate(895 120)">
+      <rect width="240" height="190" rx="18" fill="#2f6fed"/>
+      <text x="120" y="48" text-anchor="middle" fill="#ffffff" font-size="24" font-weight="700">Deep Agent</text>
+      <text x="120" y="91" text-anchor="middle" fill="#ffffff" font-size="18">深度阅读</text>
+      <text x="120" y="123" text-anchor="middle" fill="#ffffff" font-size="18">结构化抽取</text>
+      <text x="120" y="155" text-anchor="middle" fill="#ffffff" font-size="18">报告与文章</text>
+    </g>
+    <text x="600" y="370" text-anchor="middle" fill="#65718a" font-size="17">解析结构由分块、检索和知识执行共同复用，不另建一套文档副本</text>
+  </g>
+</svg>
