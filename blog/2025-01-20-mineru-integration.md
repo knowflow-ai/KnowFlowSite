@@ -2,7 +2,7 @@
 slug: mineru-integration
 title: 🔥 KnowFlow v1.0.0 全面接入 MinerU 2.0
 authors: [knowflow-team]
-tags: [KnowFlow, MinerU, OCR, 文档解析]
+tags: [release, document-parsing]
 description: KnowFlow v1.0.0 重磅发布，全面接入 MinerU 2.0，支持多种部署模式，大幅提升文档识别和解析效果，架构设计更加灵活可扩展。
 ---
 

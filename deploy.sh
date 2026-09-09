@@ -48,19 +48,28 @@ fi
 
 echo "✅ 构建完成"
 
-# 1.5 将根目录 .html 文件转为目录结构（兼容 Nginx 默认配置）
-# 例如 product.html -> product/index.html，使 /product 路径可访问
+# 1.5 为每个 .html 产物额外生成同名目录下的 index.html
+#
+# Docusaurus 配置了 trailingSlash: false，产物形如 product.html、docs/intro.html。
+# Nginx 默认的 try_files 常见写法是 `$uri $uri/ =404`——只认 product/index.html，
+# 不会自动去试 product.html。两种形态都放上去，站点在任意 Nginx 配置下都能访问，
+# 避免出现「页面明明部署了却 404/403」这类会被 Google 记成软 404 的问题。
+#
+# 重复地址由页面里的 <link rel="canonical"> 收敛，不会造成重复收录。
 echo "📄 处理 HTML 文件路由..."
-for f in "$BUILD_DIR"/*.html; do
-    basename=$(basename "$f" .html)
-    # 跳过 index.html 和 404.html
-    if [ "$basename" = "index" ] || [ "$basename" = "404" ]; then
-        continue
-    fi
-    mkdir -p "$BUILD_DIR/$basename"
-    cp "$f" "$BUILD_DIR/$basename/index.html"
-done
-echo "✅ HTML 路由处理完成"
+html_count=0
+while IFS= read -r f; do
+    # index.html 与 404.html 本身就是目录入口/错误页，不需要再套一层
+    case "$(basename "$f")" in
+        index.html|404.html) continue ;;
+    esac
+
+    target_dir="${f%.html}"
+    mkdir -p "$target_dir"
+    cp "$f" "$target_dir/index.html"
+    html_count=$((html_count + 1))
+done < <(find "$BUILD_DIR" -type f -name '*.html' -not -path '*/index.html')
+echo "✅ HTML 路由处理完成（$html_count 个页面）"
 
 # 定义 SSH 和 SCP 命令的封装函数
 run_ssh() {
@@ -126,4 +135,9 @@ echo "📮 推送 URL 到百度收录..."
 bash scripts/baidu-push.sh || echo "⚠️ 百度推送失败，不影响部署"
 
 echo ""
+echo "🔍 线上 SEO 体检（旧链接跳转 / 已下线页面 / sitemap 可达性）..."
+bash scripts/seo-check.sh || echo "⚠️ SEO 体检存在失败项，请查看上面的列表逐条处理"
+
+echo ""
 echo "💡 提示: 如果网站未更新，请检查 Nginx 配置或清除浏览器缓存"
+echo "💡 Nginx 参考配置（含旧链接 301）见 nginx/knowflowchat.conf"

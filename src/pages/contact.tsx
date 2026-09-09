@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import type { ReactNode } from 'react';
+import React, {useState} from 'react';
+import type {ReactNode} from 'react';
 import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
 import styles from './contact.module.css';
-import { sendToWeChatWork } from '../utils/webhook';
-import { Smartphone } from '../components/Icons';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import {sendToWeChatWork} from '../utils/webhook';
+import {Smartphone} from '../components/Icons';
+import {useScrollAnimation} from '../hooks/useScrollAnimation';
+import {useLocaleContent} from '../i18n/useLocaleContent';
+import {contactContent} from '../content/contact';
 
 const INITIAL_FORM_DATA = {
   name: '',
@@ -16,28 +19,40 @@ const INITIAL_FORM_DATA = {
   message: '',
 };
 
-export default function Contact(): ReactNode {
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+type SubmitStatus = 'idle' | 'success' | 'error';
 
+export default function Contact(): ReactNode {
+  const content = useLocaleContent(contactContent);
+
+  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+  const [consented, setConsented] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('idle');
   const [formError, setFormError] = useState('');
 
   const [formRef, formVisible] = useScrollAnimation();
   const [ctaRef, ctaVisible] = useScrollAnimation();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+  const handleChange = (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
+    const {name, value} = event.target;
+
+    setFormData((previous) => ({...previous, [name]: value}));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
 
     if (!formData.phone.trim()) {
-      setFormError('请填写微信，方便我们与您联系。');
+      setFormError(content.form.errors.wechatRequired);
+      return;
+    }
+
+    if (!consented) {
+      setFormError(content.form.errors.consentRequired);
       return;
     }
 
@@ -47,16 +62,18 @@ export default function Contact(): ReactNode {
     try {
       const success = await sendToWeChatWork(formData);
 
-      if (success) {
-        setSubmitStatus('success');
-        setTimeout(() => {
-          setFormData(INITIAL_FORM_DATA);
-          setSubmitStatus('idle');
-        }, 3000);
-      } else {
+      if (!success) {
         setSubmitStatus('error');
         setTimeout(() => setSubmitStatus('idle'), 5000);
+        return;
       }
+
+      setSubmitStatus('success');
+      setTimeout(() => {
+        setFormData(INITIAL_FORM_DATA);
+        setConsented(false);
+        setSubmitStatus('idle');
+      }, 3000);
     } catch {
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus('idle'), 5000);
@@ -66,18 +83,13 @@ export default function Contact(): ReactNode {
   };
 
   return (
-    <Layout
-      title="联系我们 - 获取 KnowFlow 企业知识库演示与方案"
-      description="联系 KnowFlow 团队获取私有化企业知识库产品演示、技术咨询和定制方案，支持 14 天免费试用，7x24 小时技术支持">
-
+    <Layout title={content.meta.title} description={content.meta.description}>
       <section className={styles.hero}>
         <div className={styles.heroGrid} />
         <div className="container">
           <div className={styles.heroInner}>
-            <h1 className={styles.heroTitle}>联系我们</h1>
-            <p className={styles.heroSubtitle}>
-              无论您需要产品演示、技术咨询还是定制方案，我们都期待与您交流
-            </p>
+            <h1 className={styles.heroTitle}>{content.hero.title}</h1>
+            <p className={styles.heroSubtitle}>{content.hero.subtitle}</p>
           </div>
         </div>
       </section>
@@ -89,30 +101,27 @@ export default function Contact(): ReactNode {
             className={`${styles.contactGrid} ${formVisible ? 'visible' : ''}`}
             data-animate=""
           >
-
             <div id="form" className={styles.formContainer}>
-              <h2>获取专属方案</h2>
-              <p className={styles.formDesc}>
-                请填写以下信息，我们的专家团队将在 24 小时内与您联系
-              </p>
+              <h2>{content.form.title}</h2>
+              <p className={styles.formDesc}>{content.form.description}</p>
 
               {submitStatus === 'success' ? (
                 <div className={styles.successMessage}>
                   <span className={styles.successIcon}>&#10003;</span>
-                  <h3>提交成功！</h3>
-                  <p>感谢您的咨询，我们会尽快与您联系。</p>
+                  <h3>{content.form.success.title}</h3>
+                  <p>{content.form.success.description}</p>
                 </div>
               ) : submitStatus === 'error' ? (
                 <div className={styles.errorMessage}>
                   <span className={styles.errorIcon}>&#10007;</span>
-                  <h3>提交失败！</h3>
-                  <p>提交出现问题，请稍后重试或直接联系我们。</p>
+                  <h3>{content.form.failure.title}</h3>
+                  <p>{content.form.failure.description}</p>
                 </div>
               ) : (
                 <form className={styles.form} onSubmit={handleSubmit}>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label htmlFor="name">姓名 *</label>
+                      <label htmlFor="name">{content.form.fields.name.label}</label>
                       <input
                         type="text"
                         id="name"
@@ -120,11 +129,13 @@ export default function Contact(): ReactNode {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        placeholder="请输入您的姓名"
+                        placeholder={content.form.fields.name.placeholder}
                       />
                     </div>
                     <div className={styles.formGroup}>
-                      <label htmlFor="company">公司名称 *</label>
+                      <label htmlFor="company">
+                        {content.form.fields.company.label}
+                      </label>
                       <input
                         type="text"
                         id="company"
@@ -132,14 +143,14 @@ export default function Contact(): ReactNode {
                         value={formData.company}
                         onChange={handleChange}
                         required
-                        placeholder="请输入公司名称"
+                        placeholder={content.form.fields.company.placeholder}
                       />
                     </div>
                   </div>
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label htmlFor="phone">微信 *</label>
+                      <label htmlFor="phone">{content.form.fields.wechat.label}</label>
                       <input
                         type="text"
                         id="phone"
@@ -147,36 +158,38 @@ export default function Contact(): ReactNode {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        placeholder="请输入微信号"
+                        placeholder={content.form.fields.wechat.placeholder}
                       />
                     </div>
                     <div className={styles.formGroup}>
-                      <label htmlFor="email">邮箱</label>
+                      <label htmlFor="email">{content.form.fields.email.label}</label>
                       <input
                         type="email"
                         id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="选填，example@company.com"
+                        placeholder={content.form.fields.email.placeholder}
                       />
                     </div>
                   </div>
 
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label htmlFor="position">职位</label>
+                      <label htmlFor="position">
+                        {content.form.fields.position.label}
+                      </label>
                       <input
                         type="text"
                         id="position"
                         name="position"
                         value={formData.position}
                         onChange={handleChange}
-                        placeholder="请输入您的职位"
+                        placeholder={content.form.fields.position.placeholder}
                       />
                     </div>
                     <div className={styles.formGroup}>
-                      <label htmlFor="need">需求类型 *</label>
+                      <label htmlFor="need">{content.form.fields.need.label}</label>
                       <select
                         id="need"
                         name="need"
@@ -184,25 +197,48 @@ export default function Contact(): ReactNode {
                         onChange={handleChange}
                         required
                       >
-                        <option value="演示">产品演示</option>
-                        <option value="报价">获取报价</option>
-                        <option value="技术咨询">技术咨询</option>
-                        <option value="合作">商务合作</option>
-                        <option value="其他">其他需求</option>
+                        {content.form.needOptions.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label htmlFor="message">需求描述</label>
+                    <label htmlFor="message">{content.form.fields.message.label}</label>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       rows={4}
-                      placeholder="请描述您的具体需求，比如企业规模、使用场景、预期目标等"
+                      placeholder={content.form.fields.message.placeholder}
                     />
+                  </div>
+
+                  <div className={styles.consent}>
+                    <label className={styles.consentLabel} htmlFor="consent">
+                      <input
+                        type="checkbox"
+                        id="consent"
+                        name="consent"
+                        checked={consented}
+                        onChange={(event) => setConsented(event.target.checked)}
+                        required
+                      />
+                      <span>
+                        {content.form.consent.before}
+                        <Link to="/privacy">{content.form.consent.privacy}</Link>
+                        {content.form.consent.between}
+                        <Link to="/terms">{content.form.consent.terms}</Link>
+                        {content.form.consent.after}
+                      </span>
+                    </label>
+                    <p className={styles.consentDetail}>
+                      {content.form.consent.detail}
+                    </p>
                   </div>
 
                   <button
@@ -210,61 +246,45 @@ export default function Contact(): ReactNode {
                     className={styles.submitButton}
                     disabled={isSubmitting}
                   >
-                    {isSubmitting ? '提交中...' : '提交咨询'}
+                    {isSubmitting ? content.form.submitting : content.form.submit}
                   </button>
 
-                  {formError && (
-                    <p className={styles.formError}>{formError}</p>
-                  )}
-
-                  <p className={styles.privacy}>
-                    提交即表示您同意我们的 <a href="/privacy">隐私政策</a>
-                  </p>
+                  {formError && <p className={styles.formError}>{formError}</p>}
                 </form>
               )}
             </div>
 
             <div className={styles.infoContainer}>
               <div className={styles.infoCard}>
-                <h3>直接联系</h3>
+                <h3>{content.info.directTitle}</h3>
                 <div className={styles.infoItem}>
                   <span className={styles.infoIcon}>
                     <Smartphone size={20} />
                   </span>
                   <div>
-                    <p className={styles.infoLabel}>微信咨询</p>
-                    <p className={styles.infoValue}>skycode007</p>
+                    <p className={styles.infoLabel}>{content.info.wechatLabel}</p>
+                    <p className={styles.infoValue}>{content.info.wechatId}</p>
                   </div>
                 </div>
               </div>
 
               <div className={styles.infoCard}>
-                <h3>常见问题</h3>
+                <h3>{content.info.faqTitle}</h3>
                 <ul className={styles.faqList}>
-                  <li>
-                    <strong>支持哪些部署方式？</strong>
-                    <p>支持私有化部署、Docker、Kubernetes 等多种方式</p>
-                  </li>
-                  <li>
-                    <strong>是否提供试用？</strong>
-                    <p>提供 14 天免费试用，可申请演示账号体验全部功能</p>
-                  </li>
-                  <li>
-                    <strong>如何获取技术支持？</strong>
-                    <p>企业版客户享受 7x24 小时技术支持服务</p>
-                  </li>
+                  {content.info.faq.map((item) => (
+                    <li key={item.question}>
+                      <strong>{item.question}</strong>
+                      <p>{item.answer}</p>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
               <div className={styles.infoCard}>
-                <h3>响应时间</h3>
-                <p className={styles.responseTime}>
-                  我们承诺在工作日 24 小时内回复您的咨询，
-                  紧急问题可通过微信直接联系我们。
-                </p>
+                <h3>{content.info.responseTitle}</h3>
+                <p className={styles.responseTime}>{content.info.responseBody}</p>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -276,14 +296,14 @@ export default function Contact(): ReactNode {
             className={`${styles.ctaInner} ${ctaVisible ? 'visible' : ''}`}
             data-animate=""
           >
-            <h2>准备好开始了吗？</h2>
-            <p>查看文档了解更多产品细节，或直接联系我们获取定制方案</p>
+            <h2>{content.cta.title}</h2>
+            <p>{content.cta.subtitle}</p>
             <div className={styles.ctaButtons}>
-              <a href="/docs/intro" className={styles.secondaryButton}>
-                查看文档
-              </a>
+              <Link to="/docs/intro" className={styles.secondaryButton}>
+                {content.cta.docs}
+              </Link>
               <a href="#form" className={styles.primaryButton}>
-                立即咨询
+                {content.cta.contact}
               </a>
             </div>
           </div>

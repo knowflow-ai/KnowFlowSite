@@ -176,20 +176,50 @@
   cursor: not-allowed;
 }
 
-.privacy {
-  text-align: center;
-  color: var(--kf-text-muted);
-  font-size: 0.875rem;
+/* 个人信息处理授权：必须由用户主动勾选后才允许提交 */
+.consent {
   margin-top: 0.5rem;
+  padding: 1rem 1.125rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
 }
 
-.privacy a {
+.consentLabel {
+  display: flex;
+  gap: 0.625rem;
+  align-items: flex-start;
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #374151;
+  cursor: pointer;
+}
+
+.consentLabel input[type='checkbox'] {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.3125rem;
+  accent-color: #111827;
+  cursor: pointer;
+}
+
+.consentLabel a {
   color: #111827;
-  text-decoration: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
-.privacy a:hover {
-  text-decoration: underline;
+.consentLabel a:hover {
+  color: #000000;
+}
+
+.consentDetail {
+  margin: 0.625rem 0 0 1.625rem;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #6b7280;
 }
 
 /* ============================================

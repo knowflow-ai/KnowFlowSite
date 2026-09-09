@@ -2,7 +2,7 @@
 slug: visual-rag-practice
 title: 🔍 实战复盘 | 基于视觉模型的多模态 RAG 系统，我们踩过的坑与收获
 authors: [weizxfree]
-tags: [多模态RAG, 视觉模型, ColPali, Qwen2.5VL, KVisualRAG]
+tags: [multimodal-rag, rag-engineering]
 description: 深度复盘基于视觉模型的多模态 RAG 系统开发过程，分享 ColPali 框架应用、视觉模型选择、实测效果以及踩坑经验，为同行开发者提供实用建议。
 ---
 

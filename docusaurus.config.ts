@@ -1,12 +1,21 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import {
+  BLOG_REDIRECTS,
+  LOCALE_NOINDEX_ROUTES,
+  NOINDEX_ROUTES,
+  SITEMAP_IGNORE_PATTERNS,
+} from './src/seo/routes';
+import {structuredData} from './src/seo/structuredData';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+const SITE_URL = 'https://www.knowflowchat.cn';
+
 const config: Config = {
   title: 'KnowFlow',
-  tagline: '准确、可靠、可落地的私有化企业级知识库',
+  tagline: '准确、可靠、可落地的私有化企业级知识库与智能问数',
   favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -15,13 +24,12 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://www.knowflowchat.cn',
+  url: SITE_URL,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For custom domain deployment, use root path
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'weizxfree', // Usually your GitHub org/user name.
   projectName: 'KnowFlowSite', // Usually your repo name.
   deploymentBranch: 'gh-pages',
@@ -30,12 +38,13 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'zh-Hans',
     locales: ['zh-Hans', 'en'],
+    localeConfigs: {
+      'zh-Hans': {label: '简体中文', htmlLang: 'zh-Hans'},
+      en: {label: 'English', htmlLang: 'en'},
+    },
   },
 
   presets: [
@@ -44,30 +53,64 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/weizxfree/KnowFlow/tree/main/docs/',
+          editUrl: 'https://github.com/weizxfree/KnowFlow/tree/main/docs/',
         },
         blog: {
           showReadingTime: true,
+          blogTitle: 'KnowFlow 博客',
+          blogDescription:
+            'KnowFlow 官方博客：企业级知识库与智能问数的版本发布、文档解析实践、RAG 工程化经验与私有化落地案例。',
+          blogSidebarTitle: '最新文章',
+          blogSidebarCount: 10,
+          postsPerPage: 10,
+          // 归档页对搜索引擎是薄内容，直接不生成
+          archiveBasePath: null,
           feedOptions: {
             type: ['rss', 'atom'],
             xslt: true,
+            title: 'KnowFlow 博客',
+            description:
+              'KnowFlow 企业级知识库与智能问数的产品更新与技术实践',
+            copyright: `Copyright © ${new Date().getFullYear()} KnowFlow Project`,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/weizxfree/KnowFlow/tree/main/blog/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
+          editUrl: 'https://github.com/weizxfree/KnowFlow/tree/main/blog/',
+          onInlineTags: 'throw',
+          onInlineAuthors: 'throw',
+          onUntruncatedBlogPosts: 'throw',
         },
         theme: {
           customCss: './src/css/custom.css',
         },
+        sitemap: {
+          lastmod: 'date',
+          changefreq: null,
+          priority: null,
+          ignorePatterns: [...SITEMAP_IGNORE_PATTERNS],
+          filename: 'sitemap.xml',
+        },
       } satisfies Preset.Options,
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'analytics',
+        path: 'analytics-docs',
+        routeBasePath: 'analytics/docs',
+        sidebarPath: './sidebars-analytics.ts',
+        editUrl:
+          'https://github.com/knowflow-ai/analytics/tree/main/docs/',
+      },
+    ],
+    [
+      './plugins/seo',
+      {
+        noindexRoutes: [...NOINDEX_ROUTES],
+        localeNoindexRoutes: LOCALE_NOINDEX_ROUTES,
+        redirects: [...BLOG_REDIRECTS],
+      },
     ],
   ],
 
@@ -78,55 +121,27 @@ const config: Config = {
       innerHTML:
         "(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if (curProtocol === 'https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js'}else{bp.src='http://push.zhanzhang.baidu.com/push.js'}var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bp,s);})();",
     },
-    {
+    ...structuredData.map((data) => ({
       tagName: 'script',
       attributes: {type: 'application/ld+json'},
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: 'KnowFlow',
-        url: 'https://www.knowflowchat.cn',
-        logo: 'https://www.knowflowchat.cn/img/k-icon-3.svg',
-        description: '基于 RAGFlow 深度定制的企业级私有化知识库系统',
-        sameAs: ['https://github.com/weizxfree/KnowFlow'],
-      }),
-    },
-    {
-      tagName: 'script',
-      attributes: {type: 'application/ld+json'},
-      innerHTML: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'SoftwareApplication',
-        name: 'KnowFlow',
-        applicationCategory: 'BusinessApplication',
-        operatingSystem: 'Linux',
-        description: '以文档结构理解为核心，构建准确、可靠、可落地的私有化企业级知识库。支持深度文档解析、多模态知识库、RBAC 权限管理与私有化部署。',
-        offers: {
-          '@type': 'Offer',
-          price: '0',
-          priceCurrency: 'CNY',
-          description: '提供 14 天免费试用',
-        },
-        featureList: [
-          '深度文档结构解析',
-          '多模态知识库（图片、表格、视频）',
-          '更智能的分块方法（Smart/Title/Regex/Parent-Child/Page/ColPali）',
-          'RBAC 权限管理体系',
-          '私有化离线部署',
-          '知识库导入导出与备份恢复',
-          'RESTful API 集成',
-        ],
-      }),
-    },
+      innerHTML: JSON.stringify(data),
+    })),
   ],
 
   themeConfig: {
     metadata: [
-      {name: 'description', content: 'KnowFlow - 以文档结构理解为核心，构建准确、可靠、可落地的私有化企业级知识库。支持深度文档解析、多模态知识库、完整工程化能力与企业级权限管理。'},
-      {name: 'keywords', content: 'KnowFlow, 企业知识库, 私有化知识库, RAG 系统, 文档结构理解, 多模态知识库, 知识库分块, RAGFlow, 企业 AI, 智能问答'},
+      {
+        name: 'description',
+        content:
+          'KnowFlow 提供两条产品线：企业级知识库以文档结构理解为核心，让非结构化文档可问可信可追溯；智能问数以受治理语义层替代 Prompt 拼装，让业务人员用中文问数据。均支持私有化部署。',
+      },
+      {
+        name: 'keywords',
+        content:
+          'KnowFlow, 企业知识库, 私有化知识库, RAG 系统, 文档结构理解, 多模态知识库, 知识库分块, RAGFlow, 智能问数, 企业问数, 语义层, Text-to-SQL, 企业 AI, 智能问答',
+      },
       {name: 'baidu-site-verification', content: 'codeva-U93CBs1T3a'},
     ],
-    // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
       title: 'KnowFlow',
@@ -141,15 +156,36 @@ const config: Config = {
           position: 'left',
         },
         {
-          to: '/product',
+          type: 'dropdown',
           label: '产品',
           position: 'left',
+          items: [
+            {to: '/product', label: '企业知识库'},
+            {to: '/analytics', label: '智能问数'},
+          ],
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
+          type: 'dropdown',
           label: '文档',
+          position: 'left',
+          items: [
+            {
+              type: 'docSidebar',
+              sidebarId: 'tutorialSidebar',
+              label: '企业知识库文档',
+            },
+            {
+              type: 'docSidebar',
+              sidebarId: 'analyticsSidebar',
+              docsPluginId: 'analytics',
+              label: '智能问数文档',
+            },
+          ],
+        },
+        {
+          to: '/blog',
+          label: '博客',
+          position: 'left',
         },
         {
           to: '/about',
@@ -173,34 +209,27 @@ const config: Config = {
       style: 'light',
       links: [
         {
+          title: '产品',
+          items: [
+            {label: '企业知识库', to: '/product'},
+            {label: '智能问数', to: '/analytics'},
+            {label: '申请 POC 验证', to: '/contact'},
+          ],
+        },
+        {
           title: '文档',
           items: [
-            {
-              label: '快速开始',
-              to: '/docs/intro',
-            },
-            {
-              label: '安装指南',
-              to: '/docs/installationDocker',
-            },
+            {label: '知识库快速开始', to: '/docs/intro'},
+            {label: '知识库安装指南', to: '/docs/installationDocker'},
+            {label: '智能问数介绍', to: '/analytics/docs/intro'},
+            {label: '智能问数快速开始', to: '/analytics/docs/quick-start'},
           ],
         },
         {
-          title: '社区',
+          title: '资源',
           items: [
-            {
-              label: '公众号：KnowFlow 企业知识库',
-              href: '#',
-            },
-          ],
-        },
-        {
-          title: '更多',
-          items: [
-            {
-              label: '博客',
-              to: '/blog',
-            },
+            {label: '博客', to: '/blog'},
+            {label: '更新日志', to: '/docs/发布记录'},
             {
               label: 'GitHub',
               href: 'https://github.com/weizxfree/KnowFlow',
@@ -211,9 +240,18 @@ const config: Config = {
             },
           ],
         },
+        {
+          title: '关于',
+          items: [
+            {label: '关于我们', to: '/about'},
+            {label: '联系我们', to: '/contact'},
+            {label: '隐私政策', to: '/privacy'},
+            {label: '服务条款', to: '/terms'},
+          ],
+        },
       ],
       copyright:
-        'Copyright © 2026 KnowFlow Project. <img src="/img/icp-icon.png" alt="公安备案图标" width="18" height="20" style="vertical-align:middle;margin:0 4px;" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=34019202002648" rel="noreferrer" target="_blank">皖公网安备34019202002648号</a> 皖ICP备2025099328号',
+        'Copyright © 2026 合肥知识库流动人工智能应用软件有限责任公司 · 公众号：KnowFlow 企业知识库 <br /> <img src="/img/icp-icon.png" alt="公安备案图标" width="18" height="20" style="vertical-align:middle;margin:0 4px;" /> <a href="https://beian.mps.gov.cn/#/query/webSearch?code=34019202002648" rel="noreferrer" target="_blank">皖公网安备34019202002648号</a> <a href="https://beian.miit.gov.cn/" rel="noreferrer" target="_blank">皖ICP备2025099328号</a>',
     },
     colorMode: {
       defaultMode: 'light',

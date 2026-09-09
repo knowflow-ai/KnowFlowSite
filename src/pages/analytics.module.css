@@ -1,0 +1,307 @@
+/**
+ * 智能问数产品页专属版式。
+ *
+ * 共用的 hero / 能力块 / 对比表 / 场景卡 / CTA 来自 product.module.css，
+ * 这里只补充该页独有的部分：hero 行动区、痛点网格、查询管线、
+ * 产品截图墙、实测数据表与版本对比表。
+ */
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2.25rem;
+}
+
+/* ---------- 为什么需要语义层 ---------- */
+
+.problem {
+  padding: 5rem 0;
+  background: #ffffff;
+}
+
+.problemLead {
+  max-width: 760px;
+  margin: 0 auto 2.75rem;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: #4b5563;
+  text-align: center;
+}
+
+.painGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.painCard {
+  padding: 1.75rem 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.painCard h3 {
+  margin: 0 0 0.625rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.painCard p {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #4b5563;
+}
+
+.problemQuote {
+  display: flex;
+  gap: 0.875rem;
+  align-items: flex-start;
+  max-width: 820px;
+  margin: 2.75rem auto 0;
+  padding: 1.375rem 1.625rem;
+  border: 0;
+  border-left: 3px solid #111827;
+  border-radius: 0 8px 8px 0;
+  background: #f3f4f6;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #111827;
+}
+
+.problemQuote svg {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+/* ---------- 查询管线 ---------- */
+
+.pipeline {
+  padding: 5rem 0;
+  background: #f7f8fa;
+}
+
+.pipelineFlow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: pipeline;
+}
+
+.pipelineStage {
+  position: relative;
+  padding: 1.5rem 1.25rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.pipelineIndex {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+}
+
+.pipelineStage b {
+  display: block;
+  margin-bottom: 0.1875rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.pipelineStage small {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.pipelineStage p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.pipelineFootnote {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
+  max-width: 780px;
+  margin: 2rem auto 0;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: #4b5563;
+  text-align: center;
+}
+
+.pipelineFootnote svg {
+  flex-shrink: 0;
+}
+
+/* ---------- 产品截图 ---------- */
+
+.gallery {
+  padding: 5rem 0;
+  background: #ffffff;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.galleryItem {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.galleryItem img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.galleryItem figcaption {
+  padding: 0.875rem 1.125rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+/* ---------- 数据表（实测结果 / 版本对比） ---------- */
+
+.accuracy {
+  padding: 5rem 0;
+  background: #f7f8fa;
+}
+
+.editions {
+  padding: 5rem 0;
+  background: #ffffff;
+}
+
+.dataTableWrap {
+  overflow-x: auto;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.dataTable,
+.editionTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.dataTable th,
+.editionTable th {
+  padding: 0.9375rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-weight: 600;
+  color: #111827;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.dataTable td,
+.editionTable td {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 1px solid #f3f4f6;
+  color: #4b5563;
+  line-height: 1.7;
+}
+
+.dataTable tbody tr:last-child td,
+.editionTable tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.dataTable td:not(:first-child) {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.totalRow td {
+  background: #f9fafb;
+  font-weight: 600;
+  color: #111827;
+}
+
+.accuracyNote {
+  max-width: 820px;
+  margin: 1.75rem auto 0;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: #6b7280;
+}
+
+.editionTable th:not(:first-child),
+.markCell {
+  width: 8.5rem;
+  text-align: center;
+}
+
+.markCell {
+  text-align: center;
+}
+
+.yes,
+.no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.yes {
+  background: #111827;
+  color: #ffffff;
+}
+
+.no {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .problem,
+  .pipeline,
+  .gallery,
+  .accuracy,
+  .editions {
+    padding: 3.25rem 0;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
+}

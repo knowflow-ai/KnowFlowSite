@@ -1391,3 +1391,112 @@
     transition: none;
   }
 }
+
+/* ==========================================================================
+   两条产品线（企业知识库 / 智能问数）
+   ========================================================================== */
+
+.productLines {
+  padding: 86px 0;
+  border-bottom: 1px solid #d9e6f5;
+  background: var(--home-paper);
+}
+
+.productLines .sectionIntro {
+  max-width: 760px;
+  margin-bottom: 40px;
+}
+
+.productLineGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.productLineCard {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 28px 26px;
+  border: 1px solid var(--home-line);
+  border-top: 3px solid var(--home-blue);
+  border-radius: 4px;
+  background: var(--home-white);
+}
+
+.productLineEyebrow {
+  color: var(--home-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.productLineCard h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0 12px;
+  color: var(--home-navy);
+  font-size: 24px;
+  font-weight: 820;
+  letter-spacing: -0.02em;
+}
+
+.productLineCard h3 svg {
+  color: var(--home-blue);
+}
+
+.productLineCard > p {
+  margin: 0 0 20px;
+  color: var(--home-body);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.productLineCard ul {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.productLineCard li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 7px 0;
+  color: var(--home-ink);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.productLineCard li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--home-blue);
+}
+
+.productLineLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  color: var(--home-blue);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.productLineLink:hover {
+  color: var(--home-navy);
+  text-decoration: none;
+}
+
+@media (max-width: 996px) {
+  .productLines {
+    padding: 52px 0;
+  }
+
+  .productLineGrid {
+    grid-template-columns: 1fr;
+  }
+}

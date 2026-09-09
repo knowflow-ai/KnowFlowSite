@@ -4,5 +4,7 @@
   "compilerOptions": {
     "baseUrl": "."
   },
-  "exclude": [".docusaurus", "build"]
+  // KnowFlowPro / my-wiki 是仓库里独立存在的其它工程，不参与本站点构建，
+  // 纳入检查只会产生数千条与站点无关的报错，让 `npm run typecheck` 失去意义。
+  "exclude": [".docusaurus", "build", "KnowFlowPro", "my-wiki", "node_modules"]
 }

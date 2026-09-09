@@ -2,7 +2,7 @@
 slug: knowflow-release
 title: 🚀 KnowFlow 正式发布：RAGFlow 企业级落地的最后一公里
 authors: [knowflow-team]
-tags: [knowflow, ragflow, 企业级, 开源]
+tags: [release, enterprise]
 description: KnowFlow 是基于 RAGFlow 的开源项目，专为企业级场景设计，提供插件化架构、企业级特性和丰富的分块策略，助力 RAG 系统在企业环境中的高效落地。
 ---
 

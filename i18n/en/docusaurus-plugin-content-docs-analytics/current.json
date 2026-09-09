@@ -1,0 +1,22 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.analyticsSidebar.category.语义建模": {
+    "message": "Semantic modelling",
+    "description": "The label for category 语义建模 in sidebar analyticsSidebar"
+  },
+  "sidebar.analyticsSidebar.category.问数与交付": {
+    "message": "Asking and delivery",
+    "description": "The label for category 问数与交付 in sidebar analyticsSidebar"
+  },
+  "sidebar.analyticsSidebar.category.治理与安全": {
+    "message": "Governance and security",
+    "description": "The label for category 治理与安全 in sidebar analyticsSidebar"
+  },
+  "sidebar.analyticsSidebar.category.治理与安全.link.generated-index.description": {
+    "message": "The query pipeline, governance gates and data security boundary. The LLM only emits business-name S2SQL; physical SQL is compiled deterministically and passes a read-only guard before reaching the database.",
+    "description": "The generated-index page description for category 治理与安全 in sidebar analyticsSidebar"
+  }
+}

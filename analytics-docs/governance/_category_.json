@@ -1,0 +1,8 @@
+{
+  "label": "治理与安全",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "智能问数的查询管线、治理关卡与数据安全边界。LLM 只生成业务名 S2SQL，物理 SQL 由确定性编译器生成，并经过只读 Guard 后才访问数据库。"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "title": {
+    "message": "KnowFlow Blog",
+    "description": "The title for the blog used in SEO"
+  },
+  "description": {
+    "message": "Product releases, document parsing practice, RAG engineering notes and on-premise deployment experience from the KnowFlow team.",
+    "description": "The description for the blog used in SEO"
+  },
+  "sidebar.title": {
+    "message": "Recent posts",
+    "description": "The label for the left sidebar"
+  }
+}

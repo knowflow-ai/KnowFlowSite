@@ -1,0 +1,54 @@
+{
+  "title": {
+    "message": "KnowFlow",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "KnowFlow Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.首页": {
+    "message": "Home",
+    "description": "Navbar item with label 首页"
+  },
+  "item.label.产品": {
+    "message": "Products",
+    "description": "Navbar item with label 产品"
+  },
+  "item.label.文档": {
+    "message": "Docs",
+    "description": "Navbar item with label 文档"
+  },
+  "item.label.博客": {
+    "message": "Blog",
+    "description": "Navbar item with label 博客"
+  },
+  "item.label.关于我们": {
+    "message": "About",
+    "description": "Navbar item with label 关于我们"
+  },
+  "item.label.联系我们": {
+    "message": "Contact us",
+    "description": "Navbar item with label 联系我们"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  },
+  "item.label.企业知识库": {
+    "message": "Knowledge Base",
+    "description": "Navbar item with label 企业知识库"
+  },
+  "item.label.智能问数": {
+    "message": "Analytics",
+    "description": "Navbar item with label 智能问数"
+  },
+  "item.label.企业知识库文档": {
+    "message": "Knowledge Base docs",
+    "description": "Navbar item with label 企业知识库文档"
+  },
+  "item.label.智能问数文档": {
+    "message": "Analytics docs",
+    "description": "Navbar item with label 智能问数文档"
+  }
+}

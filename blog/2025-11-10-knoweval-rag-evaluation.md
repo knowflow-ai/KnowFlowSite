@@ -1,8 +1,12 @@
 ---
-description: KnowEval 是专为 RAG 系统打造的全链路评测平台，提供五维度评测体系、AI 智能生成测试集与可视化评测报告，量化问答质量
+slug: knoweval-rag-evaluation
+title: 'KnowEval：RAG 工程化的最后一公里，让问答质量有据可依'
+date: 2025-11-10
+authors: [knowflow-team]
+tags: [rag-engineering]
+description: 'KnowEval 是专为 RAG 系统打造的全链路评测平台，提供五维度评测体系、AI 智能生成测试集与可视化评测报告，量化问答质量'
+image: https://fastly.jsdelivr.net/gh/bucketio/img15@main/2025/11/10/1762763079527-25a4ef2a-0038-44a4-bc82-5e700da2cb3f.png
 ---
-
-# KnowEval：RAG 工程化的最后一公里，让问答质量有据可依
 
 ## 前言
 
@@ -11,6 +15,8 @@ description: KnowEval 是专为 RAG 系统打造的全链路评测平台，提�
 在过去一年与众多企业客户的交流中，我们发现一个普遍的痛点：**RAG 系统上线后，如何量化评估问答质量？如何系统化提升检索效果？如何在多个优化方案中选择最优解？**
 
 很多团队花费大量时间调试 RAG 系统，但往往凭感觉调参，缺乏数据支撑。A/B 测试需要人工逐条对比，效率低下。更关键的是，**没有一套标准化的评测体系，就无法形成可持续优化的闭环。**
+
+{/* truncate */}
 
 基于此，我们推出了 **KnowEval - 专为 RAG 系统打造的全链路评测平台**，将评测这个"隐形能力"变成可视化、可量化、可优化的工程化能力。
 

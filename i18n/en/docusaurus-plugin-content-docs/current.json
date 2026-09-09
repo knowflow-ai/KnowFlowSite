@@ -1,0 +1,78 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.产品使用": {
+    "message": "Using the product",
+    "description": "The label for category 产品使用 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.产品使用.link.generated-index.description": {
+    "message": "Guides for using KnowFlow Knowledge Base.",
+    "description": "The generated-index page description for category 产品使用 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.文档解析": {
+    "message": "Document parsing",
+    "description": "The label for category 文档解析 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.文档解析.link.generated-index.description": {
+    "message": "Deploying, configuring and using KnowFlow document parsing and structure enhancement.",
+    "description": "The generated-index page description for category 文档解析 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.分块策略": {
+    "message": "Chunking strategies",
+    "description": "The label for category 分块策略 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.分块策略.link.generated-index.description": {
+    "message": "Chunking decides how long documents are split into retrievable passages. KnowFlow offers five strategies — Smart, Title, Parent-Child, Regex and Page — for different document types and use cases.",
+    "description": "The generated-index page description for category 分块策略 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.检索增强": {
+    "message": "Retrieval enhancement",
+    "description": "The label for category 检索增强 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.检索增强.link.generated-index.description": {
+    "message": "Capabilities that raise answer accuracy and recall beyond baseline retrieval: ColPali visual retrieval, SAG multi-hop retrieval and the LLM Wiki knowledge network — for visually dense documents, cross-document reasoning and entity or concept questions.",
+    "description": "The generated-index page description for category 检索增强 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Deep Agent": {
+    "message": "Deep Agent",
+    "description": "The label for category Deep Agent in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.知识库管理": {
+    "message": "Knowledge base management",
+    "description": "The label for category 知识库管理 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.三方接入": {
+    "message": "Integrations",
+    "description": "The label for category 三方接入 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.三方接入.link.generated-index.description": {
+    "message": "Connect KnowFlow to enterprise identity providers and external platforms: WeCom web and workbench sign-in, WeCom / Feishu / DingTalk bots, and AI platforms such as Dify and MaxKB.",
+    "description": "The generated-index page description for category 三方接入 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.系统管理": {
+    "message": "System administration",
+    "description": "The label for category 系统管理 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.系统管理.link.generated-index.description": {
+    "message": "Administration covers users, organisations, collaboration groups, file management, knowledge base management and per-user configuration.",
+    "description": "The generated-index page description for category 系统管理 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.API 接口": {
+    "message": "API reference",
+    "description": "The label for category API 接口 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.API 接口.link.generated-index.description": {
+    "message": "Full RESTful API reference for KnowFlow, covering knowledge base management, document processing and retrieval services.",
+    "description": "The generated-index page description for category API 接口 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.常见问题": {
+    "message": "FAQ",
+    "description": "The label for category 常见问题 in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.常见问题.link.generated-index.description": {
+    "message": "Answers to common questions about installation, product usage and technical issues.",
+    "description": "The generated-index page description for category 常见问题 in sidebar tutorialSidebar"
+  }
+}

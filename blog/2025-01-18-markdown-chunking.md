@@ -2,7 +2,7 @@
 slug: markdown-chunking
 title: 📝 KnowFlow v0.0.5 发布：新增 Markdown 智能分块和按标题分块策略
 authors: [knowflow-team]
-tags: [KnowFlow, Markdown, 分块策略, RAG]
+tags: [release, document-parsing]
 description: KnowFlow v0.0.5 重磅发布，新增 Markdown 智能分块和按标题分块策略，显著提升检索效果和召回准确率，同时增强三方接入支持。
 ---
 

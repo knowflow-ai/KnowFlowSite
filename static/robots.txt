@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+# 标签页与作者页是同一批文章的不同排列，已在页面上声明 noindex。
+# 这里不做 Disallow，否则爬虫读不到 noindex 与 canonical，反而更难从索引中清除。
+
 Sitemap: https://www.knowflowchat.cn/sitemap.xml
+Sitemap: https://www.knowflowchat.cn/en/sitemap.xml

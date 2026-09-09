@@ -1,19 +1,29 @@
-facebook:
-  label: Facebook
-  permalink: /facebook
-  description: Facebook tag description
+release:
+  label: 版本发布
+  permalink: /release
+  description: KnowFlow 各版本的发布说明、新增能力与升级指引
 
-hello:
-  label: Hello
-  permalink: /hello
-  description: Hello tag description
+document-parsing:
+  label: 文档解析
+  permalink: /document-parsing
+  description: 文档结构理解、OCR、版面分析与分块策略的工程实践
 
-docusaurus:
-  label: Docusaurus
-  permalink: /docusaurus
-  description: Docusaurus tag description
+multimodal-rag:
+  label: 多模态 RAG
+  permalink: /multimodal-rag
+  description: 图片、表格、视频等多模态知识的检索与问答实践
 
-hola:
-  label: Hola
-  permalink: /hola
-  description: Hola tag description
+rag-engineering:
+  label: RAG 工程化
+  permalink: /rag-engineering
+  description: RAG 系统的评测、调优、可观测性与工程化落地方法
+
+analytics:
+  label: 智能问数
+  permalink: /analytics
+  description: 语义层、S2SQL 编译、Text-to-SQL 治理与企业问数实践
+
+enterprise:
+  label: 企业实践
+  permalink: /enterprise
+  description: 企业级知识库的私有化部署、权限治理与业务落地经验

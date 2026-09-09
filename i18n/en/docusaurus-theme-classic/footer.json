@@ -1,0 +1,82 @@
+{
+  "link.title.产品": {
+    "message": "Products",
+    "description": "The title of the footer links column with title=产品 in the footer"
+  },
+  "link.title.文档": {
+    "message": "Docs",
+    "description": "The title of the footer links column with title=文档 in the footer"
+  },
+  "link.title.资源": {
+    "message": "Resources",
+    "description": "The title of the footer links column with title=资源 in the footer"
+  },
+  "link.title.关于": {
+    "message": "Company",
+    "description": "The title of the footer links column with title=关于 in the footer"
+  },
+  "link.item.label.企业知识库": {
+    "message": "Knowledge Base",
+    "description": "The label of footer link with label=企业知识库 linking to /product"
+  },
+  "link.item.label.智能问数": {
+    "message": "Analytics",
+    "description": "The label of footer link with label=智能问数 linking to /analytics"
+  },
+  "link.item.label.申请 POC 验证": {
+    "message": "Request a POC",
+    "description": "The label of footer link with label=申请 POC 验证 linking to /contact"
+  },
+  "link.item.label.知识库快速开始": {
+    "message": "Knowledge Base: get started",
+    "description": "The label of footer link with label=知识库快速开始 linking to /docs/intro"
+  },
+  "link.item.label.知识库安装指南": {
+    "message": "Knowledge Base: install guide",
+    "description": "The label of footer link with label=知识库安装指南 linking to /docs/installationDocker"
+  },
+  "link.item.label.智能问数介绍": {
+    "message": "Analytics: overview",
+    "description": "The label of footer link with label=智能问数介绍 linking to /analytics/docs/intro"
+  },
+  "link.item.label.智能问数快速开始": {
+    "message": "Analytics: get started",
+    "description": "The label of footer link with label=智能问数快速开始 linking to /analytics/docs/quick-start"
+  },
+  "link.item.label.博客": {
+    "message": "Blog",
+    "description": "The label of footer link with label=博客 linking to /blog"
+  },
+  "link.item.label.更新日志": {
+    "message": "Changelog",
+    "description": "The label of footer link with label=更新日志 linking to /docs/发布记录"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/weizxfree/KnowFlow"
+  },
+  "link.item.label.RAGFlow 官方": {
+    "message": "RAGFlow upstream",
+    "description": "The label of footer link with label=RAGFlow 官方 linking to https://github.com/infiniflow/ragflow"
+  },
+  "link.item.label.关于我们": {
+    "message": "About us",
+    "description": "The label of footer link with label=关于我们 linking to /about"
+  },
+  "link.item.label.联系我们": {
+    "message": "Contact us",
+    "description": "The label of footer link with label=联系我们 linking to /contact"
+  },
+  "link.item.label.隐私政策": {
+    "message": "Privacy Policy",
+    "description": "The label of footer link with label=隐私政策 linking to /privacy"
+  },
+  "link.item.label.服务条款": {
+    "message": "Terms of Service",
+    "description": "The label of footer link with label=服务条款 linking to /terms"
+  },
+  "copyright": {
+    "message": "Copyright © 2026 合肥知识库流动人工智能应用软件有限责任公司 · WeChat Official Account: KnowFlow 企业知识库 <br /> <img src=\"/img/icp-icon.png\" alt=\"ICP filing icon\" width=\"18\" height=\"20\" style=\"vertical-align:middle;margin:0 4px;\" /> <a href=\"https://beian.mps.gov.cn/#/query/webSearch?code=34019202002648\" rel=\"noreferrer\" target=\"_blank\">皖公网安备34019202002648号</a> <a href=\"https://beian.miit.gov.cn/\" rel=\"noreferrer\" target=\"_blank\">皖ICP备2025099328号</a>",
+    "description": "The footer copyright"
+  }
+}

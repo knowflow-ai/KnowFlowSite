@@ -1,8 +1,11 @@
 ---
-description: KnowFlow 2025 年度回顾，分享从 0 到 1 的创业历程，记录产品定位、技术选型与商业化探索的真实经验与思考
+slug: knowflow-year-review
+title: 'KnowFlow 2025 年度回顾：一群中年程序员的创业之路'
+date: 2025-12-25
+authors: [weizxfree]
+tags: [enterprise]
+description: 'KnowFlow 2025 年度回顾，分享从 0 到 1 的创业历程，记录产品定位、技术选型与商业化探索的真实经验与思考'
 ---
-
-# KnowFlow 2025 年度回顾：一群中年程序员的创业之路
 
 ## 前言
 
@@ -16,6 +19,8 @@ description: KnowFlow 2025 年度回顾，分享从 0 到 1 的创业历程，�
 回头看清来路，才能更好地走向下一段。
 
 ---
+
+{/* truncate */}
 
 ## 背景
 
