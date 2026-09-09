@@ -18,3 +18,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.gstack/
+
+# 同仓库内的其它工程（各自独立管理，不参与本站点构建）
+/KnowFlowPro
+/my-wiki
