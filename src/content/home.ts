@@ -143,14 +143,14 @@ export type HomeContent = {
 
 const zhHans: HomeContent = {
   meta: {
-    title: 'KnowFlow - 可信、可控的企业知识与数据系统',
+    title: '每个答案，都经得起推敲 | 私有化企业知识库与智能问数',
     description:
       'KnowFlow 以复杂文档结构化解析、多路径检索、目录级 RBAC 和私有化部署，帮助企业构建可信、可控、可追溯的知识系统；智能问数在受治理语义层之上，让业务人员用中文直接问数据。',
   },
   hero: {
-    eyebrow: '可信技术型 · 企业知识与数据系统',
-    title: '复杂文档，必须先读懂，才能可靠交付',
-    lead: '从文档解析、知识库问答、Deep Agent 到追溯交付，全链路遵循目录级 RBAC；支持私有化与离线部署，让知识可用、权限可控、数据不出域。',
+    eyebrow: 'KnowFlow · 可信的企业知识与数据系统',
+    title: '每个答案，\n都经得起推敲',
+    lead: '复杂文档先读懂，再作答。从文档解析、知识库问答、Deep Agent 到追溯交付，全链路遵循目录级 RBAC；支持私有化与离线部署，让知识可用、权限可控、数据不出域。',
     points: [
       {
         title: '结构优先，回答回到原文',
@@ -265,13 +265,13 @@ const zhHans: HomeContent = {
       },
       {
         number: '02',
-        title: '知识库目录树',
-        items: ['集团与部门目录', '业务知识库', '项目与专题空间'],
+        title: '目录分级管理',
+        items: ['超级管理员建顶层目录', '授予目录管理员', '目录内自建知识库'],
       },
       {
         number: '03',
         title: '目录权限继承',
-        items: ['查看 / 编辑 / 管理', '从父目录向下继承', '多来源权限取最高值'],
+        items: ['只读 / 编辑 / 管理', '从父目录向下继承', '多来源权限取最高值'],
       },
       {
         number: '04',
@@ -374,7 +374,7 @@ const zhHans: HomeContent = {
       {label: '复杂任务', headline: '跨文档研究问题', detail: '明确目标与交付格式'},
       {label: '检索结果', headline: 'E1 · E2 · E3', detail: '页码、章节、坐标与原文'},
       {label: 'Deep Agent', headline: '阅读 · 分析 · 生成', detail: '不超出授权知识范围'},
-      {label: '交付物', headline: 'Excel · Word · PDF', detail: '结论和数据均带证据'},
+      {label: '交付物', headline: 'Word · PPT · Excel', detail: '结论和数据均带证据'},
     ],
   },
   scenarios: {
@@ -408,14 +408,14 @@ const zhHans: HomeContent = {
 
 const en: HomeContent = {
   meta: {
-    title: 'KnowFlow - Trustworthy, governed enterprise knowledge and data',
+    title: 'Every answer holds up to scrutiny | On-premise enterprise knowledge base and analytics',
     description:
       'KnowFlow turns complex documents into verifiable answers through structure-aware parsing, multi-path retrieval, directory-level RBAC and on-premise deployment — and lets business users query databases in plain language on a governed semantic layer.',
   },
   hero: {
-    eyebrow: 'Enterprise knowledge and data, built to be verified',
-    title: 'Complex documents must be understood before they can be delivered on',
-    lead: 'Parsing, knowledge Q&A, Deep Agent and traceable delivery all run under directory-level RBAC. Deploy on-premise or fully offline so knowledge stays usable, permissions stay enforced and data never leaves your network.',
+    eyebrow: 'KnowFlow · Enterprise knowledge and data, built to be verified',
+    title: 'Every answer\nholds up to scrutiny',
+    lead: 'Complex documents are understood first, then answered. Parsing, knowledge Q&A, Deep Agent and traceable delivery all run under directory-level RBAC. Deploy on-premise or fully offline so knowledge stays usable, permissions stay enforced and data never leaves your network.',
     points: [
       {
         title: 'Structure first, answers trace back to the source',
@@ -541,13 +541,13 @@ const en: HomeContent = {
       },
       {
         number: '02',
-        title: 'Knowledge directory tree',
-        items: ['Group and department folders', 'Business knowledge bases', 'Project spaces'],
+        title: 'Delegated directories',
+        items: ['Super admin creates top-level folders', 'Folder managers are assigned', 'They create knowledge bases inside'],
       },
       {
         number: '03',
         title: 'Inherited directory permissions',
-        items: ['View / edit / manage', 'Inherited from parent folders', 'Highest grant wins'],
+        items: ['Read-only / edit / manage', 'Inherited from parent folders', 'Highest grant wins'],
       },
       {
         number: '04',
@@ -688,7 +688,7 @@ const en: HomeContent = {
       },
       {
         label: 'Deliverable',
-        headline: 'Excel · Word · PDF',
+        headline: 'Word · PPT · Excel',
         detail: 'Conclusions and data both carry evidence',
       },
     ],

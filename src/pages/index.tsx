@@ -60,7 +60,11 @@ export default function Home(): ReactNode {
           <div className={`container ${styles.homeContainer} ${styles.heroLayout}`}>
             <div className={styles.heroCopy}>
               <span className={styles.eyebrow}>{content.hero.eyebrow}</span>
-              <h1 data-pretext>{content.hero.title}</h1>
+              <h1 className={styles.heroTitle}>
+                {content.hero.title.split('\n').map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
+              </h1>
               <p className={styles.heroLead} data-pretext>
                 {content.hero.lead}
               </p>

@@ -15,7 +15,7 @@ const SITE_URL = 'https://www.knowflowchat.cn';
 
 const config: Config = {
   title: 'KnowFlow',
-  tagline: '准确、可靠、可落地的私有化企业级知识库与智能问数',
+  tagline: 'KnowFlow，每个答案，都经得起推敲 · 私有化企业级知识库与智能问数',
   favicon: 'img/favicon.svg',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future

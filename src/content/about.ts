@@ -71,7 +71,7 @@ const zhHans: AboutContent = {
       'KnowFlow 致力于为企业提供安全、高效、可验证的 AI 数据基础设施。我们相信，只有当知识的来源、边界和口径都可以被检查，AI 给出的结论才值得被业务采纳。',
       '我们做两件事：让非结构化文档在保留结构的前提下被准确检索和交付；让结构化数据在受治理的语义层之上被自然语言提问。两条产品线共用同一套权限体系与私有化部署方式。',
     ],
-    caption: '让知识与数据都可被验证',
+    caption: 'KnowFlow，每个答案，都经得起推敲',
   },
   values: {
     title: '核心价值观',
@@ -162,7 +162,7 @@ const en: AboutContent = {
       'KnowFlow builds secure, efficient and verifiable AI data infrastructure for enterprises. We believe a conclusion is only worth acting on when its source, boundary and definition can all be inspected.',
       'We do two things: make unstructured documents retrievable and deliverable without losing their structure, and make structured data answerable in plain language on top of a governed semantic layer. Both product lines share one permission model and one self-hosted deployment story.',
     ],
-    caption: 'Knowledge and data you can verify',
+    caption: 'KnowFlow: every answer holds up to scrutiny',
   },
   values: {
     title: 'What we value',

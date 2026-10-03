@@ -65,6 +65,10 @@
   border-bottom: 2px solid var(--home-blue);
 }
 
+.heroTitle span {
+  display: block;
+}
+
 .heroCopy h1 {
   max-width: 570px;
   margin: 22px 0 20px;

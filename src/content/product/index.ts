@@ -188,10 +188,11 @@ const zhHans: ProductContent = {
         title: '目录级纯 RBAC 权限治理',
         subtitle: '把正确的知识交给正确的人',
         description:
-          '任意知识目录或知识库都可以授权给指定用户、组织或协作组。权限沿目录向下继承，多来源授权取最高权限，并贯穿检索、管理与运营数据。',
+          '超级管理员搭好顶层目录并指定目录管理员，目录管理员在自己的目录里建知识库、继续授权。任意目录或知识库都可以授权给用户、组织或协作组，权限沿目录向下继承，多来源授权取最高权限，并贯穿检索、管理与运营数据。',
         features: [
           {title: '任意主体授权', desc: '支持用户、组织、协作组三类授权主体'},
-          {title: '三级权限', desc: '分别授予查看、编辑和管理能力'},
+          {title: '分级管理', desc: '超级管理员建顶层目录，目录管理员在目录内自建知识库与授权'},
+          {title: '三级权限', desc: '分别授予只读、编辑和管理能力'},
           {title: '目录继承', desc: '上级目录授权自动作用于子目录和知识库'},
           {title: '统一权限边界', desc: '知识列表、检索、运营明细和导出使用同一 RBAC 范围'},
           {title: '三方协同接入', desc: '支持企业微信、钉钉、飞书等企业工作入口'},
@@ -401,10 +402,11 @@ const en: ProductContent = {
         title: 'Directory-level pure RBAC',
         subtitle: 'The right knowledge reaches the right people',
         description:
-          'Any directory or knowledge base can be granted to specific users, organisations or collaboration groups. Permissions inherit downward, the highest grant wins, and the same boundary applies to retrieval, management and operational data.',
+          'The super admin lays out top-level folders and assigns folder managers, who then create knowledge bases and grant access within their own folders. Any directory or knowledge base can be granted to users, organisations or collaboration groups; permissions inherit downward, the highest grant wins, and the same boundary applies to retrieval, management and operational data.',
         features: [
           {title: 'Any grantee', desc: 'Users, organisations and collaboration groups'},
-          {title: 'Three permission levels', desc: 'View, edit and manage granted separately'},
+          {title: 'Delegated management', desc: 'Super admin creates top-level folders; folder managers build and grant within them'},
+          {title: 'Three permission levels', desc: 'Read-only, edit and manage granted separately'},
           {title: 'Directory inheritance', desc: 'Parent grants apply automatically to sub-folders and knowledge bases'},
           {title: 'One boundary', desc: 'Lists, retrieval, operational detail and exports share the same RBAC scope'},
           {title: 'Integrated entry points', desc: 'WeCom, DingTalk, Feishu and other workplace channels'},
